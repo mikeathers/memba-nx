@@ -1,21 +1,19 @@
 
-  
-  'use client';
    
-  import styled from 'styled-components';
-
   
-  const StyledPage = styled.div`.page {}`;
+    import styles from './page.module.css';
+  
+
   
 
 export default async function Index() {
   /*
    * Replace the elements below with your own.
    *
-   * Note: The corresponding styles are in the ./index.styled-components file.
+   * Note: The corresponding styles are in the ./index.css file.
    */
   return (
-    <StyledPage>
+    <div className={styles.page}>
       
       
     <div className="wrapper">
@@ -411,6 +409,6 @@ export default async function Index() {
       </div>
     </div>
   
-    </StyledPage>
+    </div>
   );
 };

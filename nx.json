@@ -1,5 +1,18 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*",
+    ".stylelintrc.json": "*",
+    "babel.config.json": "*",
+    ".github/workflows/main.yml": "*"
+  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx-cloud",
@@ -9,20 +22,76 @@
           "lint",
           "test",
           "e2e",
+          "stylelint",
+          "tsc",
+          "build-storybook",
           "opennext-build"
         ],
         "accessToken": "MTE1MWU4YWUtNDVjYi00NmQyLWI5MWMtYTgxYjQwZDVhMjU4fHJlYWQtd3JpdGU="
       }
     }
   },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint",
+        "buildable": true,
+        "publishable": true
+      },
+      "component": {
+        "style": "css"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "css",
+        "linter": "eslint"
+      },
+      "library": {
+        "buildable": true
+      }
+    },
+    "@nx/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nx/next": {
+      "application": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  },
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
       "inputs": [
         "production",
         "^production"
+      ],
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "deploy": {
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "deploy-cdk": {
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "publish": {
+      "dependsOn": [
+        "^publish"
       ]
     },
     "test": {
@@ -32,12 +101,6 @@
         "{workspaceRoot}/jest.preset.js"
       ]
     },
-    "e2e": {
-      "inputs": [
-        "default",
-        "^production"
-      ]
-    },
     "lint": {
       "inputs": [
         "default",
@@ -45,12 +108,19 @@
         "{workspaceRoot}/.eslintignore"
       ]
     },
+    "e2e": {
+      "inputs": [
+        "default",
+        "^production"
+      ]
+    },
     "opennext-build": {
       "dependsOn": [
         "build"
       ],
       "inputs": [
-        "default",
+        "production",
+        "^production",
         "stageName"
       ]
     }
@@ -74,25 +144,13 @@
       "!{projectRoot}/test-setup.[jt]s",
       "!{projectRoot}/.eslintrc.json"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [
+      "{workspaceRoot}/babel.config.json"
+    ]
   },
   "workspaceLayout": {
     "appsDir": "apps",
     "libsDir": "libs"
-  },
-  "generators": {
-    "@nx/react": {
-      "application": {
-        "babel": true
-      },
-      "library": {}
-    },
-    "@nx/next": {
-      "application": {
-        "style": "styled-components",
-        "linter": "eslint"
-      }
-    }
   },
   "pluginsConfig": {
     "@nx/js": {

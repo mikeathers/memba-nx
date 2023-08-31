@@ -9,16 +9,10 @@ const { composePlugins, withNx } = require('@nx/next');
  **/
 const nextConfig = {
   nx: {
-    // Set this to true if you would like to to use SVGR
+    // Set this to true if you would like to use SVGR
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  
-  compiler: {
-    // For other options, see https://styled-components.com/docs/tooling#babel-plugin
-    styledComponents: true,
-  },
-  
 };
 
 const plugins = [
