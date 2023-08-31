@@ -8,7 +8,8 @@
           "build",
           "lint",
           "test",
-          "e2e"
+          "e2e",
+          "opennext-build"
         ],
         "accessToken": "MTE1MWU4YWUtNDVjYi00NmQyLWI5MWMtYTgxYjQwZDVhMjU4fHJlYWQtd3JpdGU="
       }
@@ -23,20 +24,79 @@
         "production",
         "^production"
       ]
+    },
+    "test": {
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ]
+    },
+    "e2e": {
+      "inputs": [
+        "default",
+        "^production"
+      ]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore"
+      ]
+    },
+    "opennext-build": {
+      "dependsOn": [
+        "build"
+      ],
+      "inputs": [
+        "default",
+        "stageName"
+      ]
     }
   },
   "namedInputs": {
+    "stageName": [
+      {
+        "env": "STAGE_NAME"
+      }
+    ],
     "default": [
       "{projectRoot}/**/*",
       "sharedGlobals"
     ],
     "production": [
-      "default"
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/.eslintrc.json"
     ],
     "sharedGlobals": []
   },
   "workspaceLayout": {
-    "appsDir": "packages",
-    "libsDir": "packages"
+    "appsDir": "apps",
+    "libsDir": "libs"
+  },
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "babel": true
+      },
+      "library": {}
+    },
+    "@nx/next": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  },
+  "pluginsConfig": {
+    "@nx/js": {
+      "analyzeSourceFiles": true
+    }
   }
 }

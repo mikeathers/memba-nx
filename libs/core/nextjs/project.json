@@ -1,0 +1,71 @@
+{
+  "name": "core-nextjs",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/core/nextjs/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/core/nextjs",
+        "main": "libs/core/nextjs/src/index.ts",
+        "tsConfig": "libs/core/nextjs/tsconfig.lib.json",
+        "assets": [
+          "libs/core/nextjs/*.md",
+          {
+            "input": "./libs/core/nextjs/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/core/nextjs/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/core/nextjs",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/core/nextjs",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/core/nextjs/**/*.ts",
+          "libs/core/nextjs/generators.json",
+          "libs/core/nextjs/executors.json",
+          "libs/core/nextjs/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/core/nextjs"
+      ],
+      "options": {
+        "jestConfig": "libs/core/nextjs/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [
+    "type:plugin",
+    "domain:core",
+    "scope:shared-internally"
+  ]
+}

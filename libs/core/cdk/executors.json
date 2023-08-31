@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "executors": {
+    "output-metadata": {
+      "implementation": "./src/executors/output-metadata/executor",
+      "schema": "./src/executors/output-metadata/schema.json",
+      "description": "output-metadata executor"
+    },
+    "cdk": {
+      "implementation": "./src/executors/cdk/executor",
+      "schema": "./src/executors/cdk/schema.json",
+      "description": "cdk executor"
+    }
+  }
+}

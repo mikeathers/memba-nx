@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "OpennextBuild executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "minify": {
+      "type": "boolean",
+      "description": "Whether to minify the code output"
+    },
+    "debug": {
+      "type": "boolean",
+      "description": "adds a load of comments, and disables bundling. do not use in production!"
+    }
+  },
+  "required": []
+}
