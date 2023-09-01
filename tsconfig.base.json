@@ -10,27 +10,17 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "strict": true,
     "paths": {
-      "@memba-nx/core/cdk": [
-        "libs/core/cdk/src/index.ts"
-      ],
-      "@memba-nx/core/nextjs": [
-        "libs/core/nextjs/src/index.ts"
-      ],
-      "@memba-nx/core/nextjs-construct": [
-        "libs/core/nextjs-construct/src/index.ts"
-      ]
+      "@memba-nx/core/cdk": ["libs/core/cdk/src/index.ts"],
+      "@memba-nx/core/nextjs": ["libs/core/nextjs/src/index.ts"],
+      "@memba-nx/core/nextjs-construct": ["libs/core/nextjs-construct/src/index.ts"],
+      "@memba-nx/core/workspace": ["libs/core/workspace/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "@cinch-nx/workspace",
+  "version": "0.0.1",
+  "generators": {
+    "next-app": {
+      "factory": "./src/generators/next-app/generator",
+      "schema": "./src/generators/next-app/schema.json",
+      "description": "NextJS App generator"
+    },
+    "cdk-stack": {
+      "factory": "./src/generators/cdk-stack/generator",
+      "schema": "./src/generators/cdk-stack/schema.json",
+      "description": "Generate an Empty CDK Stack"
+    },
+    "add-stage-props": {
+      "factory": "./src/generators/add-stage-props/generator",
+      "schema": "./src/generators/add-stage-props/schema.json",
+      "description": "add-stage-props generator"
+    },
+    "opennext-stack": {
+      "factory": "./src/generators/opennext-stack/generator",
+      "schema": "./src/generators/opennext-stack/schema.json",
+      "description": "generator for open-next CDK Stacks"
+    },
+    "add-output-metadata-target": {
+      "factory": "./src/generators/add-output-metadata-target/generator",
+      "schema": "./src/generators/add-output-metadata-target/schema.json",
+      "description": "add-output-metadata-target generator"
+    },
+    "add-opennext-build-config": {
+      "factory": "./src/generators/add-opennext-build-config/generator",
+      "schema": "./src/generators/add-opennext-build-config/schema.json",
+      "description": "add-opennext-build-config generator"
+    },
+    "add-opennext-package-json": {
+      "factory": "./src/generators/add-opennext-package-json/generator",
+      "schema": "./src/generators/add-opennext-package-json/schema.json",
+      "description": "add-opennext-package-json generator"
+    },
+    "allow-standalone-builds": {
+      "factory": "./src/generators/allow-standalone-builds/generator",
+      "schema": "./src/generators/allow-standalone-builds/schema.json",
+      "description": "allow-standalone-builds generator"
+    },
+    "convert-to-opennext": {
+      "factory": "./src/generators/convert-to-opennext/generator",
+      "schema": "./src/generators/convert-to-opennext/schema.json",
+      "description": "convert-to-opennext generator"
+    }
+  }
+}

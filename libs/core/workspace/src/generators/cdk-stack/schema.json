@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "App",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What is the name of the project you are creating?"
+    },
+    "appName": {
+      "type": "string",
+      "description": "the name of your squad",
+      "x-prompt": "What is the name of your squad?",
+      "enum": [
+        "acquire-and-engage",
+        "customer-interactions",
+        "search",
+        "product-detail",
+        "app",
+        "vehicle-data",
+        "stock-management-and-pricing",
+        "ingestion-and-partner-management",
+        "quality-and-efficiency",
+        "part-ex-and-checkout",
+        "order-management",
+        "in-life-and-loyalty",
+        "logistics-and-payments",
+        "consumer-lending",
+        "finance-platform",
+        "decisioning",
+        "agreement",
+        "proposal",
+        "lender-integrations"
+      ]
+    }
+  },
+  "required": ["name", "squad"]
+}

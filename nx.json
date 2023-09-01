@@ -3,16 +3,6 @@
   "affected": {
     "defaultBase": "main"
   },
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    ".eslintrc.json": "*",
-    ".stylelintrc.json": "*",
-    "babel.config.json": "*",
-    ".github/workflows/main.yml": "*"
-  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx-cloud",
@@ -24,8 +14,7 @@
           "e2e",
           "stylelint",
           "tsc",
-          "build-storybook",
-          "opennext-build"
+          "build-storybook"
         ],
         "accessToken": "MTE1MWU4YWUtNDVjYi00NmQyLWI5MWMtYTgxYjQwZDVhMjU4fHJlYWQtd3JpdGU="
       }
@@ -131,10 +120,6 @@
         "env": "STAGE_NAME"
       }
     ],
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -145,7 +130,14 @@
       "!{projectRoot}/.eslintrc.json"
     ],
     "sharedGlobals": [
-      "{workspaceRoot}/babel.config.json"
+      "{workspaceRoot}/babel.config.json",
+      "{workspaceRoot}/.eslintrc.json",
+      "{workspaceRoot}/.stylelintrc.json",
+      "{workspaceRoot}/.github/workflows/main.yml"
+    ],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
     ]
   },
   "workspaceLayout": {

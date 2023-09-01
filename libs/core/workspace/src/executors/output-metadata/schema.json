@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "OutputMetadata executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "sharedOutputs": {
+      "description": "Record<string, string>",
+      "type": "object",
+      "patternProperties": {
+        ".{1,}": { "type": "string" }
+      }
+    },
+    "outputs": {
+      "description": "Record<string, string>",
+      "type": "object",
+      "patternProperties": {
+        ".{1,}": { "type": "string" }
+      }
+    },
+    "json": {
+      "description": "Whether or not to output as JSON",
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": ["sharedOutputs", "outputs"]
+}

@@ -1,0 +1,180 @@
+{
+  "name": "home-web-www",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/home-web/www",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "inputs": ["default", "stageName"],
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/home-web/www"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "home-web-www:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "home-web-www:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "home-web-www:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "home-web-www:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/home-web/www/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/home-web/www/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "opennext-build": {
+      "executor": "@memba-nx/core/workspace:opennext-build",
+      "outputs": ["dist/apps/home-web/www/.open-next/"],
+      "options": {
+        "debug": true
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "minify": true
+        }
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx cdk-deploy home-web-www --configuration={args.configuration}"
+      },
+      "configurations": {
+        "development": {
+          "configuration": "development",
+          "envFile": "apps/home-web/www/.env.development"
+        },
+        "production": {
+          "configuration": "production",
+          "envFile": "apps/home-web/www/.env.production"
+        }
+      }
+    },
+    "cdk-deploy": {
+      "executor": "@memba-nx/core/workspace:cdk",
+      "options": {
+        "command": "deploy",
+        "output": "dist/apps/home-web/www/cdk.out"
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "context": {
+            "stageName": "development"
+          }
+        },
+        "production": {
+          "context": {
+            "stageName": "production"
+          }
+        }
+      }
+    },
+    "synth": {
+      "executor": "@memba-nx/core/workspace:cdk",
+      "options": {
+        "command": "synth",
+        "output": "dist/apps/home-web/www/cdk.out"
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "context": {
+            "stageName": "development"
+          }
+        },
+        "production": {
+          "context": {
+            "stageName": "production"
+          }
+        }
+      }
+    },
+    "diff": {
+      "executor": "@memba-nx/core/workspace:cdk",
+      "options": {
+        "command": "diff",
+        "output": "dist/apps/home-web/www/cdk.out"
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "context": {
+            "stageName": "development"
+          }
+        },
+        "production": {
+          "context": {
+            "stageName": "production"
+          }
+        }
+      }
+    },
+    "destroy": {
+      "executor": "@memba-nx/core/workspace:cdk",
+      "options": {
+        "command": "destroy",
+        "output": "dist/apps/home-web/www/cdk.out"
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "context": {
+            "stageName": "development"
+          }
+        },
+        "production": {
+          "context": {
+            "stageName": "production"
+          }
+        }
+      }
+    }
+  },
+  "tags": ["domain:home-web"]
+}

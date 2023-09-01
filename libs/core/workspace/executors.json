@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "executors": {
+    "output-metadata": {
+      "implementation": "./src/executors/output-metadata/executor",
+      "schema": "./src/executors/output-metadata/schema.json",
+      "description": "output-metadata executor"
+    },
+    "cdk": {
+      "implementation": "./src/executors/cdk/executor",
+      "schema": "./src/executors/cdk/schema.json",
+      "description": "cdk executor"
+    },
+    "invalidate-cloudfront": {
+      "implementation": "./src/executors/invalidate-cloudfront/executor",
+      "schema": "./src/executors/invalidate-cloudfront/schema.json",
+      "description": "Uses AWS CLI to invalidate cloudfront distribution"
+    },
+    "opennext-build": {
+      "implementation": "./src/executors/opennext-build/executor",
+      "schema": "./src/executors/opennext-build/schema.json",
+      "description": "opennext-build executor"
+    }
+  }
+}
