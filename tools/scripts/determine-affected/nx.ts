@@ -13,7 +13,7 @@ const NODE_BIN = join(MONOREPO_ROOT, 'node_modules/.bin')
 
 async function resolveProjectPath(projectName: string) {
   console.log({projectName})
-  const workspaceJson = await readFile(join(MONOREPO_ROOT, 'workspace.json')).then(
+  const workspaceJson = await readFile(join(MONOREPO_ROOT, 'project-map.json')).then(
     (buffer) => JSON.parse(buffer.toString()) as ProjectsConfigurations,
   )
 
