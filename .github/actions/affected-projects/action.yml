@@ -1,0 +1,30 @@
+name: print-affected
+description: runs `nx print-affected` - returns as a json of projects
+
+inputs:
+  target:
+    description: 'This is the nx target to use (e.g., build)'
+    required: true
+  configuration:
+    description: 'This is the configuration to use when performing tasks on projects (e.g., ci)'
+    required: false
+  type:
+    description: 'Select the type of projects to be returned (e.g., app)'
+    required: false
+  exclude:
+    description: 'Exclude certain projects from being processed'
+    required: false
+  select:
+    description: 'The value to select in the json file'
+    required: true
+    default: 'tasks.target.project'
+
+outputs: 
+  projects:
+    description: 'a json array of selected data for each project'
+  has-projects: 
+    description: 'whether or not there are affected projects'
+
+runs: 
+  using: 'node16'
+  main: 'index.js'
