@@ -2,6 +2,7 @@ import {ProjectConfiguration, ProjectsConfigurations} from '@nrwl/devkit'
 import {exec} from 'node:child_process'
 import {readFile} from 'node:fs/promises'
 import {join} from 'node:path'
+// @ts-ignore
 import process from 'node:process'
 
 import {optionsToArgs} from '../_util/cmd-util'
