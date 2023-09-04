@@ -16,7 +16,7 @@ export default async function runExecutorMain(
 ) {
   try {
     const projectName = context.projectName ?? ''
-    const projectRoot = context.workspace.projects[projectName].root
+    const projectRoot = context.workspace?.projects[projectName].root ?? ''
     const projectOutputDir = `${context.root}/dist/${projectRoot}`
 
     const results = await runCommands([

@@ -23,7 +23,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/core/nextjs-construct"],
+      "outputs": ["{workspaceRoot}/coverage/libs/core/nextjs-construct"],
       "options": {
         "jestConfig": "libs/core/nextjs-construct/jest.config.ts",
         "passWithNoTests": true

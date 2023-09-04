@@ -34,6 +34,7 @@
     "@aws-solutions-constructs/aws-cloudfront-s3": "^2.42.0",
     "@swc/helpers": "~0.5.0",
     "formik": "^2.4.3",
+    "jest-mock-extended": "^3.0.5",
     "lint-staged": "^14.0.1",
     "next": "13.4.1",
     "open-next": "^2.0.5",

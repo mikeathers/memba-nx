@@ -1,19 +1,19 @@
-import { readFileSync } from 'fs'
+import type {Config} from 'jest'
 
-// Reading the SWC compilation config and remove the "exclude"
-// for the test files to be compiled by SWC
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { exclude: _, ...swcJestConfig } = JSON.parse(
-  readFileSync(`${__dirname}/.lib.swcrc`, 'utf8'),
-)
-const jestConfig = {
+const jestConfig: Config = {
   displayName: '..-tools-plugins-workspace',
   preset: '../../../jest.preset.js',
-  transform: {
-    '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+    },
   },
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../coverage/libs/core/workspace',
+  transform: {
+    '^.+\\.[tj]s$': 'ts-jest',
+  },
+  modulePathIgnorePatterns: ['node_modules', '../../../node_modules'],
+  transformIgnorePatterns: ['node_modules', '../../../node_modules'],
+  moduleFileExtensions: ['ts', 'js', 'html', 'json'],
 }
 
 export default jestConfig

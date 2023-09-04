@@ -9,7 +9,7 @@ import mocked = jest.mocked
 import {TEMP_LOCAL_STORAGE_PWD_KEY} from '../../config'
 import {hasAccessCheck} from '../../services'
 import {refreshJwt, removeItemFromLocalStorage, setItemInLocalStorage} from '../../utils'
-import {mockCognitoUserAttributes, mockState} from '../../../test-support'
+import {mockCognitoUserAttributes, mockState} from '../../test-support'
 import type {ChallengedUser} from './auth.types'
 import {ActionTypes, AuthContext, initialState, useAuth} from './'
 import {CognitoUserAttributes, UserMembership} from '../../types'

@@ -64,7 +64,7 @@
     },
     "opennext-build": {
       "executor": "@memba-nx/core/workspace:opennext-build",
-      "outputs": ["dist/apps/home-web/www/.open-next/"],
+      "outputs": ["{workspaceRoot}/dist/apps/home-web/www/.open-next/"],
       "options": {
         "debug": true
       },
