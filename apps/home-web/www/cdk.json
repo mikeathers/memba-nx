@@ -52,8 +52,7 @@
         "hostedZoneId": "Z08078312PXP7EBTCJL8F",
         "hostedZoneName": "dev.memba.co.uk",
         "imageCachePolicyId": "3992a123-07d4-4058-86ec-b1a97e9f8647",
-        "serverCachePolicyId": "59e8ca20-753d-4309-8ae2-f19cbc72f85f",
-        "accountId": "544312030237"
+        "serverCachePolicyId": "59e8ca20-753d-4309-8ae2-f19cbc72f85f"
       },
       "production": {
         "domainName": "home.memba.co.uk",
@@ -61,8 +60,7 @@
         "hostedZoneId": "Z08250957V80SGFDTWJA",
         "hostedZoneName": "memba.co.uk",
         "imageCachePolicyId": "82155427-7087-484a-aab3-e2b6a1c409f7",
-        "serverCachePolicyId": "944e6dc9-e7f3-49f4-b3bc-6f7f4a0e3841",
-        "accountId": "635800996936"
+        "serverCachePolicyId": "944e6dc9-e7f3-49f4-b3bc-6f7f4a0e3841"
       }
     }
   }

@@ -16,6 +16,7 @@ import {OpennextAppGeneratorSchema} from './schema'
 
 import cdkStackGenerator from '../cdk-stack/generator'
 import addStageProps from '../add-stage-props/generator'
+import addOutputMetadataTarget from '../add-output-metadata-target/generator'
 
 import {StagePropsForAccount, getAccountDetailsForStage} from '../../utils/stage-props'
 import {Tag} from '../../utils/tags'
@@ -47,10 +48,9 @@ export default async function (tree: Tree, options: OpennextAppGeneratorSchema) 
       ...normalizedOptions.productionProps,
     }),
 
-    // await addOutputMetadataTarget(tree, {
-    //   name: normalizedOptions.projectName,
-    //   squad: normalizedOptions.projectFolderName,
-    // }),
+    await addOutputMetadataTarget(tree, {
+      name: normalizedOptions.projectName,
+    }),
   ])
 
   replaceDeployTarget(tree, normalizedOptions)
