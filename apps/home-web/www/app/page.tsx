@@ -1,4 +1,5 @@
 import styles from './page.module.css'
+import {Env, readFromEnv} from '@memba-nx/shared'
 
 export default async function Index() {
   /*
@@ -6,6 +7,10 @@ export default async function Index() {
    *
    * Note: The corresponding styles are in the ./index.css file.
    */
+
+  const x = `${readFromEnv(Env.tenantsApi)}`
+  console.log('TENANTS_API', x)
+
   return (
     <div className={styles.page}>
       <div className="wrapper">
@@ -13,7 +18,7 @@ export default async function Index() {
           <div id="welcome">
             <h1>
               <span> Hello there, </span>
-              Welcome www 👋
+              Welcome USER 👋
             </h1>
           </div>
 

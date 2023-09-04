@@ -24,5 +24,5 @@ jobs:
         uses: ./.github/actions/affected-projects
         id: affected
         with:
-          target: e2e
+          target: build
           configuration: ci
