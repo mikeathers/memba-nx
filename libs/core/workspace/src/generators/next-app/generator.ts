@@ -26,10 +26,8 @@ export default async function (tree: Tree, _options: AppGeneratorSchema) {
   addStageNameAsInput(tree, options.projectName)
   installPackagesTask(tree)
   await convertAppToOpenNext(tree, {name: options.projectName})
-  // const projectRoot = readProjectConfiguration(tree, options.projectName).root
-  // disabledCssStyleLint(tree, projectRoot)
-  // outputJestConfig(tree, projectRoot)
-  //generateCustomE2EProject(tree, options)
+  const projectRoot = readProjectConfiguration(tree, options.projectName).root
+  outputJestConfig(tree, projectRoot)
   await formatFiles(tree)
 }
 
@@ -62,25 +60,6 @@ function addStageNameAsInput(tree: Tree, projectName: string) {
   projectConfig.targets!.build = nextBuild
 
   updateProjectConfiguration(tree, projectName, projectConfig)
-}
-
-function disabledCssStyleLint(
-  tree: Tree,
-  path: string,
-  files = ['index.module.css', 'styles.css'],
-) {
-  files.forEach((file) => {
-    const filePath = `${path}/pages/${file}`
-    const contents = tree.read(filePath)?.toString()
-    const newContent = `/* stylelint-disable  */`
-    let updatedContent = contents ?? ''
-
-    if (contents && !contents?.includes(newContent)) {
-      updatedContent = `${newContent}\n${contents}`
-    }
-
-    tree.write(filePath, updatedContent)
-  })
 }
 
 function outputJestConfig(tree: Tree, path: string) {
