@@ -13,12 +13,12 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
     "strict": true,
+    "baseUrl": ".",
     "paths": {
       "@memba-nx/core/nextjs-construct": ["libs/core/nextjs-construct/src/index.ts"],
       "@memba-nx/core/workspace": ["libs/core/workspace/src/index.ts"],
-      "@memba-nx/shared": ["libs/shared/src/index.ts"]
+      "@memba-nx/shared": ["libs/shared/src/index.ts"],
     }
   },
   "exclude": ["node_modules", "tmp"]

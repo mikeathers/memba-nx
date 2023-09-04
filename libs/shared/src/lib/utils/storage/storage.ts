@@ -1,5 +1,5 @@
 export const setItemInLocalStorage = <T>(key: string, value: T) => {
-  if (window.localStorage) {
+  if (typeof window !== 'undefined') {
     localStorage.setItem(key, JSON.stringify(value))
   }
 }
@@ -9,6 +9,7 @@ export const getItemFromLocalStorage = <T>(key: string) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return JSON.parse(localStorage.getItem(key) ?? '') as T
   }
+  return null
 }
 
 export const removeItemFromLocalStorage = (key: string) => {
