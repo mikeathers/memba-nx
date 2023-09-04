@@ -1,9 +1,0 @@
-{
-  "executors": {
-    "cdk": {
-      "implementation": "./cdk",
-      "schema": "./schema.json",
-      "description": "Runs CDK Commands"
-    }
-  }
-}

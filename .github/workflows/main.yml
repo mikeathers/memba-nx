@@ -26,3 +26,33 @@ jobs:
         with:
           target: build
           configuration: ci
+
+  prepare-deployments:
+    name: "Deployments: Prepare"
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: "ubuntu-latest"
+    outputs:
+      matrix: ${{ steps.affected.outputs.matrix }}
+      has-affected-projects: ${{ steps.affected.outputs.has-affected-projects }}
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node environment
+        uses: ./.github/actions/restore-node
+        with:
+          node-auth-token: ${{ secrets.GHP_TOKEN }}
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        id: set-shas
+        uses: nrwl/nx-set-shas@v3.0.2
+        with:
+          workflow-id: "main.yml"
+
+      - name: List Affected Projects
+        id: affected
+        env:
+          EXCLUDE_NX_PROJECTS: ""
+        run: yarn -s ts-node ./tools/scripts/determine-affected
