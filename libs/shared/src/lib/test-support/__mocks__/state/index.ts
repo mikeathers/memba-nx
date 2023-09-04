@@ -1,6 +1,5 @@
 import {AuthContextValue} from '../../../context'
 import {ActionTypes} from '../../../hooks/use-safe-async/use-safe-async.types'
-import {jest} from '@jest/globals'
 
 const mockSignUserIn = jest.fn()
 const mockDispatch = jest.fn()

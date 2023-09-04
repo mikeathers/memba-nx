@@ -52,6 +52,7 @@ describe('interpolateContent', () => {
       ),
     }
     const result = interpolateContent(val, undefined, tags)
+    //eslint-disable-next-line react/jsx-no-useless-fragment
     const {queryAllByTestId} = render(<>{result}</>)
     const spans = queryAllByTestId('TESTSPAN')
 
