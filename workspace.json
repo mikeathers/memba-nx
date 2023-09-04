@@ -1,9 +1,0 @@
-{
-  "version": 1,
-  "projects": {
-    "core-nextjs-construct": "libs/core/nextjs-construct",
-    "core-workspace": "libs/core/workspace",
-    "home-web-www": "apps/home-web/www",
-    "shared": "libs/shared"
-  }
-}

@@ -80,6 +80,7 @@ async function determineAffected(target: string, excludedProjects: string) {
   }
 
   const affectedProjects = await getAffectedProjects(target, excludedProjects)
+  console.log({affectedProjects})
   const configurations = await toProjectConfigurations(affectedProjects)
   const generatedMatrix = toMatrixObject(configurations)
 
