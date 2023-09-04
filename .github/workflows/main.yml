@@ -41,9 +41,9 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Node environment
-        uses: ./.github/actions/restore-node
+        uses: actions/setup-node@v3.6.0
         with:
-          node-auth-token: ${{ secrets.GHP_TOKEN }}
+          node-version: 18
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         id: set-shas
