@@ -17,7 +17,7 @@ export default async function (
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const buildConfig = normalizedOptions.projectConfiguration.targets!.build
-
+  console.log(normalizedOptions.projectConfiguration.targets?.build?.options)
   updateProjectConfiguration(tree, normalizedOptions.projectName, {
     ...normalizedOptions.projectConfiguration,
     targets: {

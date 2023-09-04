@@ -5,12 +5,17 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
-    "build": "nx build --parallel=4"
+    "build": "nx build --parallel=4",
+    "test": "jest --silent"
   },
   "private": true,
   "dependencies": {
+    "@aws-amplify/auth": "^5.6.4",
+    "@aws-sdk/client-cloudfront": "^3.405.0",
+    "@aws-sdk/credential-providers": "^3.405.0",
     "@aws-solutions-constructs/aws-cloudfront-s3": "^2.42.0",
     "@swc/helpers": "~0.5.0",
+    "formik": "^2.4.3",
     "next": "13.4.1",
     "open-next": "^2.0.5",
     "react": "18.2.0",
@@ -18,11 +23,13 @@
     "react-is": "18.2.0",
     "recast": "^0.23.4",
     "styled-components": "5.3.6",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",
     "@babel/preset-env": "^7.22.14",
+    "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.22.11",
     "@nx/cypress": "16.7.1",
     "@nx/devkit": "^16.7.1",
@@ -32,7 +39,9 @@
     "@nx/linter": "16.7.1",
     "@nx/next": "16.7.4",
     "@nx/react": "16.7.4",
+    "@nx/rollup": "16.7.4",
     "@nx/workspace": "16.7.1",
+    "@rollup/plugin-url": "^7.0.0",
     "@svgr/rollup": "^8.1.0",
     "@svgr/webpack": "^8.1.0",
     "@swc/cli": "~0.1.62",

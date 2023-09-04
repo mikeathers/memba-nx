@@ -42,7 +42,6 @@ export default async function (tree: Tree, options: AddStagePropsGeneratorSchema
     hostedZoneName: normalizedOptions.hostedZoneName,
     imageCachePolicyId: normalizedOptions.imageCachePolicyId,
     serverCachePolicyId: normalizedOptions.serverCachePolicyId,
-    accountId: normalizedOptions.accountId,
   }
 
   await updateCDKJson(tree, normalizedOptions, stageConfig)

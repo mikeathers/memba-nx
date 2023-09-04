@@ -1,20 +1,10 @@
-import { App } from 'aws-cdk-lib'
-import { readConfig, StageProps } from './read-config'
+import {App} from 'aws-cdk-lib'
+import {readConfig, StageProps} from './read-config'
 
 const stageProps: StageProps = {
-  ephemeral: {
-    certificateArn: '',
-    domainName: 'i.am.ephemeral',
-    webAclArn: '',
-    hostedZoneId: '',
-    hostedZoneName: '',
-    imageCachePolicyId: 'iamacachepolicy',
-    serverCachePolicyId: '🥲',
-  },
   development: {
     certificateArn: '',
     domainName: 'i.am.development',
-    webAclArn: '',
     hostedZoneId: '',
     hostedZoneName: '',
     imageCachePolicyId: 'iamacachepolicy',
@@ -23,7 +13,6 @@ const stageProps: StageProps = {
   production: {
     certificateArn: '',
     domainName: 'i.am.production',
-    webAclArn: '',
     hostedZoneId: '',
     hostedZoneName: '',
     imageCachePolicyId: 'iamacachepolicy',
@@ -33,18 +22,14 @@ const stageProps: StageProps = {
 
 describe('read-config', () => {
   let context = {
-    stageName: 'ephemeral',
-    tribe: 'im-a-cool-tribe',
-    squad: 'im-a-cool-squad',
+    stageName: 'development',
     serviceName: 'very-cool-service-name',
     stageProps,
   }
 
   beforeEach(() => {
     context = {
-      stageName: 'ephemeral',
-      tribe: 'im-a-cool-tribe',
-      squad: 'im-a-cool-squad',
+      stageName: 'development',
       serviceName: 'very-cool-service-name',
       stageProps,
     }
@@ -58,14 +43,13 @@ describe('read-config', () => {
     })
 
     expect(() => readConfig(app)).toThrow(
-      `Error: Expected one of "ephemeral" | "development" | "production" but received: '${context.stageName}'`,
+      `Error: Expected one of "development" | "production" but received: '${context.stageName}'`,
     )
   })
 
-  it('should throw if the geConfig for the provided stageName does not exist', () => {
+  it('should throw if the getConfig for the provided stageName does not exist', () => {
     context.stageName = 'production'
     context.stageProps = {
-      ephemeral: stageProps.ephemeral,
       development: stageProps.development,
     } as Required<StageProps>
     const app = new App({
@@ -77,7 +61,7 @@ describe('read-config', () => {
     )
   })
 
-  it.each(['ephemeral', 'development', 'production'])(
+  it.each(['development', 'production'])(
     'should pass the correct data for the stageName %s',
     (stageName) => {
       context.stageName = stageName
@@ -90,40 +74,4 @@ describe('read-config', () => {
       expect(results).toHaveProperty('domainName', `i.am.${stageName}`)
     },
   )
-
-  describe('kebab-case values', () => {
-    it('should throw the correct error when BOTH tribe, and squad is not kebab-case', () => {
-      context = {
-        ...context,
-        tribe: 'not a cool tribe',
-        squad: 'not a cool squad',
-      }
-
-      const app = new App({
-        context,
-      })
-
-      expect(() => readConfig(app)).toThrow(`Multiple Errors:
- -  [squad] "squad" should be kebab-case.
- -  [tribe] "tribe" should be kebab-case.`)
-    })
-
-    it.each(['squad', 'tribe'])(
-      'should throw the correct error when ONLY "%s" is not camel case',
-      (property) => {
-        context = {
-          ...context,
-          [property]: 'not a cool string',
-        }
-
-        const app = new App({
-          context,
-        })
-
-        expect(() => readConfig(app)).toThrow(
-          `"${property}" should be kebab-case`,
-        )
-      },
-    )
-  })
 })

@@ -48,7 +48,7 @@ export function readConfig(app: Construct): Config {
 const stageNameSchema = z.union([z.literal('development'), z.literal('production')], {
   errorMap(_, context) {
     return {
-      message: `"development" | "production" but received: '${context.data}'`,
+      message: `Expected one of "development" | "production" but received: '${context.data}'`,
     }
   },
 })
@@ -89,9 +89,6 @@ const stageConfigSchema = z.object(
     }),
     imageCachePolicyId: z.string({
       required_error: 'The serverCachePolicyId has not been provided for this stage',
-    }),
-    accountId: z.string({
-      required_error: 'The accountId has not been provided for this stage',
     }),
   },
   {

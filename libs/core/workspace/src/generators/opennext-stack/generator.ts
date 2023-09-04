@@ -16,7 +16,6 @@ import {OpennextAppGeneratorSchema} from './schema'
 
 import cdkStackGenerator from '../cdk-stack/generator'
 import addStageProps from '../add-stage-props/generator'
-import addOutputMetadataTarget from '../add-output-metadata-target/generator'
 
 import {StagePropsForAccount, getAccountDetailsForStage} from '../../utils/stage-props'
 import {Tag} from '../../utils/tags'

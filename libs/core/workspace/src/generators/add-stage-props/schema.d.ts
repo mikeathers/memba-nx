@@ -8,7 +8,6 @@ export interface StageProps {
   hostedZoneName: string
   serverCachePolicyId?: string
   imageCachePolicyId?: string
-  accountId: string
 }
 
 export interface AddStagePropsGeneratorSchema extends StageProps {

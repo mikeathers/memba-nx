@@ -8,7 +8,6 @@ const accountMap = {
     hostedZoneName: 'dev.memba.co.uk',
     serverCachePolicyId: '59e8ca20-753d-4309-8ae2-f19cbc72f85f',
     imageCachePolicyId: '3992a123-07d4-4058-86ec-b1a97e9f8647',
-    accountId: '544312030237',
   },
   production: {
     certificateArn:
@@ -17,7 +16,6 @@ const accountMap = {
     hostedZoneName: 'memba.co.uk',
     serverCachePolicyId: '944e6dc9-e7f3-49f4-b3bc-6f7f4a0e3841',
     imageCachePolicyId: '82155427-7087-484a-aab3-e2b6a1c409f7',
-    accountId: '635800996936',
   },
 } as const
 

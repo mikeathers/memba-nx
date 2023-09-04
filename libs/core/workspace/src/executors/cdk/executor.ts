@@ -7,8 +7,8 @@ export default async function runExecutor(
   context: ExecutorContext,
 ) {
   const projectName = context.projectName ?? ''
-  const projectRoot = context.workspace.projects[projectName].root
-  const outPath = joinPathFragments(offsetFromRoot(projectRoot), options.output)
+  const projectRoot = context.workspace?.projects[projectName].root
+  const outPath = joinPathFragments(offsetFromRoot(projectRoot || ''), options.output)
 
   const contextArgs = Object.entries(options.context ?? {}).map(
     ([key, value]) => `--context ${key}=${value}`,
@@ -27,7 +27,7 @@ export default async function runExecutor(
     cdkArgs.push(`--profile ${options.profile}`)
   }
 
-  const success = await executeCdkCommand(options.command, cdkArgs, projectRoot)
+  const success = await executeCdkCommand(options.command, cdkArgs, projectRoot || '')
 
   return {success}
 }

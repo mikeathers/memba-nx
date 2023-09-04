@@ -49,6 +49,9 @@
     "@nx/react": {
       "application": {
         "babel": true
+      },
+      "library": {
+        "unitTestRunner": "jest"
       }
     },
     "@nx/next": {
@@ -60,35 +63,20 @@
   },
   "targetDefaults": {
     "build": {
-      "inputs": [
-        "production",
-        "^production"
-      ],
-      "dependsOn": [
-        "^build"
-      ]
+      "inputs": ["production", "^production"],
+      "dependsOn": ["^build"]
     },
     "deploy": {
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "deploy-cdk": {
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "publish": {
-      "dependsOn": [
-        "^publish"
-      ]
+      "dependsOn": ["^publish"]
     },
     "test": {
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.preset.js"
-      ]
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     },
     "lint": {
       "inputs": [
@@ -98,20 +86,11 @@
       ]
     },
     "e2e": {
-      "inputs": [
-        "default",
-        "^production"
-      ]
+      "inputs": ["default", "^production"]
     },
     "opennext-build": {
-      "dependsOn": [
-        "build"
-      ],
-      "inputs": [
-        "production",
-        "^production",
-        "stageName"
-      ]
+      "dependsOn": ["build"],
+      "inputs": ["production", "^production", "stageName"]
     }
   },
   "namedInputs": {
@@ -135,10 +114,7 @@
       "{workspaceRoot}/.stylelintrc.json",
       "{workspaceRoot}/.github/workflows/main.yml"
     ],
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ]
+    "default": ["{projectRoot}/**/*", "sharedGlobals"]
   },
   "workspaceLayout": {
     "appsDir": "apps",

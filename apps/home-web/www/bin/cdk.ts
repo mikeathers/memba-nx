@@ -13,8 +13,5 @@ const config = readConfig(app)
 
 new NextJsConstruct(app, stackName, {
   buildPath: '../../../dist/apps/home-web/www',
-  env: {
-    account: config.accountId,
-  },
   ...config,
 })

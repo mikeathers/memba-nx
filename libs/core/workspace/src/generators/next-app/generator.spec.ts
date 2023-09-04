@@ -17,7 +17,7 @@ describe('app generator', () => {
   let appTree: Tree
   const options: AppGeneratorSchema = {
     name: 'test',
-    appName: 'acquire-and-engage',
+    appName: 'id-web',
   }
 
   beforeEach(() => {
@@ -26,16 +26,16 @@ describe('app generator', () => {
 
   it('should run successfully', async () => {
     await generator(appTree, options)
-    const config = readProjectConfiguration(appTree, 'acquire-and-engage-test')
+    const config = readProjectConfiguration(appTree, 'id-web-test')
     expect(config).toBeDefined()
   })
 
   it('if ran with directory, it should pass correct project name to generator', async () => {
-    await generator(appTree, {name: 'test', appName: 'acquire-and-engage'})
+    await generator(appTree, {name: 'test', appName: 'id-web'})
 
     expect(mockedGenerator).toHaveBeenCalledWith(
       expect.anything(),
-      expect.objectContaining({name: 'acquire-and-engage-test'}),
+      expect.objectContaining({name: 'id-web-test'}),
     )
   })
 })
