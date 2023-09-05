@@ -116,6 +116,7 @@
       }
     },
     "cdk-deploy": {
+      "dependsOn": ["build", "opennext-build"],
       "executor": "@memba-nx/core/workspace:cdk",
       "options": {
         "command": "deploy",
