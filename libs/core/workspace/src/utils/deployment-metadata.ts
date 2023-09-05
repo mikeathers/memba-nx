@@ -9,7 +9,7 @@ function getDeploymentMetadataForAccount(stageName: 'development' | 'production'
   const accountId = accountNameToAccountIdDict[stageName]
 
   return {
-    'oidc-role-to-assume': `arn:aws:iam::${accountId}:role/infrastructure/infra-service-deployment`,
+    'oidc-role-to-assume': `arn:aws:iam::${accountId}:role/infra-service-deployment`,
     'oidc-role-session-name': `web-app-deploy-role`,
   } as const
 }
