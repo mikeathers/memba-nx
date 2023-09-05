@@ -1,0 +1,40 @@
+name: Deploy and Build Nx Project
+description: Basically just runs `nx {project-name}:deploy --configuration={project-configuration}`
+
+inputs:
+  project-name:
+    description: 'Name of the Project to Deploy'
+    required: true
+  project-configuration:
+    description: 'Name of the Configuration to deploy the Project with, defaults to development'
+    required: true
+    default: development
+
+outputs:
+  project-url:
+    description: The URL the project has deployed to
+    value: ${{ steps.project-metadata.outputs.project-url }}
+
+runs:
+  using: 'composite'
+  steps:
+      - name: Retrieve Project Metadata
+        shell: bash
+        id: project-metadata
+        run: npx nx run ${{ inputs.project-name }}:output-metadata --configuration=${{ inputs.project-configuration }}
+
+      - name: Configure AWS Credentials
+        id: aws-creds
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          role-to-assume: ${{ steps.project-metadata.outputs.oidc-role-to-assume }}
+          role-session-name: ${{ steps.project-metadata.outputs.oidc-role-session-name }}
+          aws-region: ${{ steps.project-metadata.outputs.oidc-aws-region }}
+
+      - name: Build and Deploy
+        shell: 'bash'
+        id: deploy-app
+        env:
+          STAGE_NAME: ${{ inputs.project-configuration }}
+        run: |
+          npx nx run ${{ inputs.project-name }}:deploy --configuration=${{ inputs.project-configuration }}

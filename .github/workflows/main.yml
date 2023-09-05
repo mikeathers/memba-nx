@@ -70,3 +70,58 @@ jobs:
         env:
           EXCLUDE_NX_PROJECTS: ""
         run: yarn -s ts-node ./tools/scripts/determine-affected
+
+  Deployments:
+    needs: [prepare-deployments, main]
+    if: ${{ needs.prepare-deployments.outputs.has-affected-projects == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      actions: write
+      deployments: write
+      id-token: write
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJSON(needs.prepare-deployments.outputs.matrix)}}
+    name: "Deployments: Deploy ${{ matrix.project }} to ${{matrix.configuration}}"
+    environment:
+      name: ${{ matrix.project }}-${{ matrix.configuration }}
+      url: ${{ steps.deployment.outputs.project-url }}
+    concurrency:
+      group: ${{ matrix.project }}-${{ matrix.configuration }}-${{ github.ref_name }}
+      cancel-in-progress: false
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v3
+
+      - name: Set up Node environment
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 18
+
+      - name: Use the node_modules cache if available
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+            !**/node_modules/.cache/nx
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-
+
+      - name: Install dependencies
+        shell: 'bash'
+        run: yarn install --frozen-lockfile
+
+      - name: Deploy ${{ matrix.project }} to ${{ matrix.configuration }}
+        uses: ./.github/actions/deploy-nx-project
+        id: deployment
+        with:
+          project-name: ${{ matrix.project }}
+          project-configuration: ${{ matrix.configuration }}
+          github-token: ${{ github.token }}
+          node-auth-token: ${{ secrets.GHP_TOKEN }}
+          datadog-key: ${{ secrets.DATADOG_API_KEY }}
