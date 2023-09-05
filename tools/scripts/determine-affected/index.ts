@@ -49,7 +49,7 @@ const toIncludeObjects = (
   projectName: string,
 ): IProjectConfig[] =>
   configurations.reduce<IProjectConfig[]>((acc, configurationName) => {
-    if (configurationName === '') return {...acc}
+    if (configurationName === '') return [...acc]
     else
       return [
         ...acc,
