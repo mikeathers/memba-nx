@@ -57,7 +57,7 @@
       "dependsOn": ["build"]
     },
     "deploy-cdk": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build", "opennext-build"]
     },
     "publish": {
       "dependsOn": ["^publish"]
