@@ -25,7 +25,7 @@ runs:
 
       - name: Configure AWS Credentials
         id: aws-creds
-        uses: aws-actions/configure-aws-credentials@master
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ steps.project-metadata.outputs.oidc-role-to-assume }}
           role-session-name: ${{ steps.project-metadata.outputs.oidc-role-session-name }}
