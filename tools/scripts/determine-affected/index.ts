@@ -29,7 +29,7 @@ const toProjectConfigurations = async (
     projects.map(async (projectName): Promise<ProjectConfigurations> => {
       const projectConfig = await readProjectConfiguration(projectName)
       const projectConfigurations = await determineProjectConfigurations(projectConfig)
-      console.log({projectConfigurations})
+      if (!projectConfigurations) return undefined
       return {
         [projectName]: projectConfigurations.filter(
           (configurationName) =>
@@ -39,10 +39,9 @@ const toProjectConfigurations = async (
     }),
   )
 
-  return projectsWithConfiguration.reduce<ProjectConfigurations>(
-    (acc, curr) => ({...acc, ...curr}),
-    {},
-  )
+  return projectsWithConfiguration
+    .filter((config) => config !== undefined)
+    .reduce<ProjectConfigurations>((acc, curr) => ({...acc, ...curr}), {})
 }
 
 const toIncludeObjects = (
@@ -81,7 +80,6 @@ async function determineAffected(target: string, excludedProjects: string) {
   console.log({target})
 
   const affectedProjects = await getAffectedProjects(target, excludedProjects)
-  console.log({affectedProjects})
   const configurations = await toProjectConfigurations(affectedProjects)
   const generatedMatrix = toMatrixObject(configurations)
 

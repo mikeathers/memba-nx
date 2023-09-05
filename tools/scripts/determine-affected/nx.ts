@@ -98,9 +98,10 @@ export function determineProjectConfigurations(projectJson: ProjectConfiguration
   const metadataTarget = projectJson.targets?.['output-metadata']
 
   if (!metadataTarget || !metadataTarget.configurations) {
-    throw new Error(
-      `Project ${projectJson.name ?? projectJson.root} is not a valid deploy target`,
-    )
+    return
+    // throw new Error(
+    //   `Project ${projectJson.name ?? projectJson.root} is not a valid deploy target`,
+    // )
   }
 
   return Object.keys(metadataTarget.configurations)

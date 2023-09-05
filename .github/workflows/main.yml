@@ -68,5 +68,5 @@ jobs:
       - name: List Affected Projects
         id: affected
         env:
-          EXCLUDE_NX_PROJECTS: "core-nextjs-construct, core-workspace"
+          EXCLUDE_NX_PROJECTS: ""
         run: yarn -s ts-node ./tools/scripts/determine-affected
