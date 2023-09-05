@@ -49,13 +49,15 @@ const toIncludeObjects = (
   projectName: string,
 ): IProjectConfig[] =>
   configurations.reduce<IProjectConfig[]>((acc, configurationName) => {
-    return [
-      ...acc,
-      {
-        project: projectName,
-        configuration: configurationName,
-      },
-    ]
+    if (configurationName === '') return {...acc}
+    else
+      return [
+        ...acc,
+        {
+          project: projectName,
+          configuration: configurationName,
+        },
+      ]
   }, [])
 
 const toMatrixObject = (input: ProjectConfigurations): IMatrixObject => {
@@ -83,7 +85,7 @@ async function determineAffected(target: string, excludedProjects: string) {
   const configurations = await toProjectConfigurations(affectedProjects)
   const generatedMatrix = toMatrixObject(configurations)
 
-  console.log(JSON.stringify(generatedMatrix, null, 2))
+  console.log('MATRIX', JSON.stringify(generatedMatrix, null, 2))
 
   core.setOutput('matrix', JSON.stringify(generatedMatrix))
   core.setOutput('has-affected-projects', generatedMatrix.include.length !== 0)

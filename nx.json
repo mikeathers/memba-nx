@@ -14,14 +14,15 @@
           "e2e",
           "stylelint",
           "tsc",
-          "build-storybook"
+          "build-storybook",
+          "opennext-build"
         ],
         "accessToken": "MTE1MWU4YWUtNDVjYi00NmQyLWI5MWMtYTgxYjQwZDVhMjU4fHJlYWQtd3JpdGU="
       }
     }
   },
   "generators": {
-    "@nrwl/react": {
+    "@nx/react": {
       "application": {
         "style": "css",
         "linter": "eslint",
@@ -37,27 +38,13 @@
         "style": "css"
       }
     },
-    "@nrwl/next": {
+    "@nx/next": {
       "application": {
         "style": "css",
         "linter": "eslint"
       },
       "library": {
         "buildable": true
-      }
-    },
-    "@nx/react": {
-      "application": {
-        "babel": true
-      },
-      "library": {
-        "unitTestRunner": "jest"
-      }
-    },
-    "@nx/next": {
-      "application": {
-        "style": "css",
-        "linter": "eslint"
       }
     }
   },
@@ -119,10 +106,5 @@
   "workspaceLayout": {
     "appsDir": "apps",
     "libsDir": "libs"
-  },
-  "pluginsConfig": {
-    "@nx/js": {
-      "analyzeSourceFiles": true
-    }
   }
 }
