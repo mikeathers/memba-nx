@@ -31,7 +31,7 @@ const toProjectConfigurations = async (
       const projectConfigurations = await determineProjectConfigurations(projectConfig)
       console.log({projectConfigurations})
       return {
-        [projectName]: projectConfigurations?.filter(
+        [projectName]: projectConfigurations.filter(
           (configurationName) =>
             EXCLUDED_CONFIGURATIONS.includes(configurationName) === false,
         ),
@@ -39,7 +39,7 @@ const toProjectConfigurations = async (
     }),
   )
 
-  return projectsWithConfiguration?.reduce<ProjectConfigurations>(
+  return projectsWithConfiguration.reduce<ProjectConfigurations>(
     (acc, curr) => ({...acc, ...curr}),
     {},
   )
@@ -78,7 +78,7 @@ async function determineAffected(target: string, excludedProjects: string) {
   if (!target) {
     throw new Error('Target not provided')
   }
-
+  console.log({target})
   const affectedProjects = await getAffectedProjects(target, excludedProjects)
   console.log({affectedProjects})
   const configurations = await toProjectConfigurations(affectedProjects)
