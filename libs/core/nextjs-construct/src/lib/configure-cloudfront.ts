@@ -125,7 +125,7 @@ function createDistribution(
   return new Distribution(scope, 'Distribution', {
     defaultRootObject: '',
     comment: `Open-next Cloudfront Distribution for ${Stack.of(scope).stackName}`,
-    certificate: certificate,
+    certificate,
     domainNames: [props.domainName],
     defaultBehavior: {
       origin: new OriginGroup({
@@ -135,7 +135,7 @@ function createDistribution(
       }),
       viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       compress: true,
-      cachePolicy: cachePolicy,
+      cachePolicy,
       originRequestPolicy: props.originRequestPolicy,
       functionAssociations: [
         {
@@ -204,11 +204,15 @@ function resolveCachePolicies(scope: Construct, props: ResolveCachePoliciesProps
     props.serverCachePolicyId,
   )
 
+  console.log({serverCachePolicy})
+
   const imageCachePolicy = CachePolicy.fromCachePolicyId(
     scope,
     'ImageCachePolicy',
     props.imageCachePolicyId,
   )
+
+  console.log({imageCachePolicy})
 
   return {
     serverCachePolicy,

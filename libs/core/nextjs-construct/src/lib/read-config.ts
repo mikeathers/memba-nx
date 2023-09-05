@@ -88,7 +88,10 @@ const stageConfigSchema = z.object(
       required_error: 'The serverCachePolicyId has not been provided for this stage',
     }),
     imageCachePolicyId: z.string({
-      required_error: 'The serverCachePolicyId has not been provided for this stage',
+      required_error: 'The imageCachePolicyId has not been provided for this stage',
+    }),
+    accountId: z.string({
+      required_error: 'The accountId has not been provided for this stage',
     }),
   },
   {

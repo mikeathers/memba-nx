@@ -31,8 +31,9 @@
       "library": {
         "style": "css",
         "linter": "eslint",
-        "buildable": true,
-        "publishable": true
+        "publishable": true,
+        "bundler": "rollup",
+        "unitTestRunner": "jest"
       },
       "component": {
         "style": "css"
@@ -54,7 +55,7 @@
       "dependsOn": ["^build"]
     },
     "deploy": {
-      "dependsOn": ["build", "opennext-build"]
+      "dependsOn": ["build"]
     },
     "deploy-cdk": {
       "dependsOn": ["build"]

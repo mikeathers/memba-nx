@@ -38,6 +38,8 @@ export class NextJsConstruct extends Stack {
     //   ),
     // )
 
+    console.log('ACCOUNT ID: ', this.account)
+
     const {
       bucket,
       staticContentDeployment,
