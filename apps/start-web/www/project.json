@@ -1,0 +1,212 @@
+{
+  "name": "start-web-www",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/start-web/www",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "inputs": ["default", "stageName"],
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/start-web/www"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "start-web-www:build",
+        "dev": false
+      },
+      "configurations": {
+        "local": {
+          "buildTarget": "start-web-www:build:local",
+          "dev": true,
+          "envFiles": [".env.local"]
+        },
+        "development": {
+          "buildTarget": "start-web-www:build:development",
+          "dev": true,
+          "envFiles": [".env.development"]
+        },
+        "production": {
+          "buildTarget": "start-web-www:build:production",
+          "dev": false,
+          "envFiles": [".env.production"]
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "start-web-www:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/start-web/www/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/start-web/www/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "opennext-build": {
+      "executor": "@memba-nx/core/workspace:opennext-build",
+      "outputs": ["dist/apps/start-web/www/.open-next/"],
+      "options": {
+        "debug": true
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "minify": true
+        }
+      }
+    },
+    "output-metadata": {
+      "executor": "@memba-nx/core/workspace:output-metadata",
+      "options": {
+        "sharedOutputs": {
+          "oidc-aws-region": "eu-west-2"
+        }
+      },
+      "configurations": {
+        "development": {
+          "outputs": {
+            "oidc-role-to-assume": "arn:aws:iam::544312030237:role/infra-service-deployment",
+            "oidc-role-session-name": "web-app-deploy-role",
+            "project-url": "https://start-www.dev.memba.co.uk"
+          }
+        },
+        "production": {
+          "outputs": {
+            "oidc-role-to-assume": "arn:aws:iam::635800996936:role/infra-service-deployment",
+            "oidc-role-session-name": "web-app-deploy-role",
+            "project-url": "https://start-www.dev.memba.co.uk"
+          }
+        }
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx cdk-deploy start-web-www --configuration={args.configuration}"
+      },
+      "configurations": {
+        "development": {
+          "configuration": "development",
+          "envFile": "apps/start-web/www/.env.development"
+        },
+        "production": {
+          "configuration": "production",
+          "envFile": "apps/start-web/www/.env.production"
+        }
+      }
+    },
+    "cdk-deploy": {
+      "dependsOn": ["build", "opennext-build"],
+      "executor": "@memba-nx/core/workspace:cdk",
+      "options": {
+        "command": "deploy",
+        "output": "dist/apps/start-web/www/cdk.out"
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "context": {
+            "stageName": "development"
+          }
+        },
+        "production": {
+          "context": {
+            "stageName": "production"
+          }
+        }
+      }
+    },
+    "synth": {
+      "executor": "@memba-nx/core/workspace:cdk",
+      "options": {
+        "command": "synth",
+        "output": "dist/apps/start-web/www/cdk.out"
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "context": {
+            "stageName": "development"
+          }
+        },
+        "production": {
+          "context": {
+            "stageName": "production"
+          }
+        }
+      }
+    },
+    "diff": {
+      "executor": "@memba-nx/core/workspace:cdk",
+      "options": {
+        "command": "diff",
+        "output": "dist/apps/start-web/www/cdk.out"
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "context": {
+            "stageName": "development"
+          }
+        },
+        "production": {
+          "context": {
+            "stageName": "production"
+          }
+        }
+      }
+    },
+    "destroy": {
+      "executor": "@memba-nx/core/workspace:cdk",
+      "options": {
+        "command": "destroy",
+        "output": "dist/apps/start-web/www/cdk.out"
+      },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "context": {
+            "stageName": "development"
+          }
+        },
+        "production": {
+          "context": {
+            "stageName": "production"
+          }
+        }
+      }
+    }
+  },
+  "tags": ["domain:start-web"]
+}

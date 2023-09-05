@@ -53,7 +53,6 @@ function addPackageJsonFile(tree: Tree, {projectName, projectRoot}: NormalizedSc
 }
 
 function updateTsConfig(tree: Tree, {projectRoot}: NormalizedSchema) {
-  console.log({tree, projectRoot})
   updateJson(tree, `${projectRoot}/tsconfig.json`, (tsConfig) => {
     tsConfig.compilerOptions = {
       target: 'ES2020',
@@ -90,6 +89,17 @@ function updateTsConfig(tree: Tree, {projectRoot}: NormalizedSchema) {
   })
 }
 
+function updateProjectMap(tree: Tree, {projectRoot, projectName}: NormalizedSchema) {
+  updateJson(tree, `project-map.json`, (map) => {
+    map.projects = {
+      ...map.projects,
+      [projectName]: projectRoot,
+    }
+    // return modified JSON object
+    return map
+  })
+}
+
 export default async function (
   tree: Tree,
   options: AddOpennextPackageJsonGeneratorSchema,
@@ -102,6 +112,7 @@ export default async function (
   generatePackageJsonFile(tree, projectPath, normalizedOptions.name)
   addPackageJsonFile(tree, normalizedOptions)
   updateTsConfig(tree, normalizedOptions)
+  updateProjectMap(tree, normalizedOptions)
 
   await formatFiles(tree)
 }

@@ -4,6 +4,8 @@
     "core-nextjs-construct": "libs/core/nextjs-construct",
     "core-workspace": "libs/core/workspace",
     "home-web-www": "apps/home-web/www",
-    "shared": "libs/shared"
+    "id-web-www": "apps/id-web/www",
+    "shared": "libs/shared",
+    "start-web-www": "apps/start-web/www"
   }
 }
