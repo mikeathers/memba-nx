@@ -21,7 +21,10 @@ export async function doOpenNextBuild(
 
   process.env['OPEN_NEXT_DEBUG'] = debug ? 'true' : 'false'
 
-  return await runCommandProcess(`node ${openNextBinary} build ${openNextArgs}`, cwd)
+  return await runCommandProcess(
+    `node ${openNextBinary} build --build-command 'true' ${openNextArgs}`,
+    cwd,
+  )
 }
 
 /**
