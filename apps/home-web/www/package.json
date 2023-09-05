@@ -1,7 +1,0 @@
-{
-  "name": "home-web-www",
-  "version": "0.0.1",
-  "scripts": {
-    "build": "true"
-  }
-}
