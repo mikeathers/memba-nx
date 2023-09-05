@@ -29,9 +29,9 @@ const toProjectConfigurations = async (
     projects.map(async (projectName): Promise<ProjectConfigurations> => {
       const projectConfig = await readProjectConfiguration(projectName)
       const projectConfigurations = await determineProjectConfigurations(projectConfig)
-
+      console.log({projectConfigurations})
       return {
-        [projectName]: projectConfigurations.filter(
+        [projectName]: projectConfigurations?.filter(
           (configurationName) =>
             EXCLUDED_CONFIGURATIONS.includes(configurationName) === false,
         ),
@@ -39,7 +39,7 @@ const toProjectConfigurations = async (
     }),
   )
 
-  return projectsWithConfiguration.reduce<ProjectConfigurations>(
+  return projectsWithConfiguration?.reduce<ProjectConfigurations>(
     (acc, curr) => ({...acc, ...curr}),
     {},
   )

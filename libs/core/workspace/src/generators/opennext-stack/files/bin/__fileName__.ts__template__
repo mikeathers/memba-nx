@@ -10,8 +10,5 @@ const config = readConfig(app)
 new NextJsConstruct(app, stackName, {
   buildPath: '<%= appOutputPath %>', <% if (basePath !== "/") {%>
   basePath: '<%= basePath %>', <% } %>
-  env: {
-    account: config.accountId
-  },
   ...config
 })
