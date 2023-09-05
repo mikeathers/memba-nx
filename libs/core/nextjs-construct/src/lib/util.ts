@@ -1,6 +1,6 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
-import { spawnSync } from 'node:child_process'
+import {spawnSync} from 'node:child_process'
 
 export const normalizeBasePath = (path?: string) =>
   path ? (path.length > 0 ? path?.slice(1) : '') : ''
@@ -39,6 +39,7 @@ export function createArchive({
   compressionLevel = 1,
   quiet,
 }: CreateArchiveArgs): string {
+  console.log({directory})
   // if directory is empty, can skip
   if (!fs.existsSync(directory) || fs.readdirSync(directory).length === 0)
     throw new Error('Directory is Empty!')
@@ -67,7 +68,7 @@ export function createArchive({
         }`,
       ].join('&&'),
     ],
-    { stdio: 'inherit', encoding: 'utf8' },
+    {stdio: 'inherit', encoding: 'utf8'},
   )
 
   if (result.status !== 0) {
