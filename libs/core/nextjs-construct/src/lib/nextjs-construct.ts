@@ -38,7 +38,7 @@ export class NextJsConstruct extends Stack {
     //   ),
     // )
 
-    console.log('ACCOUNT ID: ', this.account)
+    console.log('ACCOUNT ID: ', JSON.stringify(this.id))
 
     const {
       bucket,

@@ -34,7 +34,7 @@ function normalizeOptions(
     projectName: options.name,
     projectConfiguration,
     sharedMetadata: {
-      'oidc-aws-region': 'eu-west-1',
+      'oidc-aws-region': 'eu-west-2',
     },
     developmentMetadata: deploymentMetadata.development,
     productionMetadata: deploymentMetadata.production,
