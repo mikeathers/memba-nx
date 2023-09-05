@@ -9,6 +9,7 @@ const stageProps: StageProps = {
     hostedZoneName: '',
     imageCachePolicyId: 'iamacachepolicy',
     serverCachePolicyId: '🥲',
+    accountId: '123',
   },
   production: {
     certificateArn: '',
@@ -17,6 +18,7 @@ const stageProps: StageProps = {
     hostedZoneName: '',
     imageCachePolicyId: 'iamacachepolicy',
     serverCachePolicyId: '🥲',
+    accountId: '123',
   },
 }
 
