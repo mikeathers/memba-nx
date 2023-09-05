@@ -29,7 +29,6 @@ const toProjectConfigurations = async (
     projects.map(async (projectName): Promise<ProjectConfigurations> => {
       const projectConfig = await readProjectConfiguration(projectName)
       const projectConfigurations = await determineProjectConfigurations(projectConfig)
-      if (!projectConfigurations) return undefined
       return {
         [projectName]: projectConfigurations.filter(
           (configurationName) =>
@@ -39,9 +38,10 @@ const toProjectConfigurations = async (
     }),
   )
 
-  return projectsWithConfiguration
-    .filter((config) => config !== undefined)
-    .reduce<ProjectConfigurations>((acc, curr) => ({...acc, ...curr}), {})
+  return projectsWithConfiguration.reduce<ProjectConfigurations>(
+    (acc, curr) => ({...acc, ...curr}),
+    {},
+  )
 }
 
 const toIncludeObjects = (
