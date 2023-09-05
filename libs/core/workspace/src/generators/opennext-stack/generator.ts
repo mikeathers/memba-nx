@@ -167,15 +167,6 @@ async function normalizeOptions(
 
   const projectOffset = offsetFromRoot(projectRoot)
 
-  console.log({
-    name,
-    projectDirectory,
-    projectName,
-    projectRoot,
-    commonProps,
-    projectOffset,
-  })
-
   const frontEndProject = readProjectConfiguration(tree, projectName)
   const frontEndProjectRoot = frontEndProject.root
   const frontEndProjectOutput =
@@ -209,11 +200,35 @@ function replaceDeployTarget(
 
   const outputPath = `dist/${projectRoot}`
 
-  console.log({projectName})
   updateProjectConfiguration(tree, projectName, {
     ...projectConfig,
     targets: {
       ...projectConfig.targets,
+      serve: {
+        executor: '@nx/next:server',
+        defaultConfiguration: 'development',
+        options: {
+          buildTarget: `${projectName}:build`,
+          dev: false,
+        },
+        configurations: {
+          local: {
+            buildTarget: `${projectName}:build:local`,
+            dev: true,
+            envFiles: ['.env.local'],
+          },
+          development: {
+            buildTarget: `${projectName}:build:development`,
+            dev: true,
+            envFiles: ['.env.development'],
+          },
+          production: {
+            buildTarget: `${projectName}:build:production`,
+            dev: false,
+            envFiles: ['.env.production'],
+          },
+        },
+      },
       deploy: {
         executor: 'nx:run-commands',
         options: {
@@ -231,6 +246,7 @@ function replaceDeployTarget(
         },
       },
       ['cdk-deploy']: {
+        dependsOn: ['build', 'opennext-build'],
         executor: '@memba-nx/core/workspace:cdk',
         options: {
           command: 'deploy',

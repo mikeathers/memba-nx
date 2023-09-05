@@ -1,11 +1,11 @@
-'use client'
 import styles from './page.module.css'
-import {Env, readFromEnv} from '@memba-nx/shared'
 
 export default async function Index() {
-  const idApp = `${readFromEnv(Env.idApp)}`
-  console.log({idApp})
-
+  /*
+   * Replace the elements below with your own.
+   *
+   * Note: The corresponding styles are in the ./index.css file.
+   */
   return (
     <div className={styles.page}>
       <div className="wrapper">

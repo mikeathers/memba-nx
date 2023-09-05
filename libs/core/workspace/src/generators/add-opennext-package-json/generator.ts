@@ -5,9 +5,10 @@ import {
   generateFiles,
   ProjectConfiguration,
   joinPathFragments,
+  updateJson,
 } from '@nrwl/devkit'
-import { AddOpennextPackageJsonGeneratorSchema } from './schema'
-import { ensureNextJsApp } from '../../utils/ensure-nextjs-app'
+import {AddOpennextPackageJsonGeneratorSchema} from './schema'
+import {ensureNextJsApp} from '../../utils/ensure-nextjs-app'
 
 interface NormalizedSchema extends AddOpennextPackageJsonGeneratorSchema {
   projectName: string
@@ -33,34 +34,60 @@ function normalizeOptions(
 
 const PACKAGE_JSON = 'package.json'
 
-function generatePackageJsonFile(
-  tree: Tree,
-  path: string,
-  projectName: string,
-) {
+function generatePackageJsonFile(tree: Tree, path: string, projectName: string) {
   const templateOptions = {
     projectName: projectName,
     template: '',
   }
 
-  generateFiles(
-    tree,
-    joinPathFragments(__dirname, './files'),
-    path,
-    templateOptions,
-  )
+  generateFiles(tree, joinPathFragments(__dirname, './files'), path, templateOptions)
 }
 
-function addPackageJsonFile(
-  tree: Tree,
-  { projectName, projectRoot }: NormalizedSchema,
-) {
+function addPackageJsonFile(tree: Tree, {projectName, projectRoot}: NormalizedSchema) {
   if (tree.exists(`${projectRoot}/${PACKAGE_JSON}`)) {
     console.info(
       `>> [${projectName}] ${PACKAGE_JSON} file already exists. skipping generation of one.`,
     )
     return
   }
+}
+
+function updateTsConfig(tree: Tree, {projectRoot}: NormalizedSchema) {
+  console.log({tree, projectRoot})
+  updateJson(tree, `${projectRoot}/tsconfig.json`, (tsConfig) => {
+    tsConfig.compilerOptions = {
+      target: 'ES2020',
+      module: 'commonjs',
+      lib: ['es2020'],
+      declaration: true,
+      strict: true,
+      noImplicitAny: true,
+      strictNullChecks: true,
+      noImplicitThis: true,
+      alwaysStrict: true,
+      noUnusedLocals: false,
+      noUnusedParameters: false,
+      noImplicitReturns: false,
+      noFallthroughCasesInSwitch: false,
+      inlineSources: true,
+      typeRoots: ['../../../node_modules/@types'],
+      allowJs: true,
+      forceConsistentCasingInFileNames: true,
+      noEmit: true,
+      incremental: true,
+      esModuleInterop: true,
+      resolveJsonModule: true,
+      isolatedModules: true,
+      jsx: 'preserve',
+      plugins: [
+        {
+          name: 'next',
+        },
+      ],
+    }
+    // return modified JSON object
+    return tsConfig
+  })
 }
 
 export default async function (
@@ -74,6 +101,7 @@ export default async function (
 
   generatePackageJsonFile(tree, projectPath, normalizedOptions.name)
   addPackageJsonFile(tree, normalizedOptions)
+  updateTsConfig(tree, normalizedOptions)
 
   await formatFiles(tree)
 }

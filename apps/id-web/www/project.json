@@ -1,7 +1,7 @@
 {
-  "name": "home-web-www",
+  "name": "id-web-www",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/home-web/www",
+  "sourceRoot": "apps/id-web/www",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,10 +10,9 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/home-web/www"
+        "outputPath": "dist/apps/id-web/www"
       },
       "configurations": {
-        "local": {},
         "development": {},
         "production": {}
       }
@@ -22,22 +21,22 @@
       "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "home-web-www:build",
+        "buildTarget": "id-web-www:build",
         "dev": false
       },
       "configurations": {
         "local": {
-          "buildTarget": "home-web-www:build:local",
+          "buildTarget": "id-web-www:build:local",
           "dev": true,
           "envFiles": [".env.local"]
         },
         "development": {
-          "buildTarget": "home-web-www:build:development",
+          "buildTarget": "id-web-www:build:development",
           "dev": true,
           "envFiles": [".env.development"]
         },
         "production": {
-          "buildTarget": "home-web-www:build:production",
+          "buildTarget": "id-web-www:build:production",
           "dev": false,
           "envFiles": [".env.production"]
         }
@@ -46,14 +45,14 @@
     "export": {
       "executor": "@nx/next:export",
       "options": {
-        "buildTarget": "home-web-www:build:production"
+        "buildTarget": "id-web-www:build:production"
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/home-web/www/jest.config.ts",
+        "jestConfig": "apps/id-web/www/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -67,12 +66,12 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/home-web/www/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/id-web/www/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "opennext-build": {
       "executor": "@memba-nx/core/workspace:opennext-build",
-      "outputs": ["dist/apps/home-web/www/.open-next/"],
+      "outputs": ["dist/apps/id-web/www/.open-next/"],
       "options": {
         "debug": true
       },
@@ -87,7 +86,7 @@
       "executor": "@memba-nx/core/workspace:output-metadata",
       "options": {
         "sharedOutputs": {
-          "oidc-aws-region": "eu-west-1"
+          "oidc-aws-region": "eu-west-2"
         }
       },
       "configurations": {
@@ -95,14 +94,14 @@
           "outputs": {
             "oidc-role-to-assume": "arn:aws:iam::544312030237:role/infra-service-deployment",
             "oidc-role-session-name": "web-app-deploy-role",
-            "project-url": "https://home-www.dev.memba.co.uk"
+            "project-url": "https://id-www.dev.memba.co.uk"
           }
         },
         "production": {
           "outputs": {
             "oidc-role-to-assume": "arn:aws:iam::635800996936:role/infra-service-deployment",
             "oidc-role-session-name": "web-app-deploy-role",
-            "project-url": "https://home-www.dev.memba.co.uk"
+            "project-url": "https://id-www.dev.memba.co.uk"
           }
         }
       }
@@ -110,16 +109,16 @@
     "deploy": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "nx cdk-deploy home-web-www --configuration={args.configuration}"
+        "command": "nx cdk-deploy id-web-www --configuration={args.configuration}"
       },
       "configurations": {
         "development": {
           "configuration": "development",
-          "envFile": "apps/home-web/www/.env.development"
+          "envFile": "apps/id-web/www/.env.development"
         },
         "production": {
           "configuration": "production",
-          "envFile": "apps/home-web/www/.env.production"
+          "envFile": "apps/id-web/www/.env.production"
         }
       }
     },
@@ -128,7 +127,7 @@
       "executor": "@memba-nx/core/workspace:cdk",
       "options": {
         "command": "deploy",
-        "output": "dist/apps/home-web/www/cdk.out"
+        "output": "dist/apps/id-web/www/cdk.out"
       },
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
@@ -149,7 +148,7 @@
       "executor": "@memba-nx/core/workspace:cdk",
       "options": {
         "command": "synth",
-        "output": "dist/apps/home-web/www/cdk.out"
+        "output": "dist/apps/id-web/www/cdk.out"
       },
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
@@ -170,7 +169,7 @@
       "executor": "@memba-nx/core/workspace:cdk",
       "options": {
         "command": "diff",
-        "output": "dist/apps/home-web/www/cdk.out"
+        "output": "dist/apps/id-web/www/cdk.out"
       },
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
@@ -191,7 +190,7 @@
       "executor": "@memba-nx/core/workspace:cdk",
       "options": {
         "command": "destroy",
-        "output": "dist/apps/home-web/www/cdk.out"
+        "output": "dist/apps/id-web/www/cdk.out"
       },
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
@@ -209,5 +208,5 @@
       }
     }
   },
-  "tags": ["domain:home-web"]
+  "tags": ["domain:id-web"]
 }
