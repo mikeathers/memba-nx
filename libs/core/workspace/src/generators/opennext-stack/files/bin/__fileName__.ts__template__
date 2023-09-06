@@ -12,7 +12,7 @@ new NextJsConstruct(app, stackName, {
   basePath: '<%= basePath %>', <% } %>
   env: {
     account: config.accountId,
-    region: 'eu-west-1'
+    region: 'eu-west-2'
   },
   ...config
 })

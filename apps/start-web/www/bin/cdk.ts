@@ -15,7 +15,7 @@ new NextJsConstruct(app, stackName, {
   buildPath: '../../../dist/apps/start-web/www',
   env: {
     account: config.accountId,
-    region: 'eu-west-1',
+    region: 'eu-west-2',
   },
   ...config,
 })
