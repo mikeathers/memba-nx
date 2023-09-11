@@ -94,14 +94,14 @@
           "outputs": {
             "oidc-role-to-assume": "arn:aws:iam::544312030237:role/infra-service-deployment",
             "oidc-role-session-name": "web-app-deploy-role",
-            "project-url": "https://id-www.dev.memba.co.uk"
+            "project-url": "https://id.dev.memba.co.uk"
           }
         },
         "production": {
           "outputs": {
             "oidc-role-to-assume": "arn:aws:iam::635800996936:role/infra-service-deployment",
             "oidc-role-session-name": "web-app-deploy-role",
-            "project-url": "https://id-www.dev.memba.co.uk"
+            "project-url": "https://id.dev.memba.co.uk"
           }
         }
       }

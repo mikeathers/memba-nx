@@ -1,0 +1,29 @@
+@import 'normalize.css';
+@import 'reset-css';
+
+:root {
+  --ds-color-white: #FFFFFF;
+  --ds-color-blues-100: #D9DFEA;
+  --ds-color-blues800: #5363F4;
+  --ds-color-blues500: #8EB0FF;
+  --ds-greys-100: #202C49;
+  --ds-greys-200: #CCCED1;
+  --ds-greys-300: #A2A6AD;
+
+  --ds-spacing-1-x: 8px;
+  --ds-spacing-2-x: 16px;
+  --ds-spacing-3-x: 24px;
+  --ds-spacing-4-x: 32px;
+  --ds-spacing-5-x: 40px;
+  --ds-spacing-6-x: 48px;
+  --ds-spacing-7-x: 56px;
+  --ds-spacing-8-x: 64px;
+  --ds-spacing-9-x: 72px;
+  --ds-spacing-10-x: 80px;
+
+  --ds-border-radius-light: 4px;
+  --ds-border-radius-normal: 8px;
+  --ds-border-radius-heavy: 24px;
+  --ds-font-family-primary: 'Poppins';
+
+}

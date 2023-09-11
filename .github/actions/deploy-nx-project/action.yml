@@ -38,3 +38,5 @@ runs:
           STAGE_NAME: ${{ inputs.project-configuration }}
         run: |
           npx nx run ${{ inputs.project-name }}:deploy --configuration=${{ inputs.project-configuration }}
+
+

@@ -1,13 +1,20 @@
-import styles from './page.module.css'
+'use client'
+
+import styled from 'styled-components'
+import {colors} from '@memba-labs/design-system'
+
+const StyledPage = styled.div`
+  background-color: ${colors.blues500};
+`
 
 export default async function Index() {
   /*
    * Replace the elements below with your own.
    *
-   * Note: The corresponding styles are in the ./index.css file.
+   * Note: The corresponding styles are in the ./index.styled-components file.
    */
   return (
-    <div className={styles.page}>
+    <StyledPage>
       <div className="wrapper">
         <div className="container">
           <div id="welcome">
@@ -410,6 +417,6 @@ export default async function Index() {
           </p>
         </div>
       </div>
-    </div>
+    </StyledPage>
   )
 }

@@ -27,7 +27,7 @@ function normalizeOptions(
   options: AddOutputMetadataTargetGeneratorSchema,
 ): NormalizedSchema {
   const projectConfiguration = readProjectConfiguration(tree, options.name)
-  const deploymentMetadata = getDeploymentMetadata(options.name)
+  const deploymentMetadata = getDeploymentMetadata()
 
   return {
     ...options,

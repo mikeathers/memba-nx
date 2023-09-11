@@ -17,7 +17,7 @@ export default async function (tree: Tree, _options: AppGeneratorSchema) {
   console.log({options})
   await applicationGenerator(tree, {
     swc: true,
-    style: 'css',
+    style: 'styled-components',
     tags: `domain:${options.appName}`,
     directory: options.appName,
     name: options.name,

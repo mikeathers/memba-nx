@@ -91,8 +91,6 @@ export const completeResetPassword = async (props: CompletePasswordResetProps) =
 }
 
 export const resendConfirmationEmail = async (email: string) => {
-  console.log('HERE')
-  console.log({email})
   if (email) {
     await Auth.resendSignUp(email)
   }
@@ -117,7 +115,3 @@ export const appleSignIn = async () => {
     provider: CognitoHostedUIIdentityProvider.Apple,
   })
 }
-
-// export const registerTenant = async (props: RegisterTenantProps) => {
-//   await createTenantAccount(props)
-// }

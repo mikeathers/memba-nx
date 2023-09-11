@@ -81,10 +81,11 @@ async function determineAffected(target: string, excludedProjects: string) {
   }
   console.log({target})
 
-  const affectedProjects = await getAffectedProjects(target, excludedProjects)
+  const affectedProjects: string[] = await getAffectedProjects(target, excludedProjects)
   const configurations = await toProjectConfigurations(affectedProjects)
   const generatedMatrix = toMatrixObject(configurations)
 
+  console.log({affectedProjects})
   console.log('MATRIX', JSON.stringify(generatedMatrix, null, 2))
 
   core.setOutput('matrix', JSON.stringify(generatedMatrix))

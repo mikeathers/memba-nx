@@ -6,6 +6,8 @@ export default async function runExecutor(
   options: CdkSynthExecutorSchema,
   context: ExecutorContext,
 ) {
+  console.log({context})
+  console.log('projects: ', context.workspace?.projects)
   const projectName = context.projectName ?? ''
   const projectRoot = context.workspace?.projects[projectName].root
   const outPath = joinPathFragments(offsetFromRoot(projectRoot || ''), options.output)

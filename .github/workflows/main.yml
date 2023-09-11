@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  main:
+  Main:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -122,6 +122,3 @@ jobs:
         with:
           project-name: ${{ matrix.project }}
           project-configuration: ${{ matrix.configuration }}
-          github-token: ${{ github.token }}
-          node-auth-token: ${{ secrets.GHP_TOKEN }}
-          datadog-key: ${{ secrets.DATADOG_API_KEY }}

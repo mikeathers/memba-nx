@@ -12,7 +12,6 @@
           "lint",
           "test",
           "e2e",
-          "stylelint",
           "tsc",
           "build-storybook",
           "opennext-build"
@@ -24,24 +23,24 @@
   "generators": {
     "@nx/react": {
       "application": {
-        "style": "css",
+        "style": "styled-components",
         "linter": "eslint",
         "babel": true
       },
       "library": {
-        "style": "css",
+        "style": "styled-components",
         "linter": "eslint",
         "publishable": true,
         "bundler": "rollup",
         "unitTestRunner": "jest"
       },
       "component": {
-        "style": "css"
+        "style": "styled-components"
       }
     },
     "@nx/next": {
       "application": {
-        "style": "css",
+        "style": "styled-components",
         "linter": "eslint"
       },
       "library": {
@@ -79,6 +78,14 @@
     "opennext-build": {
       "dependsOn": ["build"],
       "inputs": ["production", "^production", "stageName"]
+    },
+    "build-storybook": {
+      "inputs": [
+        "default",
+        "^production",
+        "{projectRoot}/.storybook/**/*",
+        "{projectRoot}/tsconfig.storybook.json"
+      ]
     }
   },
   "namedInputs": {
@@ -94,7 +101,10 @@
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s",
-      "!{projectRoot}/.eslintrc.json"
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json"
     ],
     "sharedGlobals": [
       "{workspaceRoot}/babel.config.json",

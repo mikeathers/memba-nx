@@ -14,17 +14,13 @@ function getDeploymentMetadataForAccount(stageName: 'development' | 'production'
   } as const
 }
 
-export function getDeploymentMetadata(projectName: string) {
-  const projectUrls = getProjectUrl(projectName)
-
+export function getDeploymentMetadata() {
   return {
     development: {
       ...getDeploymentMetadataForAccount('development'),
-      'project-url': projectUrls.development,
     },
     production: {
       ...getDeploymentMetadataForAccount('production'),
-      'project-url': projectUrls.development,
     },
   }
 }
