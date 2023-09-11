@@ -5,7 +5,8 @@
     "core-workspace": "libs/core/workspace",
     "home-web-www": "apps/home-web/www",
     "id-web-www": "apps/id-web/www",
+    "start-web-www": "apps/start-web/www",
     "shared": "libs/shared",
-    "start-web-www": "apps/start-web/www"
+    "design-system": "libs/design-system"
   }
 }
