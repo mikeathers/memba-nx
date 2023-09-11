@@ -12,6 +12,8 @@ import {
   getSecurityHeader,
 } from './aws'
 import CONFIG from './config'
+import {join} from 'node:path'
+import {MONOREPO_ROOT} from '../../../tools/scripts/determine-affected/nx'
 
 function createCertificate(scope: Construct, id: string, arn: string) {
   return Certificate.fromCertificateArn(scope, id, arn)
@@ -59,10 +61,11 @@ export class DeploymentStack extends Stack {
       distributionName: `${CONFIG.STACK_PREFIX}CloudfrontDistribution`,
     })
 
+    const MONOREPO_ROOT = join(__dirname, '../../../')
     createBucketDeployment({
       scope: this,
       bucket,
-      filePath: './build',
+      filePath: join(MONOREPO_ROOT, 'dist/storybook/design-system'),
       deploymentName: `${CONFIG.STACK_PREFIX}BucketDeployment`,
     })
 

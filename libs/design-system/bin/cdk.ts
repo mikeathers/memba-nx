@@ -17,6 +17,8 @@ const defaultConfig = {
   },
 }
 
+console.log('DEPLOYMENT')
+
 new DeploymentStack(app, stackName, {
   ...defaultConfig,
   env: {

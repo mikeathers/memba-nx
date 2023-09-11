@@ -109,7 +109,7 @@
       "executor": "@memba-nx/core/workspace:cdk",
       "options": {
         "command": "deploy",
-        "output": "dist/storybook/design-system/cdk.out"
+        "output": "dist/storybook/cdk/design-system/cdk.out"
       },
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
