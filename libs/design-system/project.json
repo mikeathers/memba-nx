@@ -77,6 +77,22 @@
         "command": "test-storybook -c libs/design-system/.storybook --url=http://localhost:4400"
       }
     },
+    "output-metadata": {
+      "executor": "@memba-nx/core/workspace:output-metadata",
+      "options": {
+        "sharedOutputs": {
+          "oidc-aws-region": "eu-west-2"
+        }
+      },
+      "configurations": {
+        "production": {
+          "outputs": {
+            "oidc-role-to-assume": "arn:aws:iam::635800996936:role/infra-service-deployment",
+            "oidc-role-session-name": "web-app-deploy-role"
+          }
+        }
+      }
+    },
     "deploy": {
       "executor": "nx:run-commands",
       "options": {
