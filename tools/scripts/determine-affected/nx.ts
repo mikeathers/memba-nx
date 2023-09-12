@@ -12,7 +12,6 @@ const NODE_BIN = join(MONOREPO_ROOT, 'node_modules/.bin')
 // const EXCLUDE_NX_PROJECTS = process.env.EXCLUDE_NX_PROJECTS ?? ''
 
 async function resolveProjectPath(projectName: string) {
-  console.log({projectName})
   const workspaceJson = await readFile(join(MONOREPO_ROOT, 'project-map.json')).then(
     (buffer) => JSON.parse(buffer.toString()) as ProjectsConfigurations,
   )
@@ -84,7 +83,6 @@ export async function getProjectRoot(projectName: string) {
 export async function readProjectConfiguration(
   projectName: string,
 ): Promise<ProjectConfiguration> {
-  console.log({projectName})
   const projectPath = await resolveProjectPath(projectName)
   const projectJSONPath = join(MONOREPO_ROOT, projectPath, 'project.json')
   const projectJSON = await readFile(projectJSONPath).then(

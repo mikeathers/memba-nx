@@ -8,9 +8,8 @@ export interface TextProps extends StyledTextProps {
   children: React.ReactNode | undefined
 }
 
-export const Text: React.FC<TextProps> = (props) => {
+export const Text = (props: TextProps) => {
   const {type, children, ...rest} = props
-
   if (type === 'hero') {
     return <Hero {...rest}>{children}</Hero>
   }

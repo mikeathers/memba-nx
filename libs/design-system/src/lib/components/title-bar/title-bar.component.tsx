@@ -94,7 +94,7 @@ export const TitleBar = (props: TitleBarProps) => {
         {localVisible && (
           <Menu ref={ref}>
             <MenuTitleContainer>
-              <Text type={'body-bold'} $marginBottomX={spacingTokens.space2x}>
+              <Text type={'body-bold'} $marginBottom={'space2x'}>
                 Account
               </Text>
               <NameContainer>

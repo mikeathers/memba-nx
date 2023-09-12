@@ -89,7 +89,7 @@ export const Login: React.FC<LoginProps> = (props) => {
 
   return (
     <CenterBox getApp={getApp} app={app}>
-      <Text type={'h4'} $textAlign={'center'} $marginBottomX={spacingTokens.space4x}>
+      <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
         {content.heading}
       </Text>
 
@@ -127,23 +127,19 @@ export const Login: React.FC<LoginProps> = (props) => {
 
               <ErrorContainer>
                 {errors.emailAddress && (
-                  <Text
-                    type={'body'}
-                    color={colorTokens.reds500}
-                    $marginBottomX={spacingTokens.spaceHalfx}
-                  >
+                  <Text type={'body'} color={'reds500'} $marginBottom={'spaceHalfx'}>
                     {errors.emailAddress}
                   </Text>
                 )}
 
                 {errors.password && (
-                  <Text type={'body'} color={colorTokens.reds500}>
+                  <Text type={'body'} color={'reds500'}>
                     {errors.password}
                   </Text>
                 )}
 
                 {fetchError && (
-                  <Text type={'body'} color={colorTokens.reds500}>
+                  <Text type={'body'} color={'reds500'}>
                     {fetchError}
                   </Text>
                 )}
@@ -154,7 +150,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                 $isLoading={isLoading}
                 variant={'primary'}
                 onClick={() => handleSubmit()}
-                $marginTopX={spacingTokens.space2x}
+                $marginTop={'space2x'}
                 type={'submit'}
                 $fullWidth
               >
@@ -167,15 +163,15 @@ export const Login: React.FC<LoginProps> = (props) => {
 
       <ActionsContainer>
         <Link href={`${PAGE_ROUTES.FORGOT_PASSWORD}/?emailAddress=${emailAddress}`}>
-          <Text type={'body-small'} color={colorTokens.blues800}>
+          <Text type={'body-small'} color={'blues800'}>
             {content.cantLogin}
           </Text>
         </Link>
-        <Text type={'body-small'} color={colorTokens.blues800}>
+        <Text type={'body-small'} color={'blues800'}>
           •
         </Text>
         <Link href={PAGE_ROUTES.SIGN_UP}>
-          <Text type={'body-small'} color={colorTokens.blues800}>
+          <Text type={'body-small'} color={'blues800'}>
             {content.signUp}
           </Text>
         </Link>

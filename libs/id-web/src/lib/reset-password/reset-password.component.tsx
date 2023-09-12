@@ -88,7 +88,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
 
   return (
     <CenterBox app={app} getApp={getApp}>
-      <Text type={'h4'} $marginBottomX={spacingTokens.space4x} $textAlign={'center'}>
+      <Text type={'h4'} $marginBottom={'space4x'} $textAlign={'center'}>
         {content.heading}
       </Text>
       <Formik
@@ -114,17 +114,13 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
 
               <ErrorContainer>
                 {errors.password && (
-                  <Text type={'body-small'} color={colorTokens.reds500}>
+                  <Text type={'body-small'} color={'reds500'}>
                     {errors.password}
                   </Text>
                 )}
               </ErrorContainer>
 
-              <Text
-                type={'body-small'}
-                color={colorTokens.blues800}
-                $marginBottomX={spacingTokens.space4x}
-              >
+              <Text type={'body-small'} color={'blues800'} $marginBottom={'space4x'}>
                 {content.form.validation.passwordValidationMessage}
               </Text>
 
@@ -134,7 +130,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                 $fullWidth
                 variant={'primary'}
                 onClick={() => handleSubmit()}
-                $marginTopX={spacingTokens.space2x}
+                $marginTop={'space2x'}
                 type={'submit'}
               >
                 {content.submitCta}

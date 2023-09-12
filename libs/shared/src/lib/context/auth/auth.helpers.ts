@@ -45,7 +45,6 @@ export const registerUser = async (props: RegisterUserProps) => {
 }
 
 export const registerTenant = async (props: RegisterTenantProps) => {
-  console.log('here')
   const {emailAddress, password, fullName} = props
   if (emailAddress && password && fullName) {
     const splitName = fullName.split(' ', 2)

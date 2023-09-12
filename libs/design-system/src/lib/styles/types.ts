@@ -127,36 +127,36 @@ export interface Breakpoints {
   xl: Breakpoint
 }
 
-export interface IconNames {
-  rightArrow: string
-  plusSign: string
-  information: string
-  tick: string
-  user: string
-  back: string
-  savings: string
-  usage: string
-  devices: string
-  error: string
-  electric: string
-  twitter: string
-  visible: string
-  hidden: string
-  email: string
-  password: string
-  online: string
-  forward: string
-  remove: string
-  checkBoxOn: string
-  checkBoxOff: string
-  externalLink: string
-  minus: string
-  signOut: string
-  location: string
-  help: string
-  fill: string
-  delete: string
-  connectionLost: string
-  google: string
-  apple: string
+export enum IconNames {
+  rightArrow = 'rightArrow',
+  plusSign = 'plusSign',
+  information = 'information',
+  tick = 'tick',
+  user = 'user',
+  back = 'back',
+  savings = 'savings',
+  usage = 'usage',
+  devices = 'devices',
+  error = 'error',
+  electric = 'electric',
+  twitter = 'twitter',
+  visible = 'visible',
+  hidden = 'hidden',
+  email = 'email',
+  password = 'password',
+  online = 'online',
+  forward = 'forward',
+  remove = 'remove',
+  checkBoxOn = 'checkBoxOn',
+  checkBoxOff = 'checkBoxOff',
+  externalLink = 'externalLink',
+  minus = 'minus',
+  signOut = 'signOut',
+  location = 'location',
+  help = 'help',
+  fill = 'fill',
+  delete = 'delete',
+  connectionLost = 'connectionLost',
+  google = 'google',
+  apple = 'apple',
 }

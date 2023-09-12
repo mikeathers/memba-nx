@@ -41,7 +41,6 @@ export function getAccountDetailsForStage(projectName: string) {
 
 export function generateProjectDomain(projectName: string) {
   const urlPrefix = projectName.replace('-web', '').replace('-www', '')
-  console.log('URL: ', `${urlPrefix}.${accountMap['development'].hostedZoneName}`)
   return {
     development: `${urlPrefix}.${accountMap['development'].hostedZoneName}`,
     production: `${urlPrefix}.${accountMap['production'].hostedZoneName}`,

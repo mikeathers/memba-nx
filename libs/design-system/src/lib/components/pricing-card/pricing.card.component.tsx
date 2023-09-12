@@ -47,17 +47,13 @@ export const PricingCard: React.FC<PricingCardProps> = (props) => {
         <TitleText>{titleText}</TitleText>
       </TitleContainer>
       <Content>
-        <Text type={'h1'} $marginBottomX={spacingTokens.space2x}>
+        <Text type={'h1'} $marginBottom={'space2x'}>
           {pricePerMonth}
         </Text>
         <TransactionalCost type={'body-small'} $faded>
           {transactionalCosts}
         </TransactionalCost>
-        <Text
-          type={'body'}
-          $marginTopX={spacingTokens.space2x}
-          $marginBottomX={spacingTokens.space1x}
-        >
+        <Text type={'body'} $marginTop={'space2x'} $marginBottom={'space1x'}>
           {numberOfCustomers}
         </Text>
         {/*<Button $marginBottomX={spacingTokens.space10x} variant={'text'}>*/}
@@ -66,7 +62,7 @@ export const PricingCard: React.FC<PricingCardProps> = (props) => {
         <Button
           variant={'primary'}
           onClick={selectClick}
-          $marginTopX={spacingTokens.space10x}
+          $marginTop={'space10x'}
           $isDisabled={selected}
         >
           {selected ? selectedText : select}

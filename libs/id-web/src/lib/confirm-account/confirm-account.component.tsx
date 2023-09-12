@@ -72,18 +72,18 @@ export const ConfirmAccount: React.FC<ConfirmAccountProps> = (props) => {
 
   return (
     <CenterBox app={app} getApp={getApp}>
-      <Text type={'h4'} $textAlign={'center'} $marginBottomX={spacingTokens.space4x}>
+      <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
         {content.heading}
       </Text>
       <EnvelopeImage />
-      <Text type={'body-small'} $marginTopX={spacingTokens.space4x}>
+      <Text type={'body-small'} $marginTop={'space4x'}>
         {interpolateContent(content.emailSentMessage, undefined, {
           emailAddress: () => <EmailAddress key={0}>{emailAddress}</EmailAddress>,
         })}
       </Text>
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <ResendConfirmationEmailContainer onClick={handleResendConfirmationEmail}>
-        <Text type={'body-small'} color={colorTokens.blues800}>
+        <Text type={'body-small'} color={'blues800'}>
           {content.resendConfirmationEmail}
         </Text>
       </ResendConfirmationEmailContainer>

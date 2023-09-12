@@ -14,7 +14,6 @@ import convertAppToOpenNext from '../convert-to-opennext/generator'
 
 export default async function (tree: Tree, _options: AppGeneratorSchema) {
   const options = normalizeOptions(_options)
-  console.log({options})
   await applicationGenerator(tree, {
     swc: true,
     style: 'styled-components',

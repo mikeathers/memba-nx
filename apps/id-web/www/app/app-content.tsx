@@ -20,16 +20,15 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     await run(refreshUserSession())
   }
 
-  useEffect(() => {
-    if (!state.isAuthenticating) {
-      if (!state.isAuthenticated) {
-        console.log('here')
-        router.push(PAGE_ROUTES.LOGIN)
-      } else {
-        router.push(`${readFromEnv(Env.startApp)}`)
-      }
-    }
-  }, [state.isAuthenticated])
+  // useEffect(() => {
+  //   if (!state.isAuthenticating) {
+  //     if (!state.isAuthenticated) {
+  //       router.push(PAGE_ROUTES.LOGIN)
+  //     } else {
+  //       router.push(`${readFromEnv(Env.startApp)}`)
+  //     }
+  //   }
+  // }, [state.isAuthenticated])
 
   useEffect(() => {
     runRefreshUserSession()

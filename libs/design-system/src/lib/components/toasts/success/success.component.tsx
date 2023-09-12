@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {SvgIcon} from '../../svg-icon'
-import {colorTokens, iconTokens} from '../../../styles'
 
 import {Container, Content, Icon} from '../toasts.styles'
 
@@ -14,7 +13,7 @@ export const SuccessToast: React.FC<SuccessToastProps> = (props) => {
   return (
     <Container>
       <Icon>
-        <SvgIcon size={12} name={iconTokens.tick} color={colorTokens.neutrals000} />
+        <SvgIcon size={12} name={'tick'} color={'neutrals000'} />
       </Icon>
       <Content>{children}</Content>
     </Container>

@@ -1,7 +1,6 @@
 import React from 'react'
 
-import {colors, IconNames, iconTokens} from '../../styles'
-import type {Colors} from '../../styles'
+import {colors, IconNames, ColorStyles} from '../../styles'
 
 import Apple from './icons/Apple.svg'
 import RightArrow from './icons/Arrow-Right.svg'
@@ -36,8 +35,8 @@ import User from './icons/User.svg'
 import Visible from './icons/Visible.svg'
 
 export interface SvgIconProps {
-  name: keyof IconNames
-  color?: keyof Colors
+  name: keyof typeof IconNames
+  color?: keyof typeof ColorStyles
   size?: number
   //eslint-disable-next-line
   style?: any
@@ -89,10 +88,10 @@ export const SvgIcon = (props: SvgIconProps) => {
   if (!Icon) return null
 
   const getViewBoxWidth = (): number => {
-    if (name === iconTokens.information) {
+    if (name === 'information') {
       return 12
     }
-    if (name === iconTokens.devices) {
+    if (name === 'devices') {
       return 28
     }
 

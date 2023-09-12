@@ -1,39 +1,41 @@
 import {css} from 'styled-components'
-import {spacing, Spacing} from '../styles'
+import {spacing} from '../styles'
+import {SpacingStyles} from '../styles/enums'
 
 export interface MarginsApi {
-  $marginBottomX?: keyof Spacing
-  $marginTopX?: keyof Spacing
-  $marginLeftX?: keyof Spacing
-  $marginRightX?: keyof Spacing
+  $marginBottom?: keyof typeof SpacingStyles
+  $marginTop?: keyof typeof SpacingStyles
+  $marginLeft?: keyof typeof SpacingStyles
+  $marginRight?: keyof typeof SpacingStyles
 }
 
 export const margins = css<MarginsApi>`
-  ${({$marginTopX}) => {
-    if ($marginTopX)
+  ${({$marginTop}) => {
+    if ($marginTop) {
       return css`
-        margin-top: ${spacing[$marginTopX]};
+        margin-top: ${spacing[$marginTop]};
+      `
+    }
+  }}
+
+  ${({$marginBottom}) => {
+    if ($marginBottom)
+      return css`
+        margin-bottom: ${spacing[$marginBottom]};
       `
   }}
 
-  ${({$marginBottomX}) => {
-    if ($marginBottomX)
+  ${({$marginRight}) => {
+    if ($marginRight)
       return css`
-        margin-bottom: ${spacing[$marginBottomX]};
+        margin-right: ${spacing[$marginRight]};
       `
   }}
 
-  ${({$marginRightX}) => {
-    if ($marginRightX)
+  ${({$marginLeft}) => {
+    if ($marginLeft)
       return css`
-        margin-right: ${spacing[$marginRightX]};
-      `
-  }}
-
-  ${({$marginLeftX}) => {
-    if ($marginLeftX)
-      return css`
-        margin-left: ${spacing[$marginLeftX]};
+        margin-left: ${spacing[$marginLeft]};
       `
   }}
 `

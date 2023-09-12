@@ -2,8 +2,6 @@
 import React, {useState} from 'react'
 import {FormikError} from '@memba-nx/shared'
 
-import type {Spacing} from '../../styles'
-import {colorTokens, iconTokens, spacingTokens} from '../../styles'
 import {SvgIcon} from '../svg-icon'
 import {Text} from '../text'
 
@@ -13,12 +11,11 @@ import {
   StyledTextInput,
   TextInputWrapper,
 } from './text-input.styles'
+import {MarginsApi} from '../../utils'
 
-export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  $marginBottomX?: keyof Spacing
-  $marginTopX?: keyof Spacing
-  $marginLeftX?: keyof Spacing
-  $marginRightX?: keyof Spacing
+export interface TextInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement>,
+    MarginsApi {
   label?: string
   error?: FormikError | undefined
 }
@@ -36,7 +33,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
   return (
     <Container>
       {label && (
-        <Text type={'body'} $marginBottomX={spacingTokens.spaceHalfx}>
+        <Text type={'body'} $marginBottom={'spaceHalfx'}>
           {label}
         </Text>
       )}
@@ -45,8 +42,8 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
         {props.type === 'password' && (
           <RightIconWrapper onClick={() => setShowPassword(!showPassword)}>
             <SvgIcon
-              name={showPassword ? iconTokens.visible : iconTokens.hidden}
-              color={colorTokens.neutrals500}
+              name={showPassword ? 'visible' : 'hidden'}
+              color={'neutrals500'}
               size={16}
             />
           </RightIconWrapper>

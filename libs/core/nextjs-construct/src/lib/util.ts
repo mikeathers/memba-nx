@@ -39,7 +39,6 @@ export function createArchive({
   compressionLevel = 1,
   quiet,
 }: CreateArchiveArgs): string {
-  console.log({directory})
   // if directory is empty, can skip
   if (!fs.existsSync(directory) || fs.readdirSync(directory).length === 0)
     throw new Error('Directory is Empty!')

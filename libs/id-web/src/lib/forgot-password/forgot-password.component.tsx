@@ -71,7 +71,7 @@ export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
 
   return (
     <CenterBox app={app} getApp={getApp}>
-      <Text type={'h4'} $textAlign={'center'} $marginBottomX={spacingTokens.space4x}>
+      <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
         {content.heading}
       </Text>
 
@@ -98,7 +98,7 @@ export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
 
               <ErrorContainer>
                 {errors.emailAddress && (
-                  <Text type={'body'} color={colorTokens.reds500}>
+                  <Text type={'body'} color={'reds500'}>
                     {errors.emailAddress}
                   </Text>
                 )}
@@ -110,7 +110,7 @@ export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
                 $fullWidth
                 variant={'primary'}
                 onClick={() => handleSubmit()}
-                $marginTopX={spacingTokens.space2x}
+                $marginTop={'space2x'}
                 type={'submit'}
               >
                 {content.sendLinkCta}
@@ -122,7 +122,7 @@ export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
 
       <ActionsContainer>
         <Link href={PAGE_ROUTES.LOGIN}>
-          <Text type={'body-small'} color={colorTokens.blues800}>
+          <Text type={'body-small'} color={'blues800'}>
             {content.returnToLogin}
           </Text>
         </Link>

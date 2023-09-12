@@ -204,15 +204,11 @@ function resolveCachePolicies(scope: Construct, props: ResolveCachePoliciesProps
     props.serverCachePolicyId,
   )
 
-  console.log({serverCachePolicy})
-
   const imageCachePolicy = CachePolicy.fromCachePolicyId(
     scope,
     'ImageCachePolicy',
     props.imageCachePolicyId,
   )
-
-  console.log({imageCachePolicy})
 
   return {
     serverCachePolicy,

@@ -79,7 +79,6 @@ async function determineAffected(target: string, excludedProjects: string) {
   if (!target) {
     throw new Error('Target not provided')
   }
-  console.log({target})
 
   const affectedProjects: string[] = await getAffectedProjects(target, excludedProjects)
   const configurations = await toProjectConfigurations(affectedProjects)

@@ -75,8 +75,6 @@ function generateCdkStackFile(tree: Tree, schema: NormalizedSchema) {
     template: '',
   }
 
-  console.log({templateOptions, schema})
-
   generateFiles(
     tree,
     joinPathFragments(__dirname, './files'),

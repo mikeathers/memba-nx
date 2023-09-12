@@ -6,8 +6,6 @@ export default async function runExecutor(
   options: CdkSynthExecutorSchema,
   context: ExecutorContext,
 ) {
-  console.log({context})
-  console.log('projects: ', context.workspace?.projects)
   const projectName = context.projectName ?? ''
   const projectRoot = context.workspace?.projects[projectName].root
   const outPath = joinPathFragments(offsetFromRoot(projectRoot || ''), options.output)
@@ -35,7 +33,6 @@ export default async function runExecutor(
 }
 
 export async function executeCdkCommand(cmd: string, args: string[], cwd: string) {
-  console.log({cwd})
   const command = `cdk ${cmd} ${args.join(' ')}`
   return runCommandProcess(command, cwd)
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {SvgIcon} from '../../svg-icon'
-import {iconTokens} from '../../../styles'
 
 import {Container, Content} from '../toasts.styles'
 
@@ -19,7 +18,7 @@ export const ErrorToast: React.FC<ErrorToastProps> = (props) => {
         size={20}
         viewBoxHeight={28}
         viewBoxWidth={28}
-        name={iconTokens.error}
+        name={'error'}
       />
       <Content>{children}</Content>
     </Container>

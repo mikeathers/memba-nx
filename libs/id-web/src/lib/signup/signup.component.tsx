@@ -79,7 +79,7 @@ export const SignUp = (props: SignUpProps) => {
 
   return (
     <CenterBox getApp={getApp} app={app}>
-      <Text type={'h4'} $textAlign={'center'} $marginBottomX={spacingTokens.space4x}>
+      <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
         {content.heading}
       </Text>
 
@@ -126,37 +126,25 @@ export const SignUp = (props: SignUpProps) => {
 
               <ErrorContainer>
                 {errors.fullName && (
-                  <Text
-                    type={'body'}
-                    color={colorTokens.reds500}
-                    $marginBottomX={spacingTokens.spaceHalfx}
-                  >
+                  <Text type={'body'} color={'reds500'} $marginBottom={'spaceHalfx'}>
                     {errors.fullName}
                   </Text>
                 )}
 
                 {errors.emailAddress && (
-                  <Text
-                    type={'body'}
-                    color={colorTokens.reds500}
-                    $marginBottomX={spacingTokens.spaceHalfx}
-                  >
+                  <Text type={'body'} color={'reds500'} $marginBottom={'spaceHalfx'}>
                     {errors.emailAddress}
                   </Text>
                 )}
 
                 {errors.password && (
-                  <Text
-                    type={'body'}
-                    color={colorTokens.reds500}
-                    $marginBottomX={spacingTokens.spaceHalfx}
-                  >
+                  <Text type={'body'} color={'reds500'} $marginBottom={'spaceHalfx'}>
                     {errors.password}
                   </Text>
                 )}
 
                 {fetchError && (
-                  <Text type={'body'} color={colorTokens.reds500}>
+                  <Text type={'body'} color={'reds500'}>
                     {fetchError}
                   </Text>
                 )}
@@ -171,7 +159,7 @@ export const SignUp = (props: SignUpProps) => {
                 $isLoading={isLoading}
                 variant={'primary'}
                 onClick={() => handleSubmit()}
-                $marginTopX={spacingTokens.space4x}
+                $marginTop={'space4x'}
                 type={'submit'}
                 $fullWidth
               >
@@ -184,7 +172,7 @@ export const SignUp = (props: SignUpProps) => {
 
       <LoginContainer>
         <Link href={'/login'}>
-          <Text type={'body-small'} color={colorTokens.blues800}>
+          <Text type={'body-small'} color={'blues800'}>
             {content.login}
           </Text>
         </Link>

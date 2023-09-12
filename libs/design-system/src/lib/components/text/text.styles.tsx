@@ -9,14 +9,18 @@ import {
   letterSpacing,
   lineHeights,
   mediaQueries,
+  ColorStyles,
+  FontSizeStyles,
+  FontWeightStyles,
 } from '../../styles'
 import {MarginsApi, margins} from '../../utils'
 
 export interface StyledTextProps extends MarginsApi {
-  color?: keyof Colors
   $textAlign?: 'center'
   $faded?: boolean
-  fontSize?: keyof typeof FontSizes
+  fontSize?: keyof typeof FontSizeStyles
+  fontWeight?: keyof typeof FontWeightStyles
+  color?: keyof typeof ColorStyles
 }
 
 const styledTextAlign = css<StyledTextProps>`
@@ -30,11 +34,16 @@ const styledTextAlign = css<StyledTextProps>`
 `
 
 const baseStyles = css<StyledTextProps>`
-  ${margins}
-  ${styledTextAlign}
+  ${margins};
+  ${styledTextAlign};
   font-family: ${fonts.poppins};
-  color: ${({$faded}) => $faded && colors.greys300};
   font-size: ${({fontSize}) => fontSize && fontSizes[fontSize]};
+  font-weight: ${({fontWeight}) => fontWeight && fontWeights[fontWeight]};
+
+  color: ${({$faded, color}) => {
+    if ($faded) return colors.greys300
+    if (color) return colors[color]
+  }};
 `
 
 export const Hero = styled.h1<StyledTextProps>`

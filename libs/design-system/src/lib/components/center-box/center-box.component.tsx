@@ -33,15 +33,10 @@ export const CenterBox: React.FC<CenterBoxProps> = (props) => {
     <Container>
       <Content>
         <TitleContainer>
-          <Text type={'h1'} color={colorTokens.blues800}>
+          <Text type={'h1'} color={'blues800'}>
             {gymName || 'Memba'}
           </Text>
-          <Text
-            type={'body'}
-            $marginTopX={spacingTokens.space1x}
-            $faded
-            color={colorTokens.neutrals500}
-          >
+          <Text type={'body'} $marginTop={'space1x'} $faded color={'neutrals500'}>
             {gymName && 'Powered by Memba'}
           </Text>
         </TitleContainer>
