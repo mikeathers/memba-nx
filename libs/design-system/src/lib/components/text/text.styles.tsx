@@ -13,12 +13,20 @@ import {
 import {MarginsApi, margins} from '../../utils'
 
 enum FontSizes {
-  s,
+  xxs = 'xxs',
+  xs = 'xs',
+  s = 's',
+  m = 'm',
+  l = 'l',
+  xl = 'xl',
+  xxl = 'xxl',
+  xxxl = 'xxl',
 }
 export interface StyledTextProps extends MarginsApi {
   color?: keyof Colors
   $textAlign?: 'center'
   $faded?: boolean
+  fontSizes?: keyof typeof FontSizes
 }
 
 const styledTextAlign = css<StyledTextProps>`
