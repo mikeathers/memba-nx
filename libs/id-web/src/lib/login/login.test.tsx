@@ -1,8 +1,13 @@
 import {render} from '@testing-library/react'
 import {Login} from './login.component'
-import {login} from '@/content'
+import {AuthProvider, login} from '@memba-nx/shared'
 
-const renderComponent = () => render(<Login content={login} />)
+const renderComponent = () =>
+  render(
+    <AuthProvider>
+      <Login content={login} />
+    </AuthProvider>,
+  )
 
 describe('Sign in', () => {
   it('should render the sign in component', () => {

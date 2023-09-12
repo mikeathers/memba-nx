@@ -10,9 +10,9 @@ import {
   AuthProvider,
   useAuth,
 } from '@memba-nx/shared'
-import {mockCognitoUserAttributes, mockState} from '@memba-nx/shared/test-support'
 
 import {CompleteSignUp} from './complete-sign-up.component'
+import {mockCognitoUserAttributes, mockState} from '@memba-nx/shared/test-support'
 
 jest.mock('@memba-nx/shared', () => ({
   __esModule: true,
