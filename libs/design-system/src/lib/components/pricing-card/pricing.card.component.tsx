@@ -50,7 +50,9 @@ export const PricingCard: React.FC<PricingCardProps> = (props) => {
         <Text type={'h1'} $marginBottomX={spacingTokens.space2x}>
           {pricePerMonth}
         </Text>
-        <TransactionalCost type={'body-faded'}>{transactionalCosts}</TransactionalCost>
+        <TransactionalCost type={'body-small'} $faded>
+          {transactionalCosts}
+        </TransactionalCost>
         <Text
           type={'body'}
           $marginTopX={spacingTokens.space2x}
