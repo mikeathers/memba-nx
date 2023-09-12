@@ -1,7 +1,27 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
+  "plugins": ["@nx", "import"],
+  "extends": ["plugin:import/recommended"],
+  "rules": {
+    "import/no-cycle": [
+      "error",
+      {
+        "maxDepth": 10,
+        "ignoreExternal": true
+      }
+    ]
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "project": ["tsconfig.json"]
+      }
+    }
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -25,7 +45,13 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
       "rules": {
-        "react-hooks/exhaustive-deps": 0
+        "react-hooks/exhaustive-deps": 0,
+        "import/no-unresolved": 0,
+        "import/default": 0,
+        "import/no-named-as-default": 0,
+        "import/no-named-as-default-member": 0,
+        "@next/next/no-page-custom-font": 0,
+        "import/named": 0
       }
     },
     {

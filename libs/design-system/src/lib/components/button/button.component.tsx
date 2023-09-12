@@ -1,17 +1,15 @@
-import React from 'react'
+import React, {ButtonHTMLAttributes} from 'react'
 
 import {StyledButton, StyledLoadingContainer} from './button.styles'
 import {LoadingSpinner} from '../loading-spinner'
 import {MarginsApi} from '../../utils'
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    MarginsApi {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, MarginsApi {
   children: React.ReactNode | undefined
   variant: 'primary' | 'secondary' | 'text'
   $isLoading?: boolean
   $isDisabled?: boolean
-  fullWidth?: boolean
+  $fullWidth?: boolean
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {

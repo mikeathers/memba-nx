@@ -1,13 +1,9 @@
 import {ENDPOINTS} from '../config'
 import {NewCustomerFormDetails, RegisterTenantResponse} from '../types'
-import {axiosUsersAuthInstance} from '../utils/axios'
-
-interface CreateTenantAccountProps extends NewCustomerFormDetails {
-  tier: string
-}
+import {axiosUsersAuthInstance} from '../utils'
 
 export const createTenantAccount = async (
-  props: CreateTenantAccountProps,
+  props: NewCustomerFormDetails,
 ): Promise<RegisterTenantResponse | null> => {
   const URL = ENDPOINTS.CREATE_TENANT_ACCOUNT
 

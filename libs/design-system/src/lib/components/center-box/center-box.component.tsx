@@ -1,15 +1,16 @@
+'use client'
 import React, {useEffect, useState} from 'react'
 import {MembaApp} from '@memba-nx/shared'
 
-import {colorTokens} from '../../styles'
+import {colorTokens, spacingTokens} from '../../styles'
 import {Text} from '../text'
 
 import {Container, Content, FormContainer, TitleContainer} from './center-box.styles'
 
 interface CenterBoxProps {
   children: React.ReactNode
-  app: MembaApp
-  getApp: () => Promise<MembaApp | null>
+  app: MembaApp | null
+  getApp: () => Promise<void>
 }
 export const CenterBox: React.FC<CenterBoxProps> = (props) => {
   const {children, app, getApp} = props
@@ -35,7 +36,12 @@ export const CenterBox: React.FC<CenterBoxProps> = (props) => {
           <Text type={'h1'} color={colorTokens.blues800}>
             {gymName || 'Memba'}
           </Text>
-          <Text type={'body-faded'} color={colorTokens.neutrals500}>
+          <Text
+            type={'body'}
+            $marginTopX={spacingTokens.space1x}
+            $faded
+            color={colorTokens.neutrals500}
+          >
             {gymName && 'Powered by Memba'}
           </Text>
         </TitleContainer>

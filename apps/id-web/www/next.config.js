@@ -1,4 +1,5 @@
 const path = require('node:path')
+const CopyPlugin = require('copy-webpack-plugin')
 //@ts-check
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -24,6 +25,26 @@ const nextConfig = {
   compiler: {
     // For other options, see https://styled-components.com/docs/tooling#babel-plugin
     styledComponents: true,
+  },
+
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
+
+    config.plugins.push(
+      new CopyPlugin({
+        patterns: [
+          {
+            from: path.join(__dirname, '../../../public'),
+            to: path.join(__dirname, 'public'),
+          },
+        ],
+      }),
+    )
+
+    return config
   },
 }
 

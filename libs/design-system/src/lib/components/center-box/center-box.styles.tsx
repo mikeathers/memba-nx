@@ -15,8 +15,7 @@ export const Container = styled.div`
   @media (${mediaQueries.s}) {
     align-items: center;
     background-color: rgb(250, 251, 252);
-    background-image: url(https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.456/static/media/default_left.e74de3ec.svg),
-      url(https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.456/static/media/default_right.6ece9751.svg);
+    background-image: url(/default_left.svg), url(/default_right.svg);
     background-repeat: no-repeat, no-repeat;
     background-attachment: fixed, fixed;
     background-size: 368px, 368px;

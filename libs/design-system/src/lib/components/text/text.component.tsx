@@ -1,19 +1,10 @@
 import React from 'react'
 
 import type {StyledTextProps} from './text.styles'
-import {Body, BodyBold, BodyFaded, BodySmall, H1, H2, H3, H4, Hero} from './text.styles'
+import {Body, BodyBold, BodySmall, H1, H2, H3, H4, Hero} from './text.styles'
 
 export interface TextProps extends StyledTextProps {
-  type:
-    | 'hero'
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'body'
-    | 'body-bold'
-    | 'body-small'
-    | 'body-faded'
+  type: 'hero' | 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-bold' | 'body-small'
   children: React.ReactNode | undefined
 }
 
@@ -46,10 +37,6 @@ export const Text: React.FC<TextProps> = (props) => {
 
   if (type === 'body-bold') {
     return <BodyBold {...rest}>{children}</BodyBold>
-  }
-
-  if (type === 'body-faded') {
-    return <BodyFaded {...rest}>{children}</BodyFaded>
   }
 
   if (type === 'body-small') {

@@ -11,6 +11,8 @@ const config: StorybookConfig = {
     name: '@storybook/react-webpack5',
     options: {},
   },
+  staticDirs: ['../../../public'],
+
   webpackFinal: async (config) => {
     const imageRule = config.module?.rules?.find((rule) => {
       const test = (rule as {test: RegExp}).test
@@ -20,6 +22,7 @@ const config: StorybookConfig = {
       }
 
       return test.test('.svg')
+      //eslint-disable-next-line @typescript-eslint/no-explicit-any
     }) as {[key: string]: any}
 
     imageRule.exclude = /\.svg$/

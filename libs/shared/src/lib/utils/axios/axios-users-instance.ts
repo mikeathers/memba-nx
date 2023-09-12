@@ -4,7 +4,7 @@ import {refreshJwt} from '../refresh-jwt'
 import {getItemFromLocalStorage} from '../storage'
 import {Env, readFromEnv} from '../../environments'
 
-export const USERS_API_URL = `${readFromEnv(Env.usersApi)}`
+export const USERS_API_URL = readFromEnv(Env.usersApi)
 export const axiosUsersAuthInstance = axios.create({
   baseURL: USERS_API_URL,
   headers: {

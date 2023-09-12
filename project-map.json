@@ -7,6 +7,7 @@
     "id-web-www": "apps/id-web/www",
     "start-web-www": "apps/start-web/www",
     "shared": "libs/shared",
-    "design-system": "libs/design-system"
+    "design-system": "libs/design-system",
+    "id-web": "libs/id-web"
   }
 }

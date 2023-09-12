@@ -1,15 +1,8 @@
+'use client'
 import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
 
-import {
-  useComponentVisible,
-  useSafeAsync,
-  useMembaDetails,
-  useAuth,
-  sentenceCase,
-  MembaApp,
-  MembaUser,
-} from '@memba-nx/shared'
+import {useComponentVisible, sentenceCase, MembaApp, MembaUser} from '@memba-nx/shared'
 
 import {Text} from '../text'
 import {LoadingSpinner} from '../loading-spinner'
@@ -113,7 +106,9 @@ export const TitleBar = (props: TitleBarProps) => {
                   <Text type={'body'}>{`${sentenceCase(user?.firstName)} ${sentenceCase(
                     user?.lastName,
                   )}`}</Text>
-                  <Text type={'body-faded'}>{user?.emailAddress}</Text>
+                  <Text type={'body'} $faded>
+                    {user?.emailAddress}
+                  </Text>
                 </Name>
               </NameContainer>
             </MenuTitleContainer>

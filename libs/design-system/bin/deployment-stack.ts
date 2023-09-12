@@ -13,7 +13,6 @@ import {
 } from './aws'
 import CONFIG from './config'
 import {join} from 'node:path'
-import {MONOREPO_ROOT} from '../../../tools/scripts/determine-affected/nx'
 
 function createCertificate(scope: Construct, id: string, arn: string) {
   return Certificate.fromCertificateArn(scope, id, arn)

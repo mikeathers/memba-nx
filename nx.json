@@ -30,7 +30,6 @@
       "library": {
         "style": "styled-components",
         "linter": "eslint",
-        "publishable": true,
         "bundler": "rollup",
         "unitTestRunner": "jest"
       },

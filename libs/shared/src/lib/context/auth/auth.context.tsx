@@ -1,3 +1,4 @@
+'use client'
 import type {CognitoUser} from '@aws-amplify/auth'
 import {Auth} from '@aws-amplify/auth'
 import type {FC} from 'react'
@@ -18,6 +19,7 @@ import {
   completeRegistration,
   completeResetPassword,
   googleSignIn,
+  registerTenant,
   registerUser,
   resendConfirmationEmail,
   sendForgotPasswordLink,
@@ -27,7 +29,6 @@ import {
 import {authReducer, initialState} from './auth.reducer'
 import type {AuthContextValue, AuthProviderProps} from './auth.types'
 import {ActionTypes} from './auth.types'
-import {hasAccessCheck} from '../../services'
 import {CognitoUserAttributes, LoginFormDetails} from '../../types'
 
 export const AuthContext = createContext<AuthContextValue | null>(null)
@@ -113,18 +114,24 @@ const useAuth = (): AuthContextValue => {
 
   const handleSignUserIn = useCallback(
     async (props: LoginFormDetails) => {
-      const userCanLogin = await hasAccessCheck({
-        emailAddress: props.emailAddress,
-        url: props.url.replace('https://', '') || '',
-      })
+      // const userCanLogin = await hasAccessCheck({
+      //   emailAddress: props.emailAddress,
+      //   url: props.url?.replace('https://', '') || '',
+      // })
+      //
+      // if (userCanLogin) {
+      //   const user = await signUserIn(props)
+      //   await addUserToState()
+      //   await refreshJwt()
+      //
+      //   return user
+      // } else throw new Error('Unauthorised')
 
-      if (userCanLogin) {
-        const user = await signUserIn(props)
-        await addUserToState()
-        await refreshJwt()
+      const user = await signUserIn(props)
+      await addUserToState()
+      await refreshJwt()
 
-        return user
-      } else throw new Error('Unauthorised')
+      return user
     },
     [addUserToState],
   )
@@ -133,6 +140,7 @@ const useAuth = (): AuthContextValue => {
     state,
     dispatch,
     registerUser,
+    registerTenant,
     signUserIn: handleSignUserIn,
     signUserOut: handleSignUserOut,
     refreshUserSession: handleRefreshUserSession,

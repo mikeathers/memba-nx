@@ -107,21 +107,19 @@ export type ErrorWithMessage = {
 /*************** FORMS ******************/
 /******************* ********************/
 
-export type SignupFormDetails = FormikValues & {
+export type RegisterTenantProps = FormikValues & {
   emailAddress: string
   password: string
   fullName: string
 }
 
-export type ForgotPasswordFormDetails = Pick<SignupFormDetails, 'emailAddress'>
-export type ResetPasswordFormDetails = Pick<SignupFormDetails, 'password'> & {
-  code: string
-}
+export type ForgotPasswordFormDetails = Pick<RegisterTenantProps, 'emailAddress'>
+export type ResetPasswordFormDetails = Pick<RegisterTenantProps, 'password'>
 
 export type LoginFormDetails = FormikValues & {
   emailAddress: string
   password: string
-  url: string
+  url?: string
 }
 
 export type NewCustomerFormDetails = FormikValues & {
@@ -219,3 +217,96 @@ export type SharedContent = {
 //   emailAddress: string
 //   url: string
 // }
+
+/******************* ********************/
+/*************** Content ***************/
+/******************* ********************/
+
+export type MiscContent = {
+  allRightsReserved: string
+}
+
+export type ConfirmAccountContent = {
+  heading: string
+  emailSentMessage: string
+  confirmationInstruction: string
+  resendConfirmationEmail: string
+  checkSpamFolder: string
+  sendAgain: string
+}
+
+export type SignUpContent = {
+  appName: string
+  heading: string
+  termsOfService: string
+  login: string
+  userAlreadyExistsError: string
+  fullNameRequireError: string
+  genericError: string
+  form: {
+    fullName: string
+    fullNamePlaceholder: string
+    email: string
+    emailPlaceholder: string
+    password: string
+    passwordPlaceholder: string
+    signUpCta: string
+    validation: {
+      passwordValidationMessage: string
+      passwordLengthMessage: string
+      emailAddress: string
+      emailAddressFormat: string
+      fullName: string
+      password: string
+    }
+  }
+}
+
+export type LoginContent = {
+  appName: string
+  heading: string
+  signUp: string
+  cantLogin: string
+  genericError: string
+  userNotFoundError: string
+  incorrectUserNameOrPassword: string
+  form: {
+    email: string
+    emailPlaceholder: string
+    password: string
+    passwordPlaceholder: string
+    loginCta: string
+    validation: {
+      emailAddress: string
+      emailAddressFormat: string
+      password: string
+    }
+  }
+}
+
+export type ForgotPasswordContent = {
+  heading: string
+  message: string
+  sendLinkCta: string
+  returnToLogin: string
+  form: {
+    emailPlaceholder: string
+    validation: {
+      emailAddress: string
+      emailAddressFormat: string
+    }
+  }
+}
+
+export type ResetPasswordContent = {
+  heading: string
+  submitCta: string
+  form: {
+    passwordPlaceholder: string
+    validation: {
+      password: string
+      passwordValidationMessage: string
+      passwordLengthMessage: string
+    }
+  }
+}

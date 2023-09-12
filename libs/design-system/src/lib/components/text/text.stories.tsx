@@ -32,7 +32,9 @@ export const Primary: StoryObj<typeof Text> = {
         <PaddedText type={'h4'}>H4 - The quick brown fox.</PaddedText>
         <PaddedText type={'body'}>Body - The quick brown fox.</PaddedText>
         <PaddedText type={'body-bold'}>Body bold -The quick brown fox.</PaddedText>
-        <PaddedText type={'body-faded'}>Body faded -The quick brown fox.</PaddedText>
+        <PaddedText type={'body'} $faded>
+          Body faded -The quick brown fox.
+        </PaddedText>
         <PaddedText type={'body-small'}>Body small - The quick brown fox.</PaddedText>
       </>
     )

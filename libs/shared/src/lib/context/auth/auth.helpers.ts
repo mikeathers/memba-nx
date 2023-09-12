@@ -10,7 +10,8 @@ import type {
   CompleteRegistrationProps,
   RegisterUserProps,
 } from './auth.types'
-import {LoginFormDetails} from '../../types'
+import {LoginFormDetails, RegisterTenantProps} from '../../types'
+import {createTenantAccount} from '../../services'
 
 export const registerUser = async (props: RegisterUserProps) => {
   const {
@@ -40,6 +41,29 @@ export const registerUser = async (props: RegisterUserProps) => {
     })
 
     setItemInLocalStorage(TEMP_LOCAL_STORAGE_PWD_KEY, password)
+  }
+}
+
+export const registerTenant = async (props: RegisterTenantProps) => {
+  console.log('here')
+  const {emailAddress, password, fullName} = props
+  if (emailAddress && password && fullName) {
+    const splitName = fullName.split(' ', 2)
+    const firstName = splitName[0]
+    const lastName = splitName[1]
+
+    const result = await createTenantAccount({
+      emailAddress: emailAddress.trim().toLowerCase(),
+      password,
+      firstName: firstName.trim().toLowerCase(),
+      lastName: lastName ? lastName.trim().toLowerCase() : '',
+    })
+
+    console.log({result})
+
+    setItemInLocalStorage(TEMP_LOCAL_STORAGE_PWD_KEY, password)
+
+    return result
   }
 }
 

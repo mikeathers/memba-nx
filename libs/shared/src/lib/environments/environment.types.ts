@@ -7,6 +7,10 @@ export enum EnvironmentFromFile {
   startApp = 'START_APP',
   idApp = 'ID_APP',
   websiteHome = 'WEBSITE_HOME',
+  cookieStorageDomain = 'COOKIE_STORAGE_DOMAIN',
+  cookieStorageSecure = 'COOKIE_STORAGE_SECURE',
+  cookieStoragePath = 'COOKIE_STORAGE_PATH',
+  cookieStorageExpires = 'COOKIE_STORAGE_EXPIRES',
 }
 
 export interface IEnvironment extends Record<EnvironmentFromFile, string> {
@@ -18,6 +22,10 @@ export interface IEnvironment extends Record<EnvironmentFromFile, string> {
   START_APP: string
   ID_APP: string
   WEBSITE_HOME: string
+  COOKIE_STORAGE_DOMAIN: string
+  COOKIE_STORAGE_SECURE: string
+  COOKIE_STORAGE_PATH: string
+  COOKIE_STORAGE_EXPIRES: string
 }
 
 export const Env = {

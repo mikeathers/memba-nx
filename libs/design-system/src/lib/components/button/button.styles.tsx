@@ -17,7 +17,7 @@ export const StyledButton = styled.button<ButtonProps>`
   font-size: ${fontSizes.s};
   font-family: ${fonts.poppins};
   cursor: pointer;
-  width: ${({fullWidth}) => fullWidth && '100%'};
+  width: ${({$fullWidth}) => $fullWidth && '100%'};
 
   ${({variant, $isDisabled, $isLoading}) => {
     if (variant === 'primary' && ($isDisabled || $isLoading)) {

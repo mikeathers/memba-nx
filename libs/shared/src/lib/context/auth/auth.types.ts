@@ -5,7 +5,8 @@ import {
   AuthUser,
   LoginFormDetails,
   MembaUser,
-  NewCustomerFormDetails,
+  RegisterTenantProps,
+  RegisterTenantResponse,
   UserMembership,
 } from '../../types'
 import {CreateUserAccountProps} from '../../services'
@@ -16,6 +17,9 @@ export type AuthContextValue = {
   signUserIn: (props: LoginFormDetails) => Promise<ChallengedUser | null>
   signUserOut: () => Promise<void>
   registerUser: (props: RegisterUserProps) => Promise<void>
+  registerTenant: (
+    props: RegisterTenantProps,
+  ) => Promise<RegisterTenantResponse | null | undefined>
   refreshUserSession: () => Promise<void | null>
   sendForgotPasswordLink: (email: string) => Promise<void>
   completeResetPassword: (props: CompletePasswordResetProps) => Promise<void>
@@ -104,8 +108,4 @@ export interface ChangePasswordProps {
   oldPassword: string
   newPassword: string
   user: CognitoUser
-}
-
-export interface RegisterTenantProps extends NewCustomerFormDetails {
-  tier: string
 }

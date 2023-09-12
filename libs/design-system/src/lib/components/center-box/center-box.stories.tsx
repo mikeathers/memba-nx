@@ -40,7 +40,7 @@ export const Primary: StoryObj<typeof CenterBox> = {
       <>
         <TextInput label={'First name:'} />
         <TextInput label={'Last name:'} />
-        <Button fullWidth={true} variant={'primary'}>
+        <Button $fullWidth={true} variant={'primary'}>
           Let's go!
         </Button>
       </>

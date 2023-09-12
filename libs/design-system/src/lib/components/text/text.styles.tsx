@@ -15,6 +15,7 @@ import {MarginsApi, margins} from '../../utils'
 export interface StyledTextProps extends MarginsApi {
   color?: keyof Colors
   $textAlign?: 'center'
+  $faded?: boolean
 }
 
 const styledTextAlign = css<StyledTextProps>`
@@ -30,58 +31,59 @@ const styledTextAlign = css<StyledTextProps>`
 const baseStyles = css<StyledTextProps>`
   ${margins}
   ${styledTextAlign}
-  font-family: ${fonts.poppins}
+  font-family: ${fonts.poppins};
+  color: ${({$faded}) => $faded && colors.greys300};
 `
 
 export const Hero = styled.h1<StyledTextProps>`
-  ${baseStyles};
   font-weight: ${fontWeights.semibold};
   font-size: ${fontSizes.xxxl};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
   letter-spacing: ${letterSpacing.title};
+  ${baseStyles};
 `
 
 export const H1 = styled.h1<StyledTextProps>`
-  ${baseStyles};
   font-weight: ${fontWeights.regular};
   font-size: ${fontSizes.xxl};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
   letter-spacing: ${letterSpacing.title};
+  ${baseStyles};
 
   @media (${mediaQueries.s}) {
     font-size: ${fontSizes.xxl};
   }
 `
 export const H2 = styled.h2<StyledTextProps>`
-  ${baseStyles};
   font-weight: ${fontWeights.regular};
   font-size: ${fontSizes.xl};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
   letter-spacing: ${letterSpacing.title};
+  ${baseStyles};
 `
 
 export const H3 = styled.h3<StyledTextProps>`
-  ${baseStyles};
   font-weight: ${fontWeights.medium};
   font-size: ${fontSizes.l};
   line-height: ${lineHeights.large};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
+  ${baseStyles};
 `
 
 export const H4 = styled.h4<StyledTextProps>`
-  ${baseStyles};
   font-weight: ${fontWeights.medium};
   font-size: ${fontSizes.m};
   line-height: ${lineHeights.medium};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
+  ${baseStyles};
 `
 
 export const Body = styled.p<StyledTextProps>`
-  ${baseStyles};
   font-weight: ${fontWeights.regular};
   font-size: ${fontSizes.s};
   line-height: ${lineHeights.medium};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
+  ${baseStyles};
 `
 
 export const BodyBold = styled(Body)`

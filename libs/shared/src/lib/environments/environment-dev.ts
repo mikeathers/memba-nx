@@ -9,4 +9,8 @@ export const environmentDev: IEnvironment = {
   START_APP: 'https://start.dev.memba.co.uk',
   ID_APP: 'https://id.dev.memba.co.uk',
   WEBSITE_HOME: 'https://dev.memba.co.uk',
+  COOKIE_STORAGE_DOMAIN: 'dev.memba.co.uk',
+  COOKIE_STORAGE_SECURE: 'true',
+  COOKIE_STORAGE_PATH: '/',
+  COOKIE_STORAGE_EXPIRES: '2',
 }

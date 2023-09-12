@@ -9,4 +9,8 @@ export const environmentLocal: IEnvironment = {
   START_APP: 'http://localhost:3001',
   ID_APP: 'http://localhost:3000',
   WEBSITE_HOME: 'https://dev.memba.co.uk',
+  COOKIE_STORAGE_DOMAIN: 'localhost',
+  COOKIE_STORAGE_SECURE: '',
+  COOKIE_STORAGE_PATH: '/',
+  COOKIE_STORAGE_EXPIRES: '365',
 }

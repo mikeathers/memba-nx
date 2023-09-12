@@ -17,10 +17,11 @@
     "baseUrl": ".",
     "paths": {
       "@memba-labs/design-system": ["libs/design-system/src/index.ts"],
-      "@memba-labs/design-system-globals": ["libs/design-system/src/lib/globals.css"],
       "@memba-nx/core/nextjs-construct": ["libs/core/nextjs-construct/src/index.ts"],
       "@memba-nx/core/workspace": ["libs/core/workspace/src/index.ts"],
-      "@memba-nx/shared": ["libs/shared/src/index.ts"]
+      "@memba-nx/id-web": ["libs/id-web/src/index.ts"],
+      "@memba-nx/shared": ["libs/shared/src/index.ts"],
+      "@memba-nx/shared/test-support": ["libs/shared/src/test/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

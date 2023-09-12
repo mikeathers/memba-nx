@@ -4,7 +4,7 @@ import {JWT_LOCALSTORAGE_KEY} from '../../config'
 import {getItemFromLocalStorage} from '../storage'
 import {Env, readFromEnv} from '../../environments'
 
-export const TENANTS_API_URL = `${readFromEnv(Env.tenantsApi)}`
+export const TENANTS_API_URL = readFromEnv(Env.tenantsApi)
 
 export const axiosTenantsAuthInstance = axios.create({
   baseURL: TENANTS_API_URL,
