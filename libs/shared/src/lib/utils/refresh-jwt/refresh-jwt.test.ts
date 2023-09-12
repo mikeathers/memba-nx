@@ -3,8 +3,9 @@ import {waitFor} from '@testing-library/react'
 import mocked = jest.mocked
 
 import {removeItemFromLocalStorage, setItemInLocalStorage} from '../storage'
-import {mockCognitoUserSession} from '../../test-support'
+
 import {refreshJwt} from './refresh-jwt'
+import {mockCognitoUserSession} from '../../../test'
 
 jest.mock('../storage')
 

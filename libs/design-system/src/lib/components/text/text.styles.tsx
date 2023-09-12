@@ -12,6 +12,9 @@ import {
 } from '../../styles'
 import {MarginsApi, margins} from '../../utils'
 
+enum FontSizes {
+  s,
+}
 export interface StyledTextProps extends MarginsApi {
   color?: keyof Colors
   $textAlign?: 'center'
