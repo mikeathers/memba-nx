@@ -129,6 +129,10 @@ export class NextJsConstruct extends Stack {
     //   })
     // }
 
+    new CfnOutput(this, 'distroId', {
+      value: cloudfront.distributionId,
+    })
+
     new CfnOutput(this, `cloudfront-domain`, {
       value: cloudfront.domainName,
       exportName: `${id}-${props.environment}-cloudfront-domain`,

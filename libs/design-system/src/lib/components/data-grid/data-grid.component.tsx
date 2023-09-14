@@ -1,11 +1,11 @@
-import {DataGrid, GridColDef, GridRowsProp} from '@mui/x-data-grid'
+import {DataGrid as MUIDataGrid, GridColDef, GridRowsProp} from '@mui/x-data-grid'
 
 interface DataGridComponentProps {
   columns: GridColDef[]
   rows: GridRowsProp
 }
 
-export const DataGridComponent = (props: DataGridComponentProps) => {
+export const DataGrid = (props: DataGridComponentProps) => {
   const {columns, rows} = props
-  return <DataGrid columns={columns} rows={rows} />
+  return <MUIDataGrid columns={columns} rows={rows} />
 }

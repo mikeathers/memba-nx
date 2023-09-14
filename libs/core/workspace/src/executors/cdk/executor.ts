@@ -19,9 +19,12 @@ export default async function runExecutor(
     ([key, value]) => `--${key} ${value === true ? '' : value}`,
   )
 
-  const cdkArgs = [...contextArgs, outPath && `--output=${outPath}`, ...extraArgs].filter(
-    Boolean,
-  )
+  const cdkArgs = [
+    ...contextArgs,
+    outPath && `--output=${outPath}`,
+    `--outputs-file ${outPath}/outputs.json `,
+    ...extraArgs,
+  ].filter(Boolean)
 
   if (options.profile && options.profile !== 'undefined') {
     cdkArgs.push(`--profile ${options.profile}`)

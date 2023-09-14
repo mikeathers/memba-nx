@@ -1,10 +1,8 @@
-import { InvalidateCloudfrontExecutorSchema } from './schema'
+import {InvalidateCloudfrontExecutorSchema} from './schema'
 
-import {
-  CloudFrontClient,
-  CreateInvalidationCommand,
-} from '@aws-sdk/client-cloudfront'
-import { fromSSO } from '@aws-sdk/credential-providers'
+import {CloudFrontClient, CreateInvalidationCommand} from '@aws-sdk/client-cloudfront'
+import {fromSSO} from '@aws-sdk/credential-providers'
+import {ExecutorContext} from '@nx/devkit'
 import * as fs from 'fs'
 
 interface StackOutputs {
@@ -13,12 +11,13 @@ interface StackOutputs {
 
 export default async function runExecutor(
   options: InvalidateCloudfrontExecutorSchema,
+  context: ExecutorContext,
 ) {
   const outputs = JSON.parse(fs.readFileSync(options.outputsFile, 'utf8'))
   const client = new CloudFrontClient({
     region: options.region,
     ...(options.ssoCredentials && {
-      credentials: fromSSO({ profile: options.profile }),
+      credentials: fromSSO({profile: options.profile}),
     }),
   })
 
@@ -37,12 +36,12 @@ export default async function runExecutor(
   const command = new CreateInvalidationCommand({
     DistributionId: id,
     InvalidationBatch: {
-      Paths: { Items: ['/*'], Quantity: 1 },
+      Paths: {Items: ['/*'], Quantity: 1},
       CallerReference: String(reference),
     },
   })
 
   await client.send(command)
 
-  return { success: true }
+  return {success: true}
 }
