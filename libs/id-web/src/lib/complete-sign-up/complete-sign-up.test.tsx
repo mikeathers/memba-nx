@@ -105,7 +105,7 @@ describe('Complete sign up', () => {
     mockGetItemFromLocalStorage.mockReturnValue(mockPassword)
     renderComponent()
 
-    await waitFor(() => expect(mockPush).toHaveBeenCalledWith('http://localhost:3001'))
+    await waitFor(() => expect(mockPush).toHaveBeenCalledWith('http://localhost:4300'))
   })
 
   it('should push the user to the sign in page route if the user is not able to be signed in', async () => {

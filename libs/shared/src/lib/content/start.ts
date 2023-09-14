@@ -1,4 +1,9 @@
-import {AppsContent, GymManagementContent, MembershipsContent} from '../types'
+import {
+  AccountContent,
+  AppsContent,
+  GymManagementContent,
+  MembershipsContent,
+} from '../types'
 
 export const appsContent: AppsContent = {
   heading: 'Your apps',
@@ -9,6 +14,9 @@ export const membershipsContent: MembershipsContent = {
   heading: 'Your memberships',
 }
 
+export const accountContent: AccountContent = {
+  heading: 'Account details',
+}
 export const gymManagementContent: GymManagementContent = {
   heading: 'Gym Management',
   goBack: 'Go back',

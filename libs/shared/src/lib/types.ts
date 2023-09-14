@@ -274,6 +274,10 @@ export type MembershipsContent = {
   heading: string
 }
 
+export type AccountContent = {
+  heading: string
+}
+
 export type GymManagementContent = {
   heading: string
   goBack: string
