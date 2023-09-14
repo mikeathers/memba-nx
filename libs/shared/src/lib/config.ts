@@ -17,7 +17,7 @@ export const PAGE_ROUTES: PAGE_ROUTES = {
   APPS: '/apps',
   GYM_MANAGEMENT: '/gym-management',
   MEMBERSHIPS: '/memberships',
-  HOME: '/home',
+  HOME: '/',
   SIGN_UP: '/signup',
   CONFIRM_ACCOUNT: '/confirm-account',
   LOGIN: '/login',
@@ -49,4 +49,10 @@ export const ENDPOINTS: ENDPOINTS = {
   HAS_ACCESS_TO_APP: 'has-access',
   CREATE_GYM_APP: 'create-gym-app',
   ADMIN_CHECK: 'tenants/admin-check',
+}
+
+export enum TIERS {
+  FREE = 'Free',
+  BASIC = 'Basic',
+  PREMIUM = 'Premium',
 }

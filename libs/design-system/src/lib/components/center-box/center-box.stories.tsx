@@ -36,11 +36,25 @@ const app: MembaApp = {
 
 export const Primary: StoryObj<typeof CenterBox> = {
   render: () => (
-    <CenterBox getApp={() => new Promise(() => app)} app={app}>
+    <CenterBox>
       <>
         <TextInput label={'First name:'} />
         <TextInput label={'Last name:'} />
-        <Button $fullWidth={true} variant={'primary'}>
+        <Button $fullWidth={true} $variant={'primary'}>
+          Let's go!
+        </Button>
+      </>
+    </CenterBox>
+  ),
+}
+
+export const WithGymName: StoryObj<typeof CenterBox> = {
+  render: () => (
+    <CenterBox gymName={'Awesome Gym'}>
+      <>
+        <TextInput label={'First name:'} />
+        <TextInput label={'Last name:'} />
+        <Button $fullWidth={true} $variant={'primary'}>
           Let's go!
         </Button>
       </>

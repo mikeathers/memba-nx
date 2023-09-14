@@ -57,10 +57,8 @@ export interface LetterSpacing {
 }
 
 export interface LineHeights {
-  small: string
   medium: string
   large: string
-  xlarge: string
 }
 
 export interface Colors {

@@ -10,14 +10,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/id-web/www",
-        "assets": [
-          {
-            "input": "public",
-            "glob": "**/*",
-            "output": "/"
-          }
-        ]
+        "outputPath": "dist/apps/id-web/www"
       },
       "configurations": {
         "development": {},
@@ -29,7 +22,8 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "id-web-www:build",
-        "dev": true
+        "dev": true,
+        "port": 4200
       },
       "configurations": {
         "local": {
@@ -100,15 +94,13 @@
         "development": {
           "outputs": {
             "oidc-role-to-assume": "arn:aws:iam::544312030237:role/infra-service-deployment",
-            "oidc-role-session-name": "web-app-deploy-role",
-            "project-url": "https://id.dev.memba.co.uk"
+            "oidc-role-session-name": "web-app-deploy-role"
           }
         },
         "production": {
           "outputs": {
             "oidc-role-to-assume": "arn:aws:iam::635800996936:role/infra-service-deployment",
-            "oidc-role-session-name": "web-app-deploy-role",
-            "project-url": "https://id.dev.memba.co.uk"
+            "oidc-role-session-name": "web-app-deploy-role"
           }
         }
       }

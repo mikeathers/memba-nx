@@ -71,7 +71,7 @@ export const ConfirmAccount: React.FC<ConfirmAccountProps> = (props) => {
   }
 
   return (
-    <CenterBox app={app} getApp={getApp}>
+    <CenterBox>
       <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
         {content.heading}
       </Text>

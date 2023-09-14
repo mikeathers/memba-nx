@@ -53,10 +53,9 @@ const user = {
   tenant: tenant,
   appId: '',
   signUpRedirectUrl: '',
-  membership: userMembership,
+  memberships: [userMembership],
 }
 const defaultProps: TitleBarProps = {
-  routes: {accountSettings: '/', memberships: '/'},
   signUserOut: () => noop(),
   isLoading: false,
   user: user,

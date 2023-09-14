@@ -3,16 +3,8 @@ import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
 import {Formik} from 'formik'
 import {object, string} from 'yup'
-import {useRouter} from 'next/navigation'
-import {
-  Button,
-  CenterBox,
-  ErrorToast,
-  Text,
-  TextInput,
-  colorTokens,
-  spacingTokens,
-} from '@memba-labs/design-system'
+import {useRouter, useSearchParams} from 'next/navigation'
+import {Button, CenterBox, ErrorToast, Text, TextInput} from '@memba-labs/design-system'
 
 import {
   useSafeAsync,
@@ -22,7 +14,6 @@ import {
   readFromEnv,
   PAGE_ROUTES,
   LoginFormDetails,
-  useMembaDetails,
 } from '@memba-nx/shared'
 
 import {ErrorContainer, ActionsContainer} from './login.styles'
@@ -37,9 +28,12 @@ export const Login: React.FC<LoginProps> = (props) => {
   const router = useRouter()
   const {signUserIn, resendConfirmationEmail} = useAuth()
   const {run, data, error, isLoading, isSuccess} = useSafeAsync()
-  const {getApp, app} = useMembaDetails()
   const [fetchError, setFetchError] = useState<string>('')
   const [emailAddress, setEmailAddress] = useState<string>('')
+  const searchParams = useSearchParams()
+
+  const gymName = searchParams.get('tenantName')?.replace('_', ' ')
+  const redirectUrl = searchParams.get('redirectUrl')
 
   const handleResendConfirmationEmail = async () => {
     await run(resendConfirmationEmail(emailAddress))
@@ -84,11 +78,12 @@ export const Login: React.FC<LoginProps> = (props) => {
     if (values.emailAddress && values.password) {
       setEmailAddress(values.emailAddress)
       await run(signUserIn(values))
+      router.push(redirectUrl || '')
     }
   }
 
   return (
-    <CenterBox getApp={getApp} app={app}>
+    <CenterBox gymName={gymName}>
       <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
         {content.heading}
       </Text>
@@ -148,7 +143,7 @@ export const Login: React.FC<LoginProps> = (props) => {
               <Button
                 $isDisabled={isLoading}
                 $isLoading={isLoading}
-                variant={'primary'}
+                $variant={'primary'}
                 onClick={() => handleSubmit()}
                 $marginTop={'space2x'}
                 type={'submit'}

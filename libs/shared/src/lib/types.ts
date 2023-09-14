@@ -49,7 +49,7 @@ export type MembaUser = {
   tenant: Tenant
   appId: string
   signUpRedirectUrl: string
-  membership: UserMembership
+  memberships: UserMembership[]
 }
 
 export type TenantApp = {
@@ -171,60 +171,12 @@ export type UnauthorizedResponse = BaseResponse
 
 export type SharedContent = {
   allRightsReserved: string
+  somethingWentWrong: string
+  goHome: string
+  getInTouch: string
 }
 
-/******************* ********************/
-/*************** SERVICES PROPS *********/
-/******************* ********************/
-
-// export type AdminCheckProps = {
-//   emailAddress: string
-// }
-//
-// export type CreateGymAppProps = {
-//   tenantId: string
-//   gymName: string
-//   tier: string
-//   memberships: MembershipPricing[]
-//   tenantAdminEmailAddress: string
-//   user: MembaUser | null
-// }
-//
-// export type CreateTenantAccountProps = NewCustomerFormDetails & {
-//   tier: string
-// }
-//
-// export type CreateUserAccountProps = {
-//   emailAddress: string
-//   password: string
-//   firstName: string
-//   lastName: string
-//   groupName: string
-//   appId: string
-//   signUpRedirectUrl: string
-//   membership: UserMembership
-// }
-//
-// export type GetAppProps = {
-//   url: string
-// }
-//
-// export type GetAccountProps = {
-//   emailAddress: string
-// }
-//
-// export type HasAccessProps = {
-//   emailAddress: string
-//   url: string
-// }
-
-/******************* ********************/
-/*************** Content ***************/
-/******************* ********************/
-
-export type MiscContent = {
-  allRightsReserved: string
-}
+/*************** ID WEB ****************/
 
 export type ConfirmAccountContent = {
   heading: string
@@ -309,4 +261,59 @@ export type ResetPasswordContent = {
       passwordLengthMessage: string
     }
   }
+}
+
+/*************** START WEB ****************/
+
+export type AppsContent = {
+  heading: string
+  gymManagementTitle: string
+}
+
+export type MembershipsContent = {
+  heading: string
+}
+
+export type GymManagementContent = {
+  heading: string
+  goBack: string
+  gymNameLabel: string
+  gymDetails: string
+  gymNamePlaceholder: string
+  gymUrlSuffix: string
+  gymUrlLabel: string
+  gymMembershipsTitle: string
+  gymNameExample: string
+  gymMembershipName: string
+  gymMembershipNamePlaceholder: string
+  gymMembershipPricePlaceholder: string
+  gymMembershipPrice: string
+  yourMemberships: string
+  noMemberships: string
+  addMembership: string
+  createCta: string
+  noMembershipsError: string
+  noGymNameError: string
+  freeTierTitleText: string
+  freeTierTitleNumber: string
+  freeTierPricePerMonth: string
+  freeTierNumberOfCustomer: string
+  basicTierTitleText: string
+  basicTierTitleNumber: string
+  basicTierPricePerMonth: string
+  basicTierNumberOfCustomer: string
+  premiumTierTitleText: string
+  premiumTierTitleNumber: string
+  premiumTierPricePerMonth: string
+  premiumTierNumberOfCustomer: string
+  transactionalCosts: string
+  select: string
+  selectedText: string
+  findOutMore: string
+}
+
+/*************** GYM WEB ****************/
+
+export type HomeContent = {
+  heading: string
 }

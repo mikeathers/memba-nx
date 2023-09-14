@@ -56,11 +56,8 @@ export const PricingCard: React.FC<PricingCardProps> = (props) => {
         <Text type={'body'} $marginTop={'space2x'} $marginBottom={'space1x'}>
           {numberOfCustomers}
         </Text>
-        {/*<Button $marginBottomX={spacingTokens.space10x} variant={'text'}>*/}
-        {/*  {findOutMore}*/}
-        {/*</Button>*/}
         <Button
-          variant={'primary'}
+          $variant={'primary'}
           onClick={selectClick}
           $marginTop={'space10x'}
           $isDisabled={selected}

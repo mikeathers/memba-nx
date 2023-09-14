@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "start": "nx serve",
+    "start": "nx run-many --parallel --target=serve --projects=id-web-www,start-web-www,gym-web-www --configuration=local",
+    "storybook": "nx storybook design-system",
     "build": "nx build --parallel=4",
     "test": "nx run-many --target=test --all --parallel=4",
     "lint": "yarn lint:workspace && yarn lint:eslint --parallel=4 && yarn stylelint --parallel=4",
@@ -45,6 +46,7 @@
     "open-next": "^2.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-error-boundary": "^4.0.11",
     "react-is": "18.2.0",
     "react-toastify": "^9.1.3",
     "recast": "^0.23.4",

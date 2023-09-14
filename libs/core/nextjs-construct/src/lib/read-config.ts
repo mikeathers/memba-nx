@@ -1,7 +1,6 @@
 import {z} from 'zod'
 import {Construct, IConstruct} from 'constructs'
 import {execSync} from 'child_process'
-import {redText, yellowText} from './util'
 
 export function generateStackName(base: string) {
   return base

@@ -19,8 +19,8 @@ export const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   width: ${({$fullWidth}) => $fullWidth && '100%'};
 
-  ${({variant, $isDisabled, $isLoading}) => {
-    if (variant === 'primary' && ($isDisabled || $isLoading)) {
+  ${({$variant, $isDisabled, $isLoading}) => {
+    if ($variant === 'primary' && ($isDisabled || $isLoading)) {
       return css`
         color: ${colors.neutrals000};
         border: none;
@@ -29,14 +29,14 @@ export const StyledButton = styled.button<ButtonProps>`
         cursor: none;
       `
     }
-    if (variant === 'primary') {
+    if ($variant === 'primary') {
       return css`
         background-color: ${colors.blues800};
         color: ${colors.neutrals000};
         border: none;
       `
     }
-    if (variant === 'secondary') {
+    if ($variant === 'secondary') {
       return css`
         background-color: ${colors.neutrals000};
         color: ${colors.blues800};
@@ -44,7 +44,7 @@ export const StyledButton = styled.button<ButtonProps>`
       `
     }
 
-    if (variant === 'text') {
+    if ($variant === 'text') {
       return css`
         padding: ${spacing.space1x};
         background-color: transparent;
@@ -53,6 +53,10 @@ export const StyledButton = styled.button<ButtonProps>`
 
         &:active {
           color: ${colors.blues100};
+        }
+
+        &:hover {
+          text-decoration: underline;
         }
       `
     }

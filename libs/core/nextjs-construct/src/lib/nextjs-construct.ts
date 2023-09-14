@@ -20,6 +20,7 @@ type NextJsConstructProps = StackProps &
     behaviourOverrides?: Partial<BehaviorOptions>
     additionalBehaviours?: Record<string, BehaviorOptions>
     warmerConcurrency?: number
+    noARecord?: boolean
   }
 
 export class NextJsConstruct extends Stack {
@@ -111,6 +112,7 @@ export class NextJsConstruct extends Stack {
         additionalBehaviours: props.additionalBehaviours,
         serverCachePolicyId: props.serverCachePolicyId,
         imageCachePolicyId: props.imageCachePolicyId,
+        noARecord: props.noARecord,
       },
     )
 

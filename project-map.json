@@ -3,11 +3,13 @@
   "projects": {
     "core-nextjs-construct": "libs/core/nextjs-construct",
     "core-workspace": "libs/core/workspace",
-    "home-web-www": "apps/home-web/www",
     "id-web-www": "apps/id-web/www",
     "start-web-www": "apps/start-web/www",
     "shared": "libs/shared",
     "design-system": "libs/design-system",
-    "id-web": "libs/id-web"
+    "id-web": "libs/id-web",
+    "start-web": "libs/start-web",
+    "gym-web-www": "apps/gym-web/www",
+    "gym-web": "libs/gym-web"
   }
 }

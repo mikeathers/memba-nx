@@ -118,9 +118,3 @@ export const ActionsContainer = styled.div`
   align-items: flex-start;
   margin-top: ${spacing.space2x};
 `
-
-export const ActionButton = styled(Button)`
-  &:hover {
-    text-decoration: underline;
-  }
-`

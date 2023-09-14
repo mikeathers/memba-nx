@@ -70,7 +70,7 @@ export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
   }
 
   return (
-    <CenterBox app={app} getApp={getApp}>
+    <CenterBox>
       <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
         {content.heading}
       </Text>
@@ -108,7 +108,7 @@ export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
                 $isLoading={isLoading}
                 $isDisabled={isLoading}
                 $fullWidth
-                variant={'primary'}
+                $variant={'primary'}
                 onClick={() => handleSubmit()}
                 $marginTop={'space2x'}
                 type={'submit'}

@@ -19,20 +19,20 @@ const Story: Meta<typeof Button> = {
 export default Story
 
 export const Primary: StoryObj<typeof Button> = {
-  render: () => <Button variant={'primary'}>Click me!</Button>,
+  render: () => <Button $variant={'primary'}>Click me!</Button>,
 }
 
 export const Secondary: StoryObj<typeof Button> = {
-  render: () => <Button variant={'secondary'}>Click me!</Button>,
+  render: () => <Button $variant={'secondary'}>Click me!</Button>,
 }
 
 export const Text: StoryObj<typeof Button> = {
-  render: () => <Button variant={'text'}>Click me!</Button>,
+  render: () => <Button $variant={'text'}>Click me!</Button>,
 }
 
 export const Loading: StoryObj<typeof Button> = {
   render: () => (
-    <Button variant={'primary'} $isLoading={true}>
+    <Button $variant={'primary'} $isLoading={true}>
       Click me!
     </Button>
   ),
@@ -40,7 +40,7 @@ export const Loading: StoryObj<typeof Button> = {
 
 export const Disabled: StoryObj<typeof Button> = {
   render: () => (
-    <Button variant={'primary'} $isDisabled={true}>
+    <Button $variant={'primary'} $isDisabled={true}>
       Click me!
     </Button>
   ),

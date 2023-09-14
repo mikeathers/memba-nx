@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {useRouter} from 'next/navigation'
+import {useRouter, useSearchParams} from 'next/navigation'
 
 import {useAuth, useSafeAsync, PAGE_ROUTES, Env, readFromEnv} from '@memba-nx/shared'
 import {Loading} from '@memba-labs/design-system'
@@ -15,7 +15,8 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   const {refreshUserSession, state} = useAuth()
   const {run, isLoading, isSuccess} = useSafeAsync()
   const router = useRouter()
-
+  const searchParams = useSearchParams()
+  const redirectUrl = searchParams.get('redirectUrl')
   const runRefreshUserSession = async () => {
     await run(refreshUserSession())
   }
@@ -25,6 +26,10 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
       if (!state.isAuthenticated) {
         router.push(PAGE_ROUTES.LOGIN)
       } else {
+        if (redirectUrl) {
+          router.push(redirectUrl)
+          return
+        }
         router.push(`${readFromEnv(Env.startApp)}`)
       }
     }

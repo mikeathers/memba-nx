@@ -6,7 +6,7 @@ import {MarginsApi} from '../../utils'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, MarginsApi {
   children: React.ReactNode | undefined
-  variant: 'primary' | 'secondary' | 'text'
+  $variant: 'primary' | 'secondary' | 'text'
   $isLoading?: boolean
   $isDisabled?: boolean
   $fullWidth?: boolean

@@ -12,15 +12,17 @@ import {
   ColorStyles,
   FontSizeStyles,
   FontWeightStyles,
+  LineHeightStyles,
 } from '../../styles'
 import {MarginsApi, margins} from '../../utils'
 
 export interface StyledTextProps extends MarginsApi {
   $textAlign?: 'center'
   $faded?: boolean
-  fontSize?: keyof typeof FontSizeStyles
+  fontSize?: keyof typeof FontSizeStyles | string
   fontWeight?: keyof typeof FontWeightStyles
   color?: keyof typeof ColorStyles
+  $lineHeight?: keyof typeof LineHeightStyles
 }
 
 const styledTextAlign = css<StyledTextProps>`
@@ -37,9 +39,15 @@ const baseStyles = css<StyledTextProps>`
   ${margins};
   ${styledTextAlign};
   font-family: ${fonts.poppins};
-  font-size: ${({fontSize}) => fontSize && fontSizes[fontSize]};
-  font-weight: ${({fontWeight}) => fontWeight && fontWeights[fontWeight]};
+  font-size: ${({fontSize}) => {
+    // @ts-ignore
+    if (fontSize && Object.values(FontSizeStyles).includes(fontSize))
+      return fontSize && fontSizes[fontSize as keyof typeof FontSizeStyles]
 
+    return fontSize
+  }};
+  font-weight: ${({fontWeight}) => fontWeight && fontWeights[fontWeight]};
+  line-height: ${({$lineHeight}) => $lineHeight && lineHeights[$lineHeight]};
   color: ${({$faded, color}) => {
     if ($faded) return colors.greys300
     if (color) return colors[color]
@@ -59,6 +67,7 @@ export const H1 = styled.h1<StyledTextProps>`
   font-size: ${fontSizes.xxl};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
   letter-spacing: ${letterSpacing.title};
+  line-height: ${lineHeights.large};
   ${baseStyles};
 
   @media (${mediaQueries.s}) {
@@ -70,30 +79,31 @@ export const H2 = styled.h2<StyledTextProps>`
   font-size: ${fontSizes.xl};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
   letter-spacing: ${letterSpacing.title};
+  line-height: ${lineHeights.large};
   ${baseStyles};
 `
 
 export const H3 = styled.h3<StyledTextProps>`
   font-weight: ${fontWeights.medium};
   font-size: ${fontSizes.l};
-  line-height: ${lineHeights.large};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
+  line-height: ${lineHeights.medium};
   ${baseStyles};
 `
 
 export const H4 = styled.h4<StyledTextProps>`
   font-weight: ${fontWeights.medium};
   font-size: ${fontSizes.m};
-  line-height: ${lineHeights.medium};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
+  line-height: ${lineHeights.medium};
   ${baseStyles};
 `
 
 export const Body = styled.p<StyledTextProps>`
   font-weight: ${fontWeights.regular};
   font-size: ${fontSizes.s};
-  line-height: ${lineHeights.medium};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
+  line-height: ${lineHeights.medium};
   ${baseStyles};
 `
 

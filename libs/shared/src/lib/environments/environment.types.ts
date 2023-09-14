@@ -6,6 +6,7 @@ export enum EnvironmentFromFile {
   userWebClientId = 'USER_WEB_CLIENT_ID',
   startApp = 'START_APP',
   idApp = 'ID_APP',
+  gymApp = 'GYM_APP',
   websiteHome = 'WEBSITE_HOME',
   cookieStorageDomain = 'COOKIE_STORAGE_DOMAIN',
   cookieStorageSecure = 'COOKIE_STORAGE_SECURE',
@@ -21,6 +22,7 @@ export interface IEnvironment extends Record<EnvironmentFromFile, string> {
   USER_WEB_CLIENT_ID: string
   START_APP: string
   ID_APP: string
+  GYM_APP: string
   WEBSITE_HOME: string
   COOKIE_STORAGE_DOMAIN: string
   COOKIE_STORAGE_SECURE: string

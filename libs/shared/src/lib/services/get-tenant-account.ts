@@ -1,5 +1,5 @@
 import {ENDPOINTS} from '../config'
-import {axiosUsersAuthInstance} from '../utils/axios'
+import {axiosUsersAuthInstance} from '../utils'
 import {MembaUser} from '../types'
 
 interface GetTenantAccountProps {

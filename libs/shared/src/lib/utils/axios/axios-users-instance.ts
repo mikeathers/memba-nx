@@ -13,6 +13,9 @@ export const axiosUsersAuthInstance = axios.create({
   timeout: 5000,
 })
 
+const MAX_RETRY_ATTEMPTS = 3
+const RETRY_DELAY_MS = 1000
+
 axiosUsersAuthInstance.interceptors.request.use(
   // Check JWT's validity before request is sent
   async function onFulfilled(config) {
@@ -21,9 +24,19 @@ axiosUsersAuthInstance.interceptors.request.use(
     ;(config.headers as unknown as Record<string, unknown>).authorization = accessToken
     return config
   },
-  // Reject if the call to Amplify errors out
+  // Retry 3 times if the call fails
   function onRejected(error) {
-    console.log('Error: ', error)
+    if (error.response && error.response.status >= 500) {
+      const config = error.config
+      config.retryCount = config.retryCount || 0
+
+      if (config.retryCount < MAX_RETRY_ATTEMPTS) {
+        config.retryCount += 1
+        return new Promise((resolve) =>
+          setTimeout(() => resolve(axios.request(config)), RETRY_DELAY_MS),
+        )
+      }
+    }
     return Promise.reject(error)
   },
 )

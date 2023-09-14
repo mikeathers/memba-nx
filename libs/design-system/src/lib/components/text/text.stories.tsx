@@ -64,6 +64,11 @@ export const Primary: StoryObj<typeof Text> = {
             Body with spacing - The quick brown fox.
           </Text>
         </TextContainer>
+        <TextContainer>
+          <Text type={'body'} $marginTop={'space6x'} fontSize={'60px'}>
+            Body custom size - The quick brown fox.
+          </Text>
+        </TextContainer>
       </>
     )
   },

@@ -1,4 +1,4 @@
-import {axiosTenantsAuthInstance} from '../utils/axios'
+import {axiosTenantsAuthInstance} from '../utils'
 import {ENDPOINTS} from '../config'
 
 interface CheckIfUserCanLoginProps {

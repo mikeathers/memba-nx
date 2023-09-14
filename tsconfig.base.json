@@ -19,9 +19,11 @@
       "@memba-labs/design-system": ["libs/design-system/src/index.ts"],
       "@memba-nx/core/nextjs-construct": ["libs/core/nextjs-construct/src/index.ts"],
       "@memba-nx/core/workspace": ["libs/core/workspace/src/index.ts"],
+      "@memba-nx/gym-web": ["libs/gym-web/src/index.ts"],
       "@memba-nx/id-web": ["libs/id-web/src/index.ts"],
       "@memba-nx/shared": ["libs/shared/src/index.ts"],
-      "@memba-nx/shared/test-support": ["libs/shared/src/test/index.ts"]
+      "@memba-nx/shared/test-support": ["libs/shared/src/test/index.ts"],
+      "@memba-nx/start-web": ["libs/start-web/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

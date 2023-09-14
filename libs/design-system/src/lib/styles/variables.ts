@@ -121,17 +121,13 @@ export const fontWeights: FontWeights = {
 }
 
 export const lineHeightValues = {
-  small: 16,
-  medium: 24,
-  large: 28,
-  xlarge: 37,
+  medium: 22,
+  large: 42,
 }
 
 export const lineHeights: LineHeights = {
-  small: `${lineHeightValues.small}px`,
   medium: `${lineHeightValues.medium}px`,
   large: `${lineHeightValues.large}px`,
-  xlarge: `${lineHeightValues.xlarge}px`,
 }
 
 export const letterSpacing: LetterSpacing = {

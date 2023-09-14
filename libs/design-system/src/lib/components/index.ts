@@ -12,6 +12,7 @@ export * from './loading'
 export * from './center-box'
 export * from './toasts'
 export * from './footer'
+export * from './error'
 
 export const Layout = styled.div`
   position: relative;

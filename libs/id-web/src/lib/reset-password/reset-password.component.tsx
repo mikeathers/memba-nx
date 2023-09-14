@@ -87,7 +87,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
   }
 
   return (
-    <CenterBox app={app} getApp={getApp}>
+    <CenterBox>
       <Text type={'h4'} $marginBottom={'space4x'} $textAlign={'center'}>
         {content.heading}
       </Text>
@@ -128,7 +128,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                 $isLoading={isLoading}
                 $isDisabled={isLoading}
                 $fullWidth
-                variant={'primary'}
+                $variant={'primary'}
                 onClick={() => handleSubmit()}
                 $marginTop={'space2x'}
                 type={'submit'}

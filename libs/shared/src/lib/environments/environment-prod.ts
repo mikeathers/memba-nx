@@ -8,6 +8,7 @@ export const environmentProd: IEnvironment = {
   USER_WEB_CLIENT_ID: '69ffemp6aklgncfv39l44beupr',
   START_APP: 'https://start.memba.co.uk',
   ID_APP: 'https://id.memba.co.uk',
+  GYM_APP: '',
   WEBSITE_HOME: 'https://memba.co.uk',
   COOKIE_STORAGE_DOMAIN: 'memba.co.uk',
   COOKIE_STORAGE_SECURE: 'true',

@@ -78,7 +78,7 @@ export const SignUp = (props: SignUpProps) => {
   }
 
   return (
-    <CenterBox getApp={getApp} app={app}>
+    <CenterBox>
       <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
         {content.heading}
       </Text>
@@ -157,7 +157,7 @@ export const SignUp = (props: SignUpProps) => {
               <Button
                 $isDisabled={isLoading}
                 $isLoading={isLoading}
-                variant={'primary'}
+                $variant={'primary'}
                 onClick={() => handleSubmit()}
                 $marginTop={'space4x'}
                 type={'submit'}

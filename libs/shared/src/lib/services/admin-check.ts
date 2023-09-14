@@ -1,5 +1,5 @@
 import {ENDPOINTS} from '../config'
-import {axiosTenantsAuthInstance} from '../utils/axios'
+import {axiosTenantsAuthInstance} from '../utils'
 
 interface AdminCheckProps {
   emailAddress: string
