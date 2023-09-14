@@ -2,17 +2,13 @@ import {InvalidateCloudfrontExecutorSchema} from './schema'
 
 import {CloudFrontClient, CreateInvalidationCommand} from '@aws-sdk/client-cloudfront'
 import {fromSSO} from '@aws-sdk/credential-providers'
-import {ExecutorContext} from '@nx/devkit'
 import * as fs from 'fs'
 
 interface StackOutputs {
   [key: string]: string
 }
 
-export default async function runExecutor(
-  options: InvalidateCloudfrontExecutorSchema,
-  context: ExecutorContext,
-) {
+export default async function runExecutor(options: InvalidateCloudfrontExecutorSchema) {
   const outputs = JSON.parse(fs.readFileSync(options.outputsFile, 'utf8'))
   const client = new CloudFrontClient({
     region: options.region,
