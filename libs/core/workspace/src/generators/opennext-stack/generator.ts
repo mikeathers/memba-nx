@@ -243,6 +243,18 @@ function replaceDeployTarget(
           },
         },
       },
+      invalidateCloudfront: {
+        executor: '@memba-nx/core/workspace:invalidate-cloudfront',
+        options: {
+          outputsFile: outputPath + '/cdk.',
+          exportName: 'distroId',
+          region: 'eu-west-1',
+        },
+        outputs: ['${options.outputPath}'],
+        configurations: {
+          development: {},
+        },
+      },
       ['cdk-deploy']: {
         dependsOn: ['build', 'opennext-build'],
         executor: '@memba-nx/core/workspace:cdk',

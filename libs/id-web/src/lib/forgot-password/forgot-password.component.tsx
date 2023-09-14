@@ -36,7 +36,6 @@ export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
   const {isLoading, run, isSuccess} = useSafeAsync()
   const {sendForgotPasswordLink} = useAuth()
   const searchParams = useSearchParams()
-  const {app, getApp} = useMembaDetails()
   const emailAddress = searchParams.get('emailAddress')
 
   const formSchema = object({

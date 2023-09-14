@@ -57,6 +57,7 @@ export const Login: React.FC<LoginProps> = (props) => {
       router.push(`${PAGE_ROUTES.CONFIRM_ACCOUNT}/?emailAddress=${emailAddress}`)
       return
     }
+    console.log({error})
     if (error) {
       toast(
         <ErrorToast>
@@ -77,15 +78,21 @@ export const Login: React.FC<LoginProps> = (props) => {
   const handleSubmitForm = async (values: LoginFormDetails) => {
     if (values.emailAddress && values.password) {
       setEmailAddress(values.emailAddress)
-      await run(signUserIn(values))
-      router.push(redirectUrl || '')
+
+      console.log(readFromEnv(Env.cookieStorageDomain))
+
+      // await run(signUserIn(values))
+
+      if (redirectUrl) {
+        router.push(redirectUrl)
+      }
     }
   }
 
   return (
     <CenterBox gymName={gymName}>
       <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
-        {content.heading}
+        {content.heading} | HELLO
       </Text>
 
       <Formik

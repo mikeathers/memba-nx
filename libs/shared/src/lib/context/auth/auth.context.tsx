@@ -128,8 +128,11 @@ const useAuth = (): AuthContextValue => {
       // } else throw new Error('Unauthorised')
 
       const user = await signUserIn(props)
-      await addUserToState()
-      await refreshJwt()
+      console.log({user})
+      if (user) {
+        await addUserToState()
+        await refreshJwt()
+      }
 
       return user
     },

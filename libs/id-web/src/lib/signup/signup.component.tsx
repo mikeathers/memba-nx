@@ -33,7 +33,6 @@ export const SignUp = (props: SignUpProps) => {
   const {content} = props
   const router = useRouter()
   const {registerTenant} = useAuth()
-  const {app, getApp} = useMembaDetails()
   const {run, data, error, isLoading, isSuccess} = useSafeAsync()
   const [fetchError, setFetchError] = useState<string>('')
   const [emailAddress, setEmailAddress] = useState<string>('')

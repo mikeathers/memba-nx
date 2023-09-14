@@ -35,7 +35,6 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
   const {content} = props
   const searchParams = useSearchParams()
   const {completeResetPassword, signUserIn} = useAuth()
-  const {app, getApp} = useMembaDetails()
   const {run, isSuccess, isLoading, isError} = useSafeAsync()
   const router = useRouter()
   const [password, setPassword] = React.useState<string | undefined>(undefined)

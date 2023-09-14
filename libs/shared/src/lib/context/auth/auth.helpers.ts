@@ -80,10 +80,17 @@ export const signUserIn = async (
 
   const {emailAddress, password} = props
 
+  console.log('here')
+  console.log(props)
+
+  console.log({Auth})
+
   const user = (await Auth.signIn(
     emailAddress.trim().toLowerCase(),
     password,
   )) as ChallengedUser
+
+  console.log({user})
 
   // const res = await Auth.currentSession()
   // console.log('TOKEN: ', res.getIdToken())

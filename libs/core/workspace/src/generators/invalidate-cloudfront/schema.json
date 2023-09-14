@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "InvalidateCloudfront executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "outputsFile": {
+      "type": "string",
+      "description": "JSON outputs file containing the Cloudfront distribution id"
+    },
+    "exportName": {
+      "type": "string",
+      "description": "Name of export within CDK outputs file"
+    },
+    "region": {
+      "type": "string",
+      "description": "AWS region to run the command in"
+    }
+  },
+  "required": []
+}

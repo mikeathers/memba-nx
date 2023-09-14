@@ -34,7 +34,6 @@ export const ConfirmAccount: React.FC<ConfirmAccountProps> = (props) => {
   const {resendConfirmationEmail} = useAuth()
   const {run, isSuccess, isError} = useSafeAsync()
   const searchParams = useSearchParams()
-  const {app, getApp} = useMembaDetails()
 
   const emailAddress = searchParams.get('emailAddress')
 

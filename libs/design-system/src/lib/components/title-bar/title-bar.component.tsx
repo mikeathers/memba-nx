@@ -112,16 +112,37 @@ export const TitleBar = (props: TitleBarProps) => {
             <ActionsContainer>
               {user?.isTenantAdmin ? (
                 <Link href={`${readFromEnv(Env.startApp)}/apps`}>
-                  <Button $variant={'text'}>Apps</Button>
+                  <Button
+                    $variant={'text'}
+                    onClick={() => {
+                      handleSetIsComponentVisible(!localVisible)
+                    }}
+                  >
+                    Apps
+                  </Button>
                 </Link>
               ) : (
                 <Link href={`${readFromEnv(Env.startApp)}/memberships`}>
-                  <Button $variant={'text'}>Memberships</Button>
+                  <Button
+                    $variant={'text'}
+                    onClick={() => {
+                      handleSetIsComponentVisible(!localVisible)
+                    }}
+                  >
+                    Memberships
+                  </Button>
                 </Link>
               )}
 
               <Link href={`${readFromEnv(Env.startApp)}/account`}>
-                <Button $variant={'text'}>Account</Button>
+                <Button
+                  $variant={'text'}
+                  onClick={() => {
+                    handleSetIsComponentVisible(!localVisible)
+                  }}
+                >
+                  Account
+                </Button>
               </Link>
               <Button $variant={'text'} onClick={handleLogout}>
                 Log out

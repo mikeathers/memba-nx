@@ -3,6 +3,7 @@ import {keys} from './environment.types'
 
 export function readFromEnv(key: keys) {
   const envValue = environment()[key]
+  console.log({envValue})
 
   if (envValue === undefined || envValue === null) {
     throw new Error(`

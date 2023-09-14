@@ -321,3 +321,7 @@ export type GymManagementContent = {
 export type HomeContent = {
   heading: string
 }
+
+export type UsersContent = {
+  heading: string
+}

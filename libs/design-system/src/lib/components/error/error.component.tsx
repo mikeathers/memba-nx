@@ -16,10 +16,6 @@ export const Error = () => {
           <Text type={'body'} color={'blues800'}>
             {sharedContent.goHome}
           </Text>
-
-          <Text type={'body'} color={'blues800'}>
-            {sharedContent.getInTouch}
-          </Text>
         </Link>
       </Container>
       <Footer />
