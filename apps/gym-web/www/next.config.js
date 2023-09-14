@@ -5,6 +5,8 @@ const path = require('node:path')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {composePlugins, withNx} = require('@nx/next')
 
+const STAGE_NAME = resolveStageName()
+
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
@@ -46,11 +48,28 @@ const nextConfig = {
 
     return config
   },
+
+  env: {STAGE_NAME},
 }
 
 const plugins = [
   // Add more Next.js plugins to this list if needed.
   withNx,
 ]
+
+function resolveStageName() {
+  const STAGE_NAME = process.env['STAGE_NAME'] ?? 'local'
+  const VALID_STAGES = ['local', 'development', 'production']
+
+  if (!VALID_STAGES.includes(STAGE_NAME)) {
+    throw new Error(
+      `Unknown STAGE_NAME provided: '${STAGE_NAME}', expected one of 'local', 'development' or 'production'`,
+    )
+  }
+
+  console.log(`Using STAGE_NAME: ${STAGE_NAME}`)
+
+  return STAGE_NAME
+}
 
 module.exports = composePlugins(...plugins)(nextConfig)

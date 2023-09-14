@@ -92,7 +92,7 @@ export const Login: React.FC<LoginProps> = (props) => {
   return (
     <CenterBox gymName={gymName}>
       <Text type={'h4'} $textAlign={'center'} $marginBottom={'space4x'}>
-        {content.heading} | HELLO
+        {content.heading}
       </Text>
 
       <Formik
