@@ -62,7 +62,6 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
 
   useEffect(() => {
     handleGetAppName()
-    console.log({user})
   }, [user])
 
   // useEffect(() => {

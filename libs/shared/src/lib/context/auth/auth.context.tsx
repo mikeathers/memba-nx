@@ -114,21 +114,8 @@ const useAuth = (): AuthContextValue => {
 
   const handleSignUserIn = useCallback(
     async (props: LoginFormDetails) => {
-      // const userCanLogin = await hasAccessCheck({
-      //   emailAddress: props.emailAddress,
-      //   url: props.url?.replace('https://', '') || '',
-      // })
-      //
-      // if (userCanLogin) {
-      //   const user = await signUserIn(props)
-      //   await addUserToState()
-      //   await refreshJwt()
-      //
-      //   return user
-      // } else throw new Error('Unauthorised')
-
       const user = await signUserIn(props)
-      console.log({user})
+
       if (user) {
         await addUserToState()
         await refreshJwt()

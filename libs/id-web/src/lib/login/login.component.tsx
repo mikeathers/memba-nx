@@ -57,7 +57,6 @@ export const Login: React.FC<LoginProps> = (props) => {
       router.push(`${PAGE_ROUTES.CONFIRM_ACCOUNT}/?emailAddress=${emailAddress}`)
       return
     }
-    console.log({error})
     if (error) {
       toast(
         <ErrorToast>
@@ -79,9 +78,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     if (values.emailAddress && values.password) {
       setEmailAddress(values.emailAddress)
 
-      console.log(readFromEnv(Env.cookieStorageDomain))
-
-      // await run(signUserIn(values))
+      await run(signUserIn(values))
 
       if (redirectUrl) {
         router.push(redirectUrl)

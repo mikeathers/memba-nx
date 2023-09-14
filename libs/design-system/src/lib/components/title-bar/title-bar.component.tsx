@@ -65,7 +65,6 @@ export const TitleBar = (props: TitleBarProps) => {
   const handleLogout = async () => {
     signUserOut()
   }
-  console.log({user})
 
   if (isLoading) return <LoadingSpinner />
 
