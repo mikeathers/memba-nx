@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useRouter} from 'next/navigation'
+import {usePathname, useRouter} from 'next/navigation'
 
 import {Loading, TitleBar} from '@memba-labs/design-system'
 import {
@@ -9,6 +9,7 @@ import {
   Env,
   MembaApp,
   menuBarContent,
+  PAGE_ROUTES,
 } from '@memba-nx/shared'
 
 import {Container} from './app.styles'
@@ -25,6 +26,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   const router = useRouter()
   const {getTenantUser, getUser, user} = useMembaDetails()
   const [appName, setAppName] = useState<string>('')
+  const pathName = usePathname()
 
   const handleGetUser = async () => {
     if (!sessionRefreshed) {
@@ -54,6 +56,25 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     }
   }
 
+  const handleAuthenticatedRoutes = () => {
+    const protectedRoutes = ['/admin/home']
+    const pathIsProtected = protectedRoutes.indexOf(pathName) !== -1
+
+    if (!state.user?.isTenantAdmin && pathIsProtected) {
+      router.push(PAGE_ROUTES.MEMBERSHIPS)
+      return
+    } else {
+      router.push(pathName)
+    }
+  }
+
+  const handleRedirect = () => {
+    console.log({pathName, user})
+    if (pathName === '/' && user?.isTenantAdmin) {
+      router.push(PAGE_ROUTES.ADMIN.HOME)
+    }
+  }
+
   useEffect(() => {
     handleGetUser().finally(() => setIsLoading(false))
   }, [state.user])
@@ -62,25 +83,14 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     handleGetAppName()
   }, [user])
 
-  // useEffect(() => {
-  //   handleAuthenticatedRoutes()
-  // }, [pathName, state.user?.isTenantAdmin])
+  useEffect(() => {
+    handleAuthenticatedRoutes()
+    handleRedirect()
+  }, [pathName, user])
 
   useEffect(() => {
     handleUnauthenticated()
   }, [state.isAuthenticating, state.isAuthenticated])
-
-  // const handleAuthenticatedRoutes = () => {
-  //   const protectedRoutes = ['/apps']
-  //   const pathIsProtected = protectedRoutes.indexOf(pathName) !== -1
-  //
-  //   if (!state.user?.isTenantAdmin && pathIsProtected) {
-  //     router.push(PAGE_ROUTES.MEMBERSHIPS)
-  //     return
-  //   } else {
-  //     router.push(pathName)
-  //   }
-  // }
 
   // useEffect(() => {
   //   const protectedRoutes = ['/']

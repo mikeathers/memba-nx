@@ -6,6 +6,4 @@ export const Container = styled.div`
   width: 100vw;
 `
 
-export const ListContainer = styled.div`
-  width: 50%;
-`
+export const ListContainer = styled.div``

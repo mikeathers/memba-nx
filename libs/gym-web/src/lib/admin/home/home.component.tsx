@@ -35,7 +35,7 @@ export const Home: React.FC<HomeProps> = (props) => {
   const columns: GridColDef[] = [
     {field: 'col1', headerName: 'First name', width: 150},
     {field: 'col2', headerName: 'Last name', width: 150},
-    {field: 'col3', headerName: 'Email address', width: 150},
+    {field: 'col3', headerName: 'Email address', width: 250},
     {field: 'col4', headerName: 'Membership', width: 150},
   ]
 
