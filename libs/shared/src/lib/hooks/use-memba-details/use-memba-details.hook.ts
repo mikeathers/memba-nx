@@ -13,11 +13,13 @@ export interface MembaStore {
 export const useMembaDetails = create<MembaStore>((set) => ({
   getTenantUser: async (emailAddress: string) => {
     const response = await getTenantAccount({emailAddress})
+    console.log('tenant:', response)
     set({user: response})
   },
   user: null,
   getUser: async (emailAddress: string) => {
     const response = await getUserAccount({emailAddress})
+    console.log('user:', response)
     set({user: response})
   },
   app: null,

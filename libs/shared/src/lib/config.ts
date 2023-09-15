@@ -11,6 +11,10 @@ interface PAGE_ROUTES {
   LOGIN: string
   FORGOT_PASSWORD: string
   RESET_PASSWORD: string
+  ADMIN: {
+    HOME: string
+    USERS: string
+  }
 }
 
 export const PAGE_ROUTES: PAGE_ROUTES = {
@@ -23,6 +27,10 @@ export const PAGE_ROUTES: PAGE_ROUTES = {
   LOGIN: '/login',
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
+  ADMIN: {
+    HOME: '/admin/home',
+    USERS: '/admin/users',
+  },
 }
 
 interface ENDPOINTS {

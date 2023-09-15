@@ -246,7 +246,7 @@ function replaceDeployTarget(
       invalidateCloudfront: {
         executor: '@memba-nx/core/workspace:invalidate-cloudfront',
         options: {
-          outputsFile: outputPath + '/cdk.',
+          outputsFile: outputPath + '/cdk.out/outputs.json',
           exportName: 'distroId',
           region: 'eu-west-1',
         },

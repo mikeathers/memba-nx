@@ -42,7 +42,7 @@ type DistributionProps = {
   additionalBehaviours?: Record<string, BehaviorOptions>
   serverCachePolicyId: string
   imageCachePolicyId: string
-  noARecord?: boolean
+  withWildCardDomain?: boolean
 }
 
 export function createCloudfrontDistributionAndConfiguration(
@@ -86,12 +86,11 @@ export function createCloudfrontDistributionAndConfiguration(
     originRequestPolicy,
   })
 
-  !props.noARecord &&
-    createARecord(scope, {
-      hostedZone,
-      domainName: props.domainName,
-      distribution,
-    })
+  createARecord(scope, {
+    hostedZone,
+    domainName: props.domainName,
+    distribution,
+  })
 
   return {
     distribution,
@@ -128,8 +127,8 @@ function createDistribution(
     defaultRootObject: '',
     comment: `Open-next Cloudfront Distribution for ${Stack.of(scope).stackName}`,
     certificate,
-    domainNames: props.noARecord
-      ? [`*.${props.hostedZoneProps.zoneName}`]
+    domainNames: props.withWildCardDomain
+      ? [props.domainName, `*.${props.hostedZoneProps.zoneName}`]
       : [props.domainName],
     defaultBehavior: {
       origin: new OriginGroup({

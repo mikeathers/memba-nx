@@ -19,6 +19,10 @@ const columns: GridColDef[] = [
   {field: 'col2', headerName: 'Column 2', width: 150},
 ]
 
+const handler = <T,>(items: T) => {
+  console.log({items})
+}
+
 export const Primary: StoryObj<typeof DataGrid> = {
-  render: () => <DataGrid columns={columns} rows={rows} />,
+  render: () => <DataGrid columns={columns} rows={rows} rowSelectionHandler={handler} />,
 }

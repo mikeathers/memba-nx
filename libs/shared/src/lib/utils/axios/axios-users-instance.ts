@@ -1,9 +1,10 @@
 import axios from 'axios'
+import axiosRetry from 'axios-retry'
+
 import {JWT_LOCALSTORAGE_KEY} from '../../config'
 import {refreshJwt} from '../refresh-jwt'
 import {getItemFromLocalStorage} from '../storage'
 import {Env, readFromEnv} from '../../environments'
-
 export const USERS_API_URL = readFromEnv(Env.usersApi)
 export const axiosUsersAuthInstance = axios.create({
   baseURL: USERS_API_URL,
@@ -16,29 +17,22 @@ export const axiosUsersAuthInstance = axios.create({
 const MAX_RETRY_ATTEMPTS = 3
 const RETRY_DELAY_MS = 1000
 
+axiosRetry(axiosUsersAuthInstance, {
+  retries: MAX_RETRY_ATTEMPTS,
+  retryCondition: () => true,
+  retryDelay: (retryCount) => {
+    return retryCount * RETRY_DELAY_MS
+  },
+})
+
 axiosUsersAuthInstance.interceptors.request.use(
-  // Check JWT's validity before request is sent
-  async function onFulfilled(config) {
+  async (response) => {
     const accessToken = await refreshJwt()
     // eslint-disable-next-line no-param-reassign
-    ;(config.headers as unknown as Record<string, unknown>).authorization = accessToken
-    return config
+    ;(response.headers as unknown as Record<string, unknown>).authorization = accessToken
+    return response
   },
-  // Retry 3 times if the call fails
-  function onRejected(error) {
-    if (error.response && error.response.status >= 500) {
-      const config = error.config
-      config.retryCount = config.retryCount || 0
-
-      if (config.retryCount < MAX_RETRY_ATTEMPTS) {
-        config.retryCount += 1
-        return new Promise((resolve) =>
-          setTimeout(() => resolve(axios.request(config)), RETRY_DELAY_MS),
-        )
-      }
-    }
-    return Promise.reject(error)
-  },
+  (error) => console.log('REEQUEST ERROR', error),
 )
 
 function getUserToken() {

@@ -1,5 +1,5 @@
 import {Construct} from 'constructs'
-import {Stack, StackProps} from 'aws-cdk-lib'
+import {CfnOutput, Stack, StackProps} from 'aws-cdk-lib'
 import {Certificate} from 'aws-cdk-lib/aws-certificatemanager'
 import {HostedZone, HostedZoneAttributes} from 'aws-cdk-lib/aws-route53'
 
@@ -74,6 +74,15 @@ export class DeploymentStack extends Stack {
       url: CONFIG.STORYBOOK_URL,
       distribution,
       name: `${CONFIG.STACK_PREFIX}ARecord`,
+    })
+
+    new CfnOutput(this, 'distroId', {
+      value: distribution.distributionId,
+    })
+
+    new CfnOutput(this, `service-url`, {
+      value: `https://${CONFIG.STORYBOOK_URL}`,
+      exportName: 'storybook-url',
     })
   }
 }

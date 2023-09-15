@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react'
-import {useRouter, usePathname} from 'next/navigation'
+import {useRouter} from 'next/navigation'
 
 import {Loading, TitleBar} from '@memba-labs/design-system'
 import {
   useAuth,
-  useSafeAsync,
   useMembaDetails,
-  PAGE_ROUTES,
   readFromEnv,
   Env,
   MembaApp,
+  menuBarContent,
 } from '@memba-nx/shared'
 
 import {Container} from './app.styles'
@@ -25,7 +24,6 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   const {refreshUserSession, state, signUserOut} = useAuth()
   const router = useRouter()
   const {getTenantUser, getUser, user} = useMembaDetails()
-  const pathName = usePathname()
   const [appName, setAppName] = useState<string>('')
 
   const handleGetUser = async () => {

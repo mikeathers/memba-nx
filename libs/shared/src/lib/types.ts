@@ -268,6 +268,8 @@ export type ResetPasswordContent = {
 export type AppsContent = {
   heading: string
   gymManagementTitle: string
+  noAppsMessage: string
+  addAppMessage: string
 }
 
 export type MembershipsContent = {
@@ -318,10 +320,22 @@ export type GymManagementContent = {
 
 /*************** GYM WEB ****************/
 
+export type AdminHomeContent = {
+  heading: string
+  users: string
+}
+
 export type HomeContent = {
   heading: string
 }
 
 export type UsersContent = {
   heading: string
+}
+
+export type MenuBarContent = {
+  admin: {
+    home: string
+    users: string
+  }
 }

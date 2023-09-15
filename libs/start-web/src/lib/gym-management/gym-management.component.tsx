@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react'
 import {useRouter} from 'next/navigation'
 
-import {PricingCard, Text, TextInput} from '@memba-labs/design-system'
+import {PricingCard, Text, TextInput, Button} from '@memba-labs/design-system'
 import {
   createGymApp,
   useSafeAsync,
@@ -24,10 +24,8 @@ import {
   GymUrlContainer,
   GymMembershipsContainer,
   AddedMembershipContainer,
-  AddButton,
   GymDetailsForm,
   GymMembershipsInputs,
-  CreateGymManagementButton,
   CreateGymManagementButtonContainer,
 } from './gym-management.styles'
 
@@ -93,7 +91,7 @@ export const GymManagement: React.FC<GymManagementProps> = (props) => {
         user,
       }),
     )
-
+    console.log({result})
     if (result) {
       const gymApp = (result as Tenant).apps.find((app) => app.type === 'gym-management')
       router.push(gymApp?.url || '')
@@ -111,7 +109,7 @@ export const GymManagement: React.FC<GymManagementProps> = (props) => {
           <Text type={'h1'} $marginBottom={'space2x'}>
             {content.heading}
           </Text>
-          <Text type={'body-bold'}>Choose a tier to get started</Text>
+          <Text type={'body'}>Choose a tier to get started</Text>
           <TiersContainer>
             <PricingCard
               titleNumber={content.freeTierTitleNumber}
@@ -199,9 +197,9 @@ export const GymManagement: React.FC<GymManagementProps> = (props) => {
                 />
               </GymMembershipsInputs>
 
-              <AddButton $variant={'text'} onClick={handleAddMembership}>
+              <Button $variant={'text'} onClick={handleAddMembership}>
                 {content.addMembership}
-              </AddButton>
+              </Button>
             </GymMembershipsContainer>
 
             <Text type={'h3'} $marginBottom={'space3x'}>
@@ -232,14 +230,14 @@ export const GymManagement: React.FC<GymManagementProps> = (props) => {
           )}
 
           <CreateGymManagementButtonContainer>
-            <CreateGymManagementButton
+            <Button
               $variant={'primary'}
               onClick={handleSubmit}
               $isLoading={isLoading}
               $isDisabled={isLoading}
             >
               {content.createCta}
-            </CreateGymManagementButton>
+            </Button>
           </CreateGymManagementButtonContainer>
         </Content>
       </CenterContent>

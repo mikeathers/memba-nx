@@ -93,6 +93,18 @@
         }
       }
     },
+    "invalidateCloudfront": {
+      "executor": "@memba-nx/core/workspace:invalidate-cloudfront",
+      "options": {
+        "outputsFile": "dist/storybook/cdk/design-system/cdk.out/outputs.json",
+        "exportName": "distroId",
+        "region": "eu-west-2"
+      },
+      "outputs": ["${options.outputPath}"],
+      "configurations": {
+        "development": {}
+      }
+    },
     "deploy": {
       "executor": "nx:run-commands",
       "options": {

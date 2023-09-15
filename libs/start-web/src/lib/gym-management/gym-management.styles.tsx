@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import {colors, mediaQueries, spacing, Button} from '@memba-labs/design-system'
 
-export const Container = styled.div``
+export const Container = styled.div`
+  width: 100vw;
+`
 
 export const CenterContent = styled.div`
   display: flex;
@@ -92,31 +94,6 @@ export const GymMembershipsInputs = styled.div`
   }
 `
 
-export const AddButton = styled(Button)`
-  padding: 0;
-  text-decoration: underline;
-`
-export const PlusContainer = styled.button`
-  display: none;
-  justify-content: center;
-  align-items: center;
-  height: 22px;
-  width: 22px;
-  border-radius: 100px;
-  background-color: ${colors.blues800};
-  margin-left: ${spacing.space2x};
-  border: none;
-  cursor: pointer;
-
-  svg {
-    height: 12px;
-  }
-
-  @media (${mediaQueries.s}) {
-    display: flex;
-  }
-`
-
 export const AddedMembershipContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -131,9 +108,4 @@ export const CreateGymManagementButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-`
-export const CreateGymManagementButton = styled(Button)`
-  margin-top: ${spacing.space6x};
-  margin-bottom: ${spacing.space6x};
-  width: 350px;
 `

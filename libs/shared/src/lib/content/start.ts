@@ -8,6 +8,8 @@ import {
 export const appsContent: AppsContent = {
   heading: 'Your apps',
   gymManagementTitle: 'Gym Management',
+  noAppsMessage: "It looks like you don't have any apps...",
+  addAppMessage: 'Lets create one',
 }
 
 export const membershipsContent: MembershipsContent = {
@@ -23,7 +25,7 @@ export const gymManagementContent: GymManagementContent = {
   gymDetails: 'Gym Details',
   gymNameLabel: 'Enter the name of your gym',
   gymNamePlaceholder: "e.g. Joe's Gym",
-  gymNameExample: 'example.member.co.uk',
+  gymNameExample: 'example.memba.co.uk',
   gymUrlSuffix: '.memba.co.uk',
   gymUrlLabel: 'Url for your website:',
   gymMembershipsTitle: 'Set up your gym memberships',

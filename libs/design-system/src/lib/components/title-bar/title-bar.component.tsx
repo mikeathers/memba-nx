@@ -72,7 +72,7 @@ export const TitleBar = (props: TitleBarProps) => {
     <Container>
       <LeftContent>
         <Circle />
-        <Text type={'h2'}>{appName || 'Memba'}</Text>
+        <Text type={'h3'}>{appName || 'Memba'}</Text>
       </LeftContent>
       <RightContent>
         {initials.firstInitial && initials.lastInitial ? (

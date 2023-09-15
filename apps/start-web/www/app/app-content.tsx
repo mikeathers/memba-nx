@@ -58,7 +58,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
 
   useEffect(() => {
     handleGetUser().finally(() => setIsLoading(false))
-  }, [state.user])
+  }, [state.isAuthenticated])
 
   useEffect(() => {
     handleAuthenticatedRoutes()

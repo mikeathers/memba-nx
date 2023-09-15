@@ -18,5 +18,5 @@ new NextJsConstruct(app, stackName, {
     region: 'eu-west-2',
   },
   ...config,
-  noARecord: true,
+  withWildCardDomain: true,
 })

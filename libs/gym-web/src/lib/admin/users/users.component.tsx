@@ -1,3 +1,4 @@
+'use client'
 import {Container} from './users.styles'
 import {UsersContent} from '@memba-nx/shared'
 
