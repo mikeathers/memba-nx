@@ -67,8 +67,6 @@ function resolveStageName() {
     )
   }
 
-  console.log(`Using STAGE_NAME: ${STAGE_NAME}`)
-
   return STAGE_NAME
 }
 

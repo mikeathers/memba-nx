@@ -24,7 +24,6 @@ interface AppsProps {
 
 export const Apps: React.FC<AppsProps> = (props) => {
   const {content} = props
-  const {isLoading} = useSafeAsync()
   const {user} = useMembaDetails()
   const router = useRouter()
 
@@ -35,13 +34,11 @@ export const Apps: React.FC<AppsProps> = (props) => {
     }
 
     if (url) {
-      router.push(url)
+      window.location.href = url
       return
     }
-    router.push(PAGE_ROUTES.GYM_MANAGEMENT)
+    window.location.href = PAGE_ROUTES.GYM_MANAGEMENT
   }
-
-  if (isLoading) return <Loading />
 
   const apps = user?.tenant.apps
 

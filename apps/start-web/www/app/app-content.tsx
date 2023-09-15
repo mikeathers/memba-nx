@@ -68,7 +68,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     handleUnauthenticated()
   }, [state.isAuthenticating, state.isAuthenticated])
 
-  if (isLoading || !state.user) return <Loading />
+  if (isLoading) return <Loading />
 
   return (
     <>
