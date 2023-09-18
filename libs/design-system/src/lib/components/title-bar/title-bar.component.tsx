@@ -1,5 +1,6 @@
 'use client'
 import React, {useEffect, useState} from 'react'
+import Link from 'next/link'
 
 import {
   useComponentVisible,
@@ -11,8 +12,6 @@ import {
 
 import {Text} from '../text'
 import {LoadingSpinner} from '../loading-spinner'
-import {Button} from '../button'
-import {NextLink} from '../next-link'
 
 import {
   ActionsContainer,
@@ -27,6 +26,7 @@ import {
   NameContainer,
   RightContent,
 } from './title-bar.styles'
+import {Button} from '../button'
 
 export interface TitleBarProps {
   signUserOut: () => void
@@ -110,7 +110,7 @@ export const TitleBar = (props: TitleBarProps) => {
             </MenuTitleContainer>
             <ActionsContainer>
               {user?.isTenantAdmin ? (
-                <NextLink href={`${readFromEnv(Env.startApp)}/apps`}>
+                <Link href={`${readFromEnv(Env.startApp)}/apps`}>
                   <Button
                     $variant={'text'}
                     onClick={() => {
@@ -119,9 +119,9 @@ export const TitleBar = (props: TitleBarProps) => {
                   >
                     Apps
                   </Button>
-                </NextLink>
+                </Link>
               ) : (
-                <NextLink href={`${readFromEnv(Env.startApp)}/memberships`}>
+                <Link href={`${readFromEnv(Env.startApp)}/memberships`}>
                   <Button
                     $variant={'text'}
                     onClick={() => {
@@ -130,10 +130,10 @@ export const TitleBar = (props: TitleBarProps) => {
                   >
                     Memberships
                   </Button>
-                </NextLink>
+                </Link>
               )}
 
-              <NextLink href={`${readFromEnv(Env.startApp)}/account`}>
+              <Link href={`${readFromEnv(Env.startApp)}/account`}>
                 <Button
                   $variant={'text'}
                   onClick={() => {
@@ -142,7 +142,7 @@ export const TitleBar = (props: TitleBarProps) => {
                 >
                   Account
                 </Button>
-              </NextLink>
+              </Link>
               <Button $variant={'text'} onClick={handleLogout}>
                 Log out
               </Button>

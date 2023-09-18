@@ -1,17 +1,22 @@
 'use client'
-import React from 'react'
+import React, {useEffect} from 'react'
 import {useRouter} from 'next/navigation'
 
 import {
+  useSafeAsync,
   useMembaDetails,
   AppsContent,
   PAGE_ROUTES,
   readFromEnv,
   Env,
 } from '@memba-nx/shared'
-import {NextLink, Text} from '@memba-labs/design-system'
+import {Loading, Text} from '@memba-labs/design-system'
 
-import {Container, AppTile, YourAppsContainer, TileContainer} from './apps.styles'
+import DumbbellSvg from './assets/dumbbell.svg'
+
+import {Container, AppTile, YourAppsContainer} from './apps.styles'
+import {read} from 'open-next/assets/sharp-node-modules/ieee754'
+import Link from 'next/link'
 
 interface AppsProps {
   content: AppsContent
@@ -36,30 +41,23 @@ export const Apps: React.FC<AppsProps> = (props) => {
   }
 
   const apps = user?.tenant.apps
-  const hasApps = apps && apps.length > 0
+
   return (
     <Container>
       <Text type={'h3'}>{content.heading}</Text>
       <YourAppsContainer>
-        {!hasApps && (
+        {apps && apps.length > 0 ? (
+          user?.tenant.apps.map((app) => (
+            <AppTile key={app.name} onClick={() => openApp(app.url)}>
+              <Text type={'body'}>{app.name}</Text>
+            </AppTile>
+          ))
+        ) : (
           <>
             <Text type={'body'}>{content.noAppsMessage}</Text>
-            <NextLink href={PAGE_ROUTES.GYM_MANAGEMENT}>{content.addAppMessage}</NextLink>
-          </>
-        )}
-        {hasApps && (
-          <>
-            <TileContainer>
-              {apps?.map((app) => (
-                <AppTile key={app.name} onClick={() => openApp(app.url)}>
-                  <Text type={'body'}>{app.name}</Text>
-                </AppTile>
-              ))}
-            </TileContainer>
-
-            <NextLink href={PAGE_ROUTES.GYM_MANAGEMENT}>
-              {content.addAnotherAppMessage}
-            </NextLink>
+            <Link href={PAGE_ROUTES.GYM_MANAGEMENT}>
+              <Text type={'body'}>{content.addAppMessage}</Text>
+            </Link>
           </>
         )}
       </YourAppsContainer>

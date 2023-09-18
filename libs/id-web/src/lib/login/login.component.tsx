@@ -1,16 +1,10 @@
 'use client'
 import React, {useEffect, useState} from 'react'
+import Link from 'next/link'
 import {Formik} from 'formik'
 import {object, string} from 'yup'
 import {useRouter, useSearchParams} from 'next/navigation'
-import {
-  Button,
-  CenterBox,
-  ErrorToast,
-  NextLink,
-  Text,
-  TextInput,
-} from '@memba-labs/design-system'
+import {Button, CenterBox, ErrorToast, Text, TextInput} from '@memba-labs/design-system'
 
 import {
   useSafeAsync,
@@ -167,19 +161,19 @@ export const Login: React.FC<LoginProps> = (props) => {
       </Formik>
 
       <ActionsContainer>
-        <NextLink
-          href={`${PAGE_ROUTES.FORGOT_PASSWORD}/?emailAddress=${emailAddress}`}
-          color={'blues800'}
-          fontSize={'xs'}
-        >
-          {content.cantLogin}
-        </NextLink>
+        <Link href={`${PAGE_ROUTES.FORGOT_PASSWORD}/?emailAddress=${emailAddress}`}>
+          <Text type={'body-small'} color={'blues800'}>
+            {content.cantLogin}
+          </Text>
+        </Link>
         <Text type={'body-small'} color={'blues800'}>
           •
         </Text>
-        <NextLink href={PAGE_ROUTES.SIGN_UP} color={'blues800'} fontSize={'xs'}>
-          {content.signUp}
-        </NextLink>
+        <Link href={PAGE_ROUTES.SIGN_UP}>
+          <Text type={'body-small'} color={'blues800'}>
+            {content.signUp}
+          </Text>
+        </Link>
       </ActionsContainer>
     </CenterBox>
   )

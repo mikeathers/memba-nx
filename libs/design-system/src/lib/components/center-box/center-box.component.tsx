@@ -1,5 +1,8 @@
 'use client'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import {MembaApp} from '@memba-nx/shared'
+
+import {colorTokens, spacingTokens} from '../../styles'
 import {Text} from '../text'
 
 import {Container, Content, FormContainer, TitleContainer} from './center-box.styles'

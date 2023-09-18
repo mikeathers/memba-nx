@@ -36,7 +36,7 @@ interface GymManagementProps {
 export const GymManagement: React.FC<GymManagementProps> = (props) => {
   const {content} = props
   const {user} = useMembaDetails()
-  const {run, isLoading} = useSafeAsync()
+  const {run, error, data, isLoading} = useSafeAsync()
   const [gymName, setGymName] = useState<string>('')
   const [parsedGymName, setParsedGymName] = useState<string>('')
   const [selectedTier, setSelectedTier] = useState<string>(TIERS.FREE)

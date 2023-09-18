@@ -2,6 +2,7 @@ import React from 'react'
 
 import {Text} from '../text'
 import {LoadingSpinner} from '../loading-spinner'
+import {colorTokens, spacingTokens} from '../../styles'
 
 import {Container, LoadingContainer} from './loading.styles'
 

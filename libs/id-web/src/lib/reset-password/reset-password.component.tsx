@@ -5,7 +5,15 @@ import {Formik} from 'formik'
 import {toast} from 'react-toastify'
 import {object, string} from 'yup'
 
-import {Button, CenterBox, ErrorToast, Text, TextInput} from '@memba-labs/design-system'
+import {
+  colorTokens,
+  spacingTokens,
+  Button,
+  CenterBox,
+  ErrorToast,
+  Text,
+  TextInput,
+} from '@memba-labs/design-system'
 
 import {
   passwordValidation,
@@ -15,6 +23,7 @@ import {
   ResetPasswordFormDetails,
   readFromEnv,
   Env,
+  useMembaDetails,
 } from '@memba-nx/shared'
 import {ErrorContainer} from './reset-password.styles'
 

@@ -14,9 +14,6 @@ export const YourAppsContainer = styled.div`
   padding-top: ${spacing.space6x};
 `
 
-export const TileContainer = styled.div`
-  margin-bottom: ${spacing.space4x};
-`
 export const AppTile = styled.button`
   display: flex;
   flex-direction: column;

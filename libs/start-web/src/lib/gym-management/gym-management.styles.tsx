@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Link from 'next/link'
-import {colors, mediaQueries, spacing} from '@memba-labs/design-system'
+import {colors, mediaQueries, spacing, Button} from '@memba-labs/design-system'
 
 export const Container = styled.div`
   width: 100vw;

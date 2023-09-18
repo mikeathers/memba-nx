@@ -1,6 +1,12 @@
 'use client'
 import {Text} from '@memba-labs/design-system'
-import {Env, MembershipsContent, readFromEnv, useMembaDetails} from '@memba-nx/shared'
+import {
+  Env,
+  MembershipsContent,
+  PAGE_ROUTES,
+  readFromEnv,
+  useMembaDetails,
+} from '@memba-nx/shared'
 
 import {Container, MembershipTile, YourMembershipsContainer} from './memberships.styles'
 import {useRouter} from 'next/navigation'

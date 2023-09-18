@@ -1,14 +1,16 @@
 import styled from 'styled-components'
 
 import {colors, fontSizes, mediaQueries, spacing} from '../../styles'
+import {Button} from '../button'
+
 export const Container = styled.div`
   padding: ${spacing.spaceHalfx} ${spacing.space3x};
   border-bottom: 1px solid ${colors.blues100};
   height: 70px;
   display: flex;
-  margin-bottom: ${spacing.space4x};
   align-items: center;
   justify-content: space-between;
+  margin-bottom: ${spacing.space4x};
 
   @media (${mediaQueries.l}) {
     margin-bottom: ${spacing.space4x};

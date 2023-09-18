@@ -1,6 +1,8 @@
 import React from 'react'
 import {StoryObj, Meta} from '@storybook/react'
 
+import {MembaApp} from '@memba-nx/shared'
+
 import {CenterBox} from './center-box.component'
 import {StorybookWrapper} from '../../utils'
 import {TextInput} from '../text-input'
@@ -19,6 +21,18 @@ const Story: Meta<typeof CenterBox> = {
 }
 
 export default Story
+
+const app: MembaApp = {
+  name: '',
+  memberships: [{name: '', price: 0}],
+  id: '',
+  url: '',
+  tier: '',
+  type: 'gym-management',
+  tenantId: '',
+  groupName: '',
+  users: [],
+}
 
 export const Primary: StoryObj<typeof CenterBox> = {
   render: () => (

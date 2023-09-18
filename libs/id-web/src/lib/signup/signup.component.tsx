@@ -1,16 +1,25 @@
 'use client'
 import React, {useEffect, useState} from 'react'
+import Link from 'next/link'
 import {Formik} from 'formik'
 import {object, string} from 'yup'
 import {useRouter} from 'next/navigation'
 
-import {Button, CenterBox, Text, TextInput, NextLink} from '@memba-labs/design-system'
+import {
+  colorTokens,
+  spacingTokens,
+  Button,
+  CenterBox,
+  Text,
+  TextInput,
+} from '@memba-labs/design-system'
 import {
   useAuth,
   passwordValidation,
   useSafeAsync,
   SignUpContent,
   RegisterTenantProps,
+  useMembaDetails,
   PAGE_ROUTES,
 } from '@memba-nx/shared'
 
@@ -161,9 +170,11 @@ export const SignUp = (props: SignUpProps) => {
       </Formik>
 
       <LoginContainer>
-        <NextLink href={'/login'} fontSize={'xs'} color={'blues800'}>
-          {content.login}
-        </NextLink>
+        <Link href={'/login'}>
+          <Text type={'body-small'} color={'blues800'}>
+            {content.login}
+          </Text>
+        </Link>
       </LoginContainer>
     </CenterBox>
   )
