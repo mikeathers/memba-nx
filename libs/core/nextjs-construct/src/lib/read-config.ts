@@ -119,19 +119,19 @@ function readCommitSha() {
   }).trim()
 }
 
-function readGitUser() {
-  return execSync('git config user.name', {encoding: 'utf8'})
-    .trim()
-    .replace(' ', '-')
-    .toLocaleLowerCase()
-}
-
-function readBranchName() {
-  return execSync('git rev-parse --abbrev-ref HEAD', {encoding: 'utf8'})
-    .trim()
-    .replace('/', '-')
-    .toLocaleLowerCase()
-}
+// function readGitUser() {
+//   return execSync('git config user.name', {encoding: 'utf8'})
+//     .trim()
+//     .replace(' ', '-')
+//     .toLocaleLowerCase()
+// }
+//
+// function readBranchName() {
+//   return execSync('git rev-parse --abbrev-ref HEAD', {encoding: 'utf8'})
+//     .trim()
+//     .replace('/', '-')
+//     .toLocaleLowerCase()
+// }
 
 function readStageName(app: IConstruct) {
   const parseResults = stageNameSchema.safeParse(app.node.tryGetContext('stageName'))

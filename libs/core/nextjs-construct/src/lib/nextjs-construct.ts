@@ -1,17 +1,13 @@
 import {Construct} from 'constructs'
 import {Stack, StackProps, CfnOutput} from 'aws-cdk-lib'
-import {ManagedPolicy, PermissionsBoundary} from 'aws-cdk-lib/aws-iam'
 import {BehaviorOptions, OriginProtocolPolicy} from 'aws-cdk-lib/aws-cloudfront'
 import {HttpOrigin, S3Origin} from 'aws-cdk-lib/aws-cloudfront-origins'
 
 import {createStaticFileBucketAndConfiguration} from './configure-s3-buckets'
 import {createOpenNextApiGatewaysAndConfiguration} from './configure-api-gateways'
 import {createCloudfrontDistributionAndConfiguration} from './configure-cloudfront'
-// import {createDatadogIntegration} from './configure-datadog'
 
-import {setupISR} from './configure-isr'
 import type {Config} from './read-config'
-import {createWarmerFunction} from './configure-warmer-function'
 
 type NextJsConstructProps = StackProps &
   Config & {
@@ -27,7 +23,7 @@ export class NextJsConstruct extends Stack {
   constructor(
     scope: Construct,
     private id: string,
-    {buildPath, warmerConcurrency = 50, ...props}: NextJsConstructProps,
+    {buildPath, ...props}: NextJsConstructProps,
   ) {
     super(scope, id, props)
 
@@ -50,8 +46,10 @@ export class NextJsConstruct extends Stack {
       buildPath,
     })
 
-    const {imageApiGateway, serverApiGateway, imageFunction, serverFunction, logGroup} =
-      createOpenNextApiGatewaysAndConfiguration(this, this.id, {
+    const {imageApiGateway, serverApiGateway} = createOpenNextApiGatewaysAndConfiguration(
+      this,
+      this.id,
+      {
         buildPath,
         basePath: props.basePath,
         bucket,
@@ -65,23 +63,12 @@ export class NextJsConstruct extends Stack {
           hashedContentDeployment,
           cacheContentDeployment,
         },
-      })
+      },
+    )
 
     /**
      * Sets up the ISR Functions
      */
-    const {function: ISRFunction} = setupISR(this, this.id, {
-      buildPath,
-      serverFunction,
-      bucket,
-    })
-
-    const warmerFunction = createWarmerFunction(this, {
-      buildPath,
-      serverFunction,
-      concurrency: warmerConcurrency,
-    })
-
     const serverFunctionOrigin = new HttpOrigin(serverApiGateway.domain, {
       originPath: serverApiGateway.path,
       protocolPolicy: OriginProtocolPolicy.HTTPS_ONLY,
@@ -103,7 +90,6 @@ export class NextJsConstruct extends Stack {
           hostedZoneId: props.hostedZoneId,
           zoneName: props.hostedZoneName,
         },
-        // webAclArn: props.webAclArn,
         certificateArn: props.certificateArn,
         serverFunctionOrigin,
         imageFunctionOrigin,
@@ -115,19 +101,6 @@ export class NextJsConstruct extends Stack {
         withWildCardDomain: props.withWildCardDomain,
       },
     )
-
-    // if (props.datadogApiKey) {
-    //   createDatadogIntegration(this, {
-    //     apiKey: props.datadogApiKey,
-    //     serviceName: props.serviceName,
-    //     environment: props.environment,
-    //     version: props.version,
-    //     lambdaFunctions: [imageFunction, serverFunction, ISRFunction, warmerFunction],
-    //     nonLambdaLogGroups: [logGroup],
-    //     tribe: props.tribe,
-    //     squad: props.squad,
-    //   })
-    // }
 
     new CfnOutput(this, 'distroId', {
       value: cloudfront.distributionId,

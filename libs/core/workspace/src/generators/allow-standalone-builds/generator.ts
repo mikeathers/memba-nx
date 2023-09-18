@@ -46,40 +46,40 @@ function normalizeOptions(
   }
 }
 
-export const RESOLVE_NEXT_CONFIG_STATEMENT = `/** work-around for making standalone builds work in older versions of Nx **/
-/** TODO: Remove this when we upgrade to Nx 16.3.0+ **/
-import path from 'path'
-path.resolve(__dirname, '../next.config.js')
-`
-export const EMPTY_INDEX_CONTENT = `
-      /** Act like this "page" doesn't exist. **/
-      export function getServerSideProps() {
-        return {
-          notFound: true,
-        }
-      }
+// export const RESOLVE_NEXT_CONFIG_STATEMENT = `/** work-around for making standalone builds work in older versions of Nx **/
+// /** TODO: Remove this when we upgrade to Nx 16.3.0+ **/
+// import path from 'path'
+// path.resolve(__dirname, '../next.config.js')
+;`
+// export const EMPTY_INDEX_CONTENT = `
+//       /** Act like this "page" doesn't exist. **/
+//       export function getServerSideProps() {
+//         return {
+//           notFound: true,
+//         }
+//       }
+//
+//       export default function page() {
+//         return null
+//       }
+// `
 
-      export default function page() {
-        return null
-      }
-`
-
-function updateIndexFile(tree: Tree, path: string, indexFile = 'index.tsx') {
-  const filePath = `${path}/pages/${indexFile}`
-  const originalContents = tree.read(filePath)?.toString()
-  let updatedContent = originalContents ?? ''
-
-  if (originalContents && !originalContents?.includes(RESOLVE_NEXT_CONFIG_STATEMENT)) {
-    updatedContent = `
-    ${RESOLVE_NEXT_CONFIG_STATEMENT}\n${originalContents}`
-  }
-
-  if (!originalContents) {
-    updatedContent = `${RESOLVE_NEXT_CONFIG_STATEMENT}\n${EMPTY_INDEX_CONTENT}`
-  }
-
-  tree.write(filePath, updatedContent)
-}
+// function updateIndexFile(tree: Tree, path: string, indexFile = 'index.tsx') {
+//   const filePath = `${path}/pages/${indexFile}`
+//   const originalContents = tree.read(filePath)?.toString()
+//   let updatedContent = originalContents ?? ''
+//
+//   if (originalContents && !originalContents?.includes(RESOLVE_NEXT_CONFIG_STATEMENT)) {
+//     updatedContent = `
+//     ${RESOLVE_NEXT_CONFIG_STATEMENT}\n${originalContents}`
+//   }
+//
+//   if (!originalContents) {
+//     updatedContent = `${RESOLVE_NEXT_CONFIG_STATEMENT}\n${EMPTY_INDEX_CONTENT}`
+//   }
+//
+//   tree.write(filePath, updatedContent)
+// }
 
 function updateNextJsConfig(tree: Tree, path: string) {
   const filePath = `${path}/next.config.js`
