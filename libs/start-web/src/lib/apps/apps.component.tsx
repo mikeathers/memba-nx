@@ -1,22 +1,17 @@
 'use client'
-import React, {useEffect} from 'react'
+import React from 'react'
 import {useRouter} from 'next/navigation'
 
 import {
-  useSafeAsync,
   useMembaDetails,
   AppsContent,
   PAGE_ROUTES,
   readFromEnv,
   Env,
 } from '@memba-nx/shared'
-import {Loading, Text} from '@memba-labs/design-system'
+import {NextLink, Text} from '@memba-labs/design-system'
 
-import DumbbellSvg from './assets/dumbbell.svg'
-
-import {Container, AppTile, YourAppsContainer} from './apps.styles'
-import {read} from 'open-next/assets/sharp-node-modules/ieee754'
-import Link from 'next/link'
+import {Container, AppTile, YourAppsContainer, TileContainer} from './apps.styles'
 
 interface AppsProps {
   content: AppsContent
@@ -41,23 +36,30 @@ export const Apps: React.FC<AppsProps> = (props) => {
   }
 
   const apps = user?.tenant.apps
-
+  const hasApps = apps && apps.length > 0
   return (
     <Container>
       <Text type={'h3'}>{content.heading}</Text>
       <YourAppsContainer>
-        {apps && apps.length > 0 ? (
-          user?.tenant.apps.map((app) => (
-            <AppTile key={app.name} onClick={() => openApp(app.url)}>
-              <Text type={'body'}>{app.name}</Text>
-            </AppTile>
-          ))
-        ) : (
+        {!hasApps && (
           <>
             <Text type={'body'}>{content.noAppsMessage}</Text>
-            <Link href={PAGE_ROUTES.GYM_MANAGEMENT}>
-              <Text type={'body'}>{content.addAppMessage}</Text>
-            </Link>
+            <NextLink href={PAGE_ROUTES.GYM_MANAGEMENT}>{content.addAppMessage}</NextLink>
+          </>
+        )}
+        {hasApps && (
+          <>
+            <TileContainer>
+              {apps?.map((app) => (
+                <AppTile key={app.name} onClick={() => openApp(app.url)}>
+                  <Text type={'body'}>{app.name}</Text>
+                </AppTile>
+              ))}
+            </TileContainer>
+
+            <NextLink href={PAGE_ROUTES.GYM_MANAGEMENT}>
+              {content.addAnotherAppMessage}
+            </NextLink>
           </>
         )}
       </YourAppsContainer>

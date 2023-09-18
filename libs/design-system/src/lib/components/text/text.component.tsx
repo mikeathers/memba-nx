@@ -1,7 +1,7 @@
 import React from 'react'
 
-import type {StyledTextProps} from './text.styles'
 import {Body, BodyBold, BodySmall, H1, H2, H3, H4, Hero} from './text.styles'
+import {StyledTextProps} from '../../utils'
 
 export interface TextProps extends StyledTextProps {
   type: 'hero' | 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-bold' | 'body-small'

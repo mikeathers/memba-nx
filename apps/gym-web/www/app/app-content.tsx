@@ -8,7 +8,6 @@ import {
   readFromEnv,
   Env,
   MembaApp,
-  menuBarContent,
   PAGE_ROUTES,
 } from '@memba-nx/shared'
 
@@ -68,13 +67,6 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     }
   }
 
-  const handleRedirect = () => {
-    console.log({pathName, user})
-    if (pathName === '/' && user?.isTenantAdmin) {
-      router.push(PAGE_ROUTES.ADMIN.HOME)
-    }
-  }
-
   useEffect(() => {
     handleGetUser().finally(() => setIsLoading(false))
   }, [state.user])
@@ -85,37 +77,13 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
 
   useEffect(() => {
     handleAuthenticatedRoutes()
-    handleRedirect()
   }, [pathName, user])
 
   useEffect(() => {
     handleUnauthenticated()
   }, [state.isAuthenticating, state.isAuthenticated])
 
-  // useEffect(() => {
-  //   const protectedRoutes = ['/']
-  //   const pathIsProtected = protectedRoutes.indexOf(pathName) !== -1
-  //
-  //   if (!state.isAuthenticating && !state.isAuthenticated && pathIsProtected) {
-  //     router.push(readFromEnv(Env.idApp))
-  //     return
-  //   }
-  //
-  //   if (state.isAuthenticated && !pathIsProtected) {
-  //     router.push(PAGE_ROUTES.HOME)
-  //     return
-  //   }
-  // }, [pathName, state.isAuthenticated, state.isAuthenticating])
-
-  // useEffect(() => {
-  //   if (pathName === '/') {
-  //     if (state.isAuthenticated) {
-  //       router.push(PAGE_ROUTES.HOME)
-  //     } else router.push(readFromEnv(Env.idApp))
-  //   }
-  // }, [state])
-
-  if (isLoading || !state.user) return <Loading />
+  if (isLoading) return <Loading />
 
   return (
     <>

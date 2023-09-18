@@ -2,16 +2,14 @@
 import React, {useEffect} from 'react'
 import {Formik} from 'formik'
 import {useSearchParams} from 'next/navigation'
-import Link from 'next/link'
 import {toast} from 'react-toastify'
 import {object, string} from 'yup'
 
 import {
-  colorTokens,
-  spacingTokens,
   Button,
   CenterBox,
   ErrorToast,
+  NextLink,
   SuccessToast,
   Text,
   TextInput,
@@ -22,7 +20,6 @@ import {
   ForgotPasswordContent,
   ForgotPasswordFormDetails,
   PAGE_ROUTES,
-  useMembaDetails,
 } from '@memba-nx/shared'
 
 import {ActionsContainer, ErrorContainer} from './forgot-password.styles'
@@ -120,11 +117,9 @@ export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
       </Formik>
 
       <ActionsContainer>
-        <Link href={PAGE_ROUTES.LOGIN}>
-          <Text type={'body-small'} color={'blues800'}>
-            {content.returnToLogin}
-          </Text>
-        </Link>
+        <NextLink href={PAGE_ROUTES.LOGIN} fontSize={'xs'} color={'blues800'}>
+          {content.returnToLogin}
+        </NextLink>
       </ActionsContainer>
     </CenterBox>
   )

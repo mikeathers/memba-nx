@@ -1,8 +1,6 @@
 'use client'
 import type React from 'react'
 
-import {spacingTokens} from '../../styles'
-
 import {
   Container,
   Content,

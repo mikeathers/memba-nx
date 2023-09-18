@@ -3,19 +3,11 @@ import React, {useEffect} from 'react'
 import {toast} from 'react-toastify'
 import {useSearchParams} from 'next/navigation'
 
-import {
-  colorTokens,
-  spacingTokens,
-  CenterBox,
-  ErrorToast,
-  SuccessToast,
-  Text,
-} from '@memba-labs/design-system'
+import {CenterBox, ErrorToast, SuccessToast, Text} from '@memba-labs/design-system'
 import {
   interpolateContent,
   useSafeAsync,
   useAuth,
-  useMembaDetails,
   ConfirmAccountContent,
 } from '@memba-nx/shared'
 

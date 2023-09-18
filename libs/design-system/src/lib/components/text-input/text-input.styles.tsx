@@ -5,8 +5,8 @@ import {borderRadius, colors, fonts, fontSizes, spacing} from '../../styles'
 import type {TextInputProps} from './text-input.component'
 
 export const Container = styled.div`
-  margin-bottom: ${spacing.space3x};
   position: relative;
+  margin-bottom: ${spacing.space3x};
 `
 
 type StyledTextInputProps = Omit<TextInputProps, 'ref'>

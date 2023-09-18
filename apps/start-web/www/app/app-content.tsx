@@ -1,18 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {useRouter, usePathname} from 'next/navigation'
 
-import {
-  useAuth,
-  useSafeAsync,
-  useMembaDetails,
-  Env,
-  readFromEnv,
-  PAGE_ROUTES,
-} from '@memba-nx/shared'
+import {useAuth, useMembaDetails, Env, readFromEnv, PAGE_ROUTES} from '@memba-nx/shared'
 import {Loading, TitleBar} from '@memba-labs/design-system'
 
 import {Container} from './app.styles'
-import {noop} from 'lodash'
 
 interface AppContentProps {
   children: React.ReactNode

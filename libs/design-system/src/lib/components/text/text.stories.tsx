@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from '@storybook/react'
-import {Text, TextProps} from './text.component'
+import {Text} from './text.component'
 import React from 'react'
 import {StorybookWrapper} from '../../utils'
 import styled from 'styled-components'

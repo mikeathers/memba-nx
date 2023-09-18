@@ -10,6 +10,7 @@ export const appsContent: AppsContent = {
   gymManagementTitle: 'Gym Management',
   noAppsMessage: "It looks like you don't have any apps...",
   addAppMessage: 'Lets create one',
+  addAnotherAppMessage: 'Add another app',
 }
 
 export const membershipsContent: MembershipsContent = {
