@@ -5,7 +5,9 @@ import {
   installPackagesTask,
   readProjectConfiguration,
   updateProjectConfiguration,
+  getWorkspaceLayout,
 } from '@nx/devkit'
+import {cypressProjectGenerator} from '@nx/cypress'
 import {AppGeneratorSchema} from './schema'
 import {applicationGenerator} from '@nx/next'
 import convertAppToOpenNext from '../convert-to-opennext/generator'
@@ -75,25 +77,25 @@ function outputJestConfig(tree: Tree, path: string) {
   tree.write(jestConfigLocation, fileAsString)
 }
 
-// function generateCustomE2EProject(tree: Tree, options: NormalizedSchema) {
-//   const e2eProjectName = `${options.name}-e2e`
-//   const e2eProjectRoot = `${getWorkspaceLayout(tree).appsDir}/${
-//     options.appName
-//   }/${e2eProjectName}`
-//
-//   cypressProjectGenerator(tree, {
-//     name: e2eProjectName,
-//     directory: options.appName,
-//     project: options.projectName,
-//   })
-//
-//   const path = `${e2eProjectRoot}/src/e2e/app.cy.ts`
-//   const contents = tree.read(path)?.toString()
-//
-//   let updatedContent = contents ?? ''
-//   updatedContent = updatedContent.replace(
-//     `Welcome ${options.appName}-${options.name}`,
-//     `Welcome ${options.name}`,
-//   )
-//   tree.write(path, updatedContent)
-// }
+function generateCustomE2EProject(tree: Tree, options: NormalizedSchema) {
+  const e2eProjectName = `${options.name}-e2e`
+  const e2eProjectRoot = `${getWorkspaceLayout(tree).appsDir}/${
+    options.appName
+  }/${e2eProjectName}`
+
+  cypressProjectGenerator(tree, {
+    name: e2eProjectName,
+    directory: options.appName,
+    project: options.projectName,
+  })
+
+  const path = `${e2eProjectRoot}/src/e2e/app.cy.ts`
+  const contents = tree.read(path)?.toString()
+
+  let updatedContent = contents ?? ''
+  updatedContent = updatedContent.replace(
+    `Welcome ${options.appName}-${options.name}`,
+    `Welcome ${options.name}`,
+  )
+  tree.write(path, updatedContent)
+}

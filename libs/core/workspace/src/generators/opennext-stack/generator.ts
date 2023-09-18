@@ -314,17 +314,17 @@ function replaceDeployTarget(
 /*
  * Updates the Implicit Dependencies array in the project.json so that it will be affected when the front-end project gets updated.
  */
-// function setImplicitDependency(
-//   tree: Tree,
-//   {
-//     projectName,
-//     projectFolderName,
-//   }: Pick<NormalizedSchema, 'projectName' | 'projectFolderName'>,
-// ) {
-//   const projectConfig = readProjectConfiguration(tree, projectName)
-//
-//   updateProjectConfiguration(tree, projectName, {
-//     ...projectConfig,
-//     implicitDependencies: [projectFolderName],
-//   })
-// }
+function setImplicitDependency(
+  tree: Tree,
+  {
+    projectName,
+    projectFolderName,
+  }: Pick<NormalizedSchema, 'projectName' | 'projectFolderName'>,
+) {
+  const projectConfig = readProjectConfiguration(tree, projectName)
+
+  updateProjectConfiguration(tree, projectName, {
+    ...projectConfig,
+    implicitDependencies: [projectFolderName],
+  })
+}

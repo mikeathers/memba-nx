@@ -2,6 +2,7 @@ import {OpennextBuildExecutorSchema} from './schema'
 import {ExecutorContext, logger} from '@nrwl/devkit'
 
 import {
+  doFixDatadog,
   doFixRequiredServerFiles,
   doOpenNextBuild,
   doUpdatePublicFilesJSON,
