@@ -18,6 +18,7 @@
     "list-affected": "nx print-affected --select=projects",
     "prepare": "husky install",
     "affected": "yarn affected:test && yarn affected:lint",
+    "affected:deploy": "nx affected --target=deploy",
     "affected:test": "nx affected --target=test",
     "affected:lint": "nx affected --target=lint",
     "print-affected:libs": "nx print-affected --select=projects --type=lib",

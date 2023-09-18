@@ -57,7 +57,9 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }
 
   useEffect(() => {
-    handleGetUser().finally(() => setIsLoading(false))
+    if (!user?.emailAddress) {
+      handleGetUser().finally(() => setIsLoading(false))
+    }
   }, [state.isAuthenticated])
 
   useEffect(() => {
