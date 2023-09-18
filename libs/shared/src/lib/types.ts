@@ -284,6 +284,7 @@ export type AccountContent = {
 export type GymManagementContent = {
   heading: string
   goBack: string
+  appCreationLoadingMessage: string
   gymNameLabel: string
   gymDetails: string
   gymNamePlaceholder: string

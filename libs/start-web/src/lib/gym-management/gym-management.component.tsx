@@ -1,8 +1,8 @@
 'use client'
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {useRouter} from 'next/navigation'
 
-import {PricingCard, Text, TextInput, Button} from '@memba-labs/design-system'
+import {PricingCard, Text, TextInput, Button, Loading} from '@memba-labs/design-system'
 import {
   createGymApp,
   useSafeAsync,
@@ -44,13 +44,14 @@ export const GymManagement: React.FC<GymManagementProps> = (props) => {
   const [memberships, setMemberships] = useState<MembershipPricing[]>([])
   const [formError, setFormError] = useState<string | null>(null)
   const router = useRouter()
+  const [showAppCreationLoading, setShowAppCreationLoading] = useState<boolean>()
 
-  useEffect(() => {
-    const gymApp = user?.tenant.apps.find((item) => item.type === 'gym-management')
-    if (gymApp) {
-      router.push(gymApp.url)
-    }
-  }, [user])
+  // useEffect(() => {
+  //   const gymApp = user?.tenant.apps.find((item) => item.type === 'gym-management')
+  //   if (gymApp) {
+  //     router.push(gymApp.url)
+  //   }
+  // }, [user])
 
   const handleSelectClick = (tier: string) => {
     setSelectedTier(tier)
@@ -91,12 +92,16 @@ export const GymManagement: React.FC<GymManagementProps> = (props) => {
         user,
       }),
     )
-    console.log({result})
+
     if (result) {
-      const gymApp = (result as Tenant).apps.find((app) => app.type === 'gym-management')
-      router.push(gymApp?.url || '')
+      setShowAppCreationLoading(true)
+      const gymApp = (result as Tenant).apps.find((app) => app.name === gymName)
+      setTimeout(() => router.push(gymApp?.url || ''), 5000)
     }
   }
+
+  if (showAppCreationLoading)
+    return <Loading message={content.appCreationLoadingMessage} />
 
   return (
     <Container>

@@ -5,11 +5,17 @@ import {LoadingSpinner} from '../loading-spinner'
 
 import {Container, LoadingContainer} from './loading.styles'
 
-export const Loading: React.FC = () => {
+interface LoadingProps {
+  message?: string
+}
+
+export const Loading = (props: LoadingProps) => {
+  const {message} = props
+
   return (
     <Container>
       <LoadingContainer>
-        <Text type={'h3'}>Loading</Text>
+        <Text type={'h3'}>{message || 'Loading'}</Text>
         <LoadingSpinner size={40} />
       </LoadingContainer>
     </Container>

@@ -6,7 +6,7 @@ import {SvgIcon} from '../svg-icon'
 import {Text} from '../text'
 
 import {
-  Container,
+  TextInputContainer,
   RightIconWrapper,
   StyledTextInput,
   TextInputWrapper,
@@ -31,7 +31,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
   }
 
   return (
-    <Container>
+    <TextInputContainer>
       {label && (
         <Text type={'body'} $marginBottom={'spaceHalfx'}>
           {label}
@@ -49,6 +49,6 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
           </RightIconWrapper>
         )}
       </TextInputWrapper>
-    </Container>
+    </TextInputContainer>
   )
 }

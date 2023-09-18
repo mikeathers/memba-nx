@@ -23,6 +23,7 @@ export const accountContent: AccountContent = {
 export const gymManagementContent: GymManagementContent = {
   heading: 'Gym Management',
   goBack: 'Go back',
+  appCreationLoadingMessage: "We're building your app, this won't take too long",
   gymDetails: 'Gym Details',
   gymNameLabel: 'Enter the name of your gym',
   gymNamePlaceholder: "e.g. Joe's Gym",
