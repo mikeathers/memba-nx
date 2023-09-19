@@ -34,30 +34,28 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
 
     console.log({memberPathIsProtected, adminPathIsProtected, user})
 
-    if (!user?.isTenantAdmin && adminPathIsProtected) {
-      router.push(PAGE_ROUTES.MEMBERSHIPS)
+    if (
+      (!user?.isTenantAdmin && adminPathIsProtected) ||
+      (user?.isTenantAdmin && memberPathIsProtected)
+    ) {
+      router.push('/')
       return
-    }
-
-    if (user?.isTenantAdmin && adminPathIsProtected) {
+    } else {
       router.push(pathName)
-      return
-    }
-
-    if (!user?.isTenantAdmin && memberPathIsProtected) {
-      router.push(pathName)
-      return
-    }
-
-    if (user?.isTenantAdmin && memberPathIsProtected) {
-      router.push(PAGE_ROUTES.APPS)
-      return
     }
   }
 
   const handleUnauthenticated = () => {
     if (!state.isAuthenticating && !state.isAuthenticated) {
       router.push(readFromEnv(Env.idApp))
+    }
+  }
+
+  const handleRedirect = () => {
+    if (!user) return
+    if (pathName === '/') {
+      if (user?.isTenantAdmin) router.push(PAGE_ROUTES.APPS)
+      else router.push(PAGE_ROUTES.MEMBERSHIPS)
     }
   }
 
@@ -80,11 +78,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }, [state.isAuthenticating, state.isAuthenticated])
 
   useEffect(() => {
-    if (!user) return
-    if (pathName === '/') {
-      if (user?.isTenantAdmin) router.push(PAGE_ROUTES.APPS)
-      else router.push(PAGE_ROUTES.MEMBERSHIPS)
-    }
+    handleRedirect()
   }, [user, pathName])
 
   return (

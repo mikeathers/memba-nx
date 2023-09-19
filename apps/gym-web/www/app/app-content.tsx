@@ -34,14 +34,16 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }
 
   const handleGetAppName = () => {
+    if (!user) return
+    if (appName) return
     const tenant = user?.tenant?.apps.find(
       (item: MembaApp) => item.type === 'gym-management',
     )
-    const appName = tenant?.name
+    const tenantAppName = tenant?.name
 
     const gymMembership = user?.memberships?.find((m) => m.type === 'gym-management')
 
-    setAppName(appName || gymMembership?.name || 'Memba')
+    setAppName(tenantAppName || gymMembership?.name || 'Memba')
   }
 
   const handleUnauthenticated = () => {
@@ -54,11 +56,21 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     const protectedRoutes = ['/admin/home']
     const pathIsProtected = protectedRoutes.indexOf(pathName) !== -1
 
+    if (pathName === '/') return
+
     if (!state.user?.isTenantAdmin && pathIsProtected) {
-      router.push(PAGE_ROUTES.MEMBERSHIPS)
+      router.push('/')
       return
     } else {
       router.push(pathName)
+    }
+  }
+
+  const handleRedirect = () => {
+    if (!user) return
+    if (pathName === '/') {
+      if (user?.isTenantAdmin) router.push(PAGE_ROUTES.ADMIN.HOME)
+      else router.push(PAGE_ROUTES.MEMBERSHIPS)
     }
   }
 
@@ -67,34 +79,28 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }, [])
 
   useEffect(() => {
-    if (!user) return
-    if (pathName === '/') {
-      if (user?.isTenantAdmin) router.push(PAGE_ROUTES.ADMIN.HOME)
-      else router.push(PAGE_ROUTES.MEMBERSHIPS)
-    }
-  }, [pathName, user])
-
-  useEffect(() => {
     if (state.isAuthenticated) {
       handleGetUser().finally(() => setIsLoading(false))
     }
   }, [state.isAuthenticated])
 
   useEffect(() => {
-    if (!appName) {
-      handleGetAppName()
-    }
+    handleGetAppName()
   }, [user])
 
   useEffect(() => {
     handleAuthenticatedRoutes()
   }, [pathName, state.user?.isTenantAdmin])
 
-  useEffect(() => {
-    handleUnauthenticated()
-  }, [state.isAuthenticating, state.isAuthenticated])
+  // useEffect(() => {
+  //   handleUnauthenticated()
+  // }, [state.isAuthenticating, state.isAuthenticated])
 
-  console.log('GYM NEW 3')
+  useEffect(() => {
+    handleRedirect()
+  }, [pathName, user])
+
+  console.log('GYM NEW 5')
 
   return (
     <>
