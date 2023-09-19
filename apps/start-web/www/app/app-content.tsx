@@ -1,18 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {useRouter, usePathname} from 'next/navigation'
 
-import {
-  useAuth,
-  useSafeAsync,
-  useMembaDetails,
-  Env,
-  readFromEnv,
-  PAGE_ROUTES,
-} from '@memba-nx/shared'
+import {useAuth, useMembaDetails, Env, readFromEnv, PAGE_ROUTES} from '@memba-nx/shared'
 import {Loading, TitleBar} from '@memba-labs/design-system'
 
 import {Container} from './app.styles'
-import {noop} from 'lodash'
 
 interface AppContentProps {
   children: React.ReactNode
@@ -21,32 +13,45 @@ interface AppContentProps {
 export const AppContent: React.FC<AppContentProps> = (props) => {
   const {children} = props
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [sessionRefreshed, setSessionRefreshed] = useState<boolean>(false)
   const {refreshUserSession, signUserOut, state} = useAuth()
   const router = useRouter()
   const {getTenantUser, getUser, user} = useMembaDetails()
   const pathName = usePathname()
 
   const handleGetUser = async () => {
-    if (!sessionRefreshed) {
-      await refreshUserSession()
-      setSessionRefreshed(true)
-    }
     if (state.user?.emailAddress) {
       if (state.user.isTenantAdmin) await getTenantUser(state.user?.emailAddress || '')
       else await getUser(state.user?.emailAddress || '')
     }
   }
 
-  const handleAuthenticatedRoutes = () => {
-    const protectedRoutes = ['/apps']
-    const pathIsProtected = protectedRoutes.indexOf(pathName) !== -1
+  const handleRoutes = () => {
+    const protectedAdminRoutes = ['/apps']
+    const adminPathIsProtected = protectedAdminRoutes.indexOf(pathName) !== -1
 
-    if (!state.user?.isTenantAdmin && pathIsProtected) {
+    const protectedMemberRoutes = ['/memberships']
+    const memberPathIsProtected = protectedMemberRoutes.indexOf(pathName) !== -1
+
+    console.log({memberPathIsProtected, adminPathIsProtected, user})
+
+    if (!user?.isTenantAdmin && adminPathIsProtected) {
       router.push(PAGE_ROUTES.MEMBERSHIPS)
       return
-    } else {
+    }
+
+    if (user?.isTenantAdmin && adminPathIsProtected) {
       router.push(pathName)
+      return
+    }
+
+    if (!user?.isTenantAdmin && memberPathIsProtected) {
+      router.push(pathName)
+      return
+    }
+
+    if (user?.isTenantAdmin && memberPathIsProtected) {
+      router.push(PAGE_ROUTES.APPS)
+      return
     }
   }
 
@@ -57,25 +62,35 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }
 
   useEffect(() => {
-    if (!user?.emailAddress) {
-      handleGetUser().finally(() => setIsLoading(false))
-    }
-  }, [state.user])
+    refreshUserSession()
+  }, [])
 
   useEffect(() => {
-    handleAuthenticatedRoutes()
-  }, [pathName, state.user?.isTenantAdmin])
+    if (state.isAuthenticated) {
+      handleGetUser().finally(() => setIsLoading(false))
+    }
+  }, [state.isAuthenticated])
+
+  useEffect(() => {
+    handleRoutes()
+  }, [pathName, user?.isTenantAdmin])
 
   useEffect(() => {
     handleUnauthenticated()
   }, [state.isAuthenticating, state.isAuthenticated])
 
-  if (isLoading) return <Loading />
+  useEffect(() => {
+    if (!user) return
+    if (pathName === '/') {
+      if (user?.isTenantAdmin) router.push(PAGE_ROUTES.APPS)
+      else router.push(PAGE_ROUTES.MEMBERSHIPS)
+    }
+  }, [user, pathName])
 
   return (
     <>
       <TitleBar signUserOut={signUserOut} isLoading={isLoading} user={user} />
-      <Container>{children}</Container>
+      {isLoading ? <Loading /> : <Container>{children}</Container>}
     </>
   )
 }

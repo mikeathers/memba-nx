@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {useRouter, useSearchParams} from 'next/navigation'
+import {usePathname, useRouter, useSearchParams} from 'next/navigation'
 
 import {useAuth, useSafeAsync, PAGE_ROUTES, Env, readFromEnv} from '@memba-nx/shared'
 import {Loading} from '@memba-labs/design-system'
@@ -17,29 +17,32 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const redirectUrl = searchParams.get('redirectUrl')
+  const pathName = usePathname()
   const runRefreshUserSession = async () => {
     await run(refreshUserSession())
   }
 
   useEffect(() => {
-    if (!state.isAuthenticating) {
-      if (!state.isAuthenticated) {
-        router.push(PAGE_ROUTES.LOGIN)
-      } else {
-        if (redirectUrl) {
-          router.push(redirectUrl)
-          return
-        }
-        router.push(`${readFromEnv(Env.startApp)}`)
-      }
-    }
-  }, [state.isAuthenticated])
-
-  useEffect(() => {
     runRefreshUserSession()
   }, [])
 
-  console.log('ID NEW')
+  useEffect(() => {
+    if (pathName === '/' && !state.isAuthenticated) {
+      router.push(PAGE_ROUTES.LOGIN)
+      return
+    }
+
+    if (pathName === '/' && state.isAuthenticated) {
+      if (redirectUrl) {
+        router.push(redirectUrl)
+        return
+      }
+
+      router.push(readFromEnv(Env.startApp))
+    }
+  }, [pathName, state.isAuthenticated])
+
+  console.log('ID NEW 2')
 
   if (state.isAuthenticating || isLoading) return <Loading />
 

@@ -32,18 +32,21 @@ export const Memberships = (props: MembershipsProps) => {
     }
   }
 
+  const hasMemberships = user?.memberships && user?.memberships.length > 0
+
   return (
     <Container>
       <Text type={'h3'}>{content.heading}</Text>
       <YourMembershipsContainer>
-        {user?.memberships.map((membership) => (
-          <MembershipTile
-            key={membership.name}
-            onClick={() => openMembership(membership.url)}
-          >
-            <Text type={'body'}>{membership.name}</Text>
-          </MembershipTile>
-        ))}
+        {hasMemberships &&
+          user?.memberships.map((membership) => (
+            <MembershipTile
+              key={membership.name}
+              onClick={() => openMembership(membership.url)}
+            >
+              <Text type={'body'}>{membership.name}</Text>
+            </MembershipTile>
+          ))}
       </YourMembershipsContainer>
     </Container>
   )

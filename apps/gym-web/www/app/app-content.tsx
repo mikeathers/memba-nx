@@ -20,7 +20,6 @@ interface AppContentProps {
 export const AppContent: React.FC<AppContentProps> = (props) => {
   const {children} = props
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [sessionRefreshed, setSessionRefreshed] = useState<boolean>(false)
   const {refreshUserSession, state, signUserOut} = useAuth()
   const router = useRouter()
   const {getTenantUser, getUser, user} = useMembaDetails()
@@ -28,10 +27,6 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   const pathName = usePathname()
 
   const handleGetUser = async () => {
-    if (!sessionRefreshed) {
-      await refreshUserSession()
-      setSessionRefreshed(true)
-    }
     if (state.user?.emailAddress) {
       if (state.user.isTenantAdmin) await getTenantUser(state.user?.emailAddress || '')
       else await getUser(state.user?.emailAddress || '')
@@ -68,7 +63,19 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }
 
   useEffect(() => {
-    if (!user?.emailAddress) {
+    refreshUserSession()
+  }, [])
+
+  useEffect(() => {
+    if (!user) return
+    if (pathName === '/') {
+      if (user?.isTenantAdmin) router.push(PAGE_ROUTES.ADMIN.HOME)
+      else router.push(PAGE_ROUTES.MEMBERSHIPS)
+    }
+  }, [pathName, user])
+
+  useEffect(() => {
+    if (state.isAuthenticated) {
       handleGetUser().finally(() => setIsLoading(false))
     }
   }, [state.isAuthenticated])
@@ -81,15 +88,13 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
 
   useEffect(() => {
     handleAuthenticatedRoutes()
-  }, [pathName, user])
+  }, [pathName, state.user?.isTenantAdmin])
 
   useEffect(() => {
     handleUnauthenticated()
   }, [state.isAuthenticating, state.isAuthenticated])
 
-  console.log('GYM NEW')
-
-  if (isLoading) return <Loading />
+  console.log('GYM NEW 3')
 
   return (
     <>
@@ -99,7 +104,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
         user={user}
         appName={appName}
       />
-      <Container>{children}</Container>
+      {isLoading ? <Loading /> : <Container>{children}</Container>}
     </>
   )
 }

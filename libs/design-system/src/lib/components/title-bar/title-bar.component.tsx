@@ -66,8 +66,6 @@ export const TitleBar = (props: TitleBarProps) => {
     signUserOut()
   }
 
-  if (isLoading) return <LoadingSpinner />
-
   return (
     <Container>
       <LeftContent>
