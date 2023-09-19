@@ -88,13 +88,13 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     handleGetAppName()
   }, [user])
 
-  useEffect(() => {
-    handleAuthenticatedRoutes()
-  }, [pathName, state.user?.isTenantAdmin])
-
   // useEffect(() => {
-  //   handleUnauthenticated()
-  // }, [state.isAuthenticating, state.isAuthenticated])
+  //   handleAuthenticatedRoutes()
+  // }, [pathName, state.user?.isTenantAdmin])
+
+  useEffect(() => {
+    handleUnauthenticated()
+  }, [state.isAuthenticating, state.isAuthenticated])
 
   useEffect(() => {
     handleRedirect()

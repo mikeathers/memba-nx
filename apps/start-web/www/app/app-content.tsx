@@ -69,9 +69,9 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     }
   }, [state.isAuthenticated])
 
-  useEffect(() => {
-    handleRoutes()
-  }, [pathName, user?.isTenantAdmin])
+  // useEffect(() => {
+  //   handleRoutes()
+  // }, [pathName, user?.isTenantAdmin])
 
   useEffect(() => {
     handleUnauthenticated()
