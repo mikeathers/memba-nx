@@ -5,7 +5,7 @@ import React from 'react'
 import {Loading} from '@memba-labs/design-system'
 const HomePage: React.FC = () => {
   const {user} = useMembaDetails()
-
+  console.log('NEW 2')
   if (!user) return <Loading />
   if (user?.isTenantAdmin) {
     return <Apps content={appsContent} />

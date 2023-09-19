@@ -87,6 +87,8 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     handleUnauthenticated()
   }, [state.isAuthenticating, state.isAuthenticated])
 
+  console.log('GYM NEW')
+
   if (isLoading) return <Loading />
 
   return (

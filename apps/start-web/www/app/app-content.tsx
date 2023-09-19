@@ -60,7 +60,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     if (!user?.emailAddress) {
       handleGetUser().finally(() => setIsLoading(false))
     }
-  }, [state.isAuthenticated])
+  }, [state.user])
 
   useEffect(() => {
     handleAuthenticatedRoutes()

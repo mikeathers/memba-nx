@@ -39,6 +39,8 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     runRefreshUserSession()
   }, [])
 
+  console.log('ID NEW')
+
   if (state.isAuthenticating || isLoading) return <Loading />
 
   if (isSuccess) return <Container>{children}</Container>

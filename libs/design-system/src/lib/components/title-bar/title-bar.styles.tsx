@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import {colors, fontSizes, mediaQueries, spacing} from '../../styles'
-import {Button} from '../button'
 
 export const Container = styled.div`
   padding: ${spacing.spaceHalfx} ${spacing.space3x};
