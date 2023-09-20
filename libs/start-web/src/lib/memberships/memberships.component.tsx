@@ -10,12 +10,13 @@ import {
 
 import {Container, MembershipTile, YourMembershipsContainer} from './memberships.styles'
 import {useRouter} from 'next/navigation'
+import {WithMember} from '../hoc'
 
 interface MembershipsProps {
   content: MembershipsContent
 }
 
-export const Memberships = (props: MembershipsProps) => {
+const Memberships = (props: MembershipsProps) => {
   const {content} = props
   const {user} = useMembaDetails()
   const router = useRouter()
@@ -51,3 +52,5 @@ export const Memberships = (props: MembershipsProps) => {
     </Container>
   )
 }
+
+export default WithMember(Memberships)

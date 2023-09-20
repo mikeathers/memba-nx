@@ -1,28 +1,25 @@
 'use client'
-import React, {useEffect} from 'react'
+import React from 'react'
 import {useRouter} from 'next/navigation'
 
 import {
-  useSafeAsync,
   useMembaDetails,
   AppsContent,
   PAGE_ROUTES,
   readFromEnv,
   Env,
 } from '@memba-nx/shared'
-import {Loading, Text} from '@memba-labs/design-system'
-
-import DumbbellSvg from './assets/dumbbell.svg'
+import {Text} from '@memba-labs/design-system'
 
 import {Container, AppTile, YourAppsContainer} from './apps.styles'
-import {read} from 'open-next/assets/sharp-node-modules/ieee754'
 import Link from 'next/link'
+import {WithAdmin} from '../hoc'
 
 interface AppsProps {
   content: AppsContent
 }
 
-export const Apps: React.FC<AppsProps> = (props) => {
+const Apps: React.FC<AppsProps> = (props) => {
   const {content} = props
   const {user} = useMembaDetails()
   const router = useRouter()
@@ -64,3 +61,5 @@ export const Apps: React.FC<AppsProps> = (props) => {
     </Container>
   )
 }
+
+export default WithAdmin(Apps)

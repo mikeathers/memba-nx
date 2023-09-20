@@ -5,12 +5,15 @@ import {HomeContent, PAGE_ROUTES, useMembaDetails} from '@memba-nx/shared'
 
 import {Container} from './home.styles'
 import {useRouter} from 'next/navigation'
+import {WithMember} from '../hoc'
 
 interface HomeProps {
   content: HomeContent
 }
 
-export const Home: React.FC<HomeProps> = (props) => {
+const Home: React.FC<HomeProps> = (props) => {
   const {content} = props
   return <Container>{content.heading}</Container>
 }
+
+export default WithMember(Home)

@@ -1,1 +1,1 @@
-export * from './memberships.component'
+export {default as Memberships} from './memberships.component'

@@ -11,12 +11,13 @@ import {Text, DataGrid} from '@memba-labs/design-system'
 
 import {Container, ListContainer} from './home.styles'
 import {GridColDef, GridRowsProp} from '@mui/x-data-grid'
+import {WithAdmin} from '../../hoc'
 
 interface HomeProps {
   content: AdminHomeContent
 }
 
-export const Home: React.FC<HomeProps> = (props) => {
+const Home: React.FC<HomeProps> = (props) => {
   const {content} = props
   const {user} = useMembaDetails()
 
@@ -58,3 +59,5 @@ export const Home: React.FC<HomeProps> = (props) => {
     </Container>
   )
 }
+
+export default WithAdmin(Home)

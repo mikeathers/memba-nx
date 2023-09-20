@@ -25,34 +25,6 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     }
   }
 
-  const handleRoutes = () => {
-    const protectedAdminRoutes = ['/apps']
-    const adminPathIsProtected = protectedAdminRoutes.indexOf(pathName) !== -1
-
-    const protectedMemberRoutes = ['/memberships']
-    const memberPathIsProtected = protectedMemberRoutes.indexOf(pathName) !== -1
-
-    console.log({memberPathIsProtected, adminPathIsProtected, user})
-
-    if (!state.isAuthenticated) return
-    if (!user) return
-
-    if (pathName === '/') {
-      handleRedirect()
-      return
-    }
-
-    if (
-      (!user?.isTenantAdmin && adminPathIsProtected) ||
-      (user?.isTenantAdmin && memberPathIsProtected)
-    ) {
-      handleRedirect()
-      return
-    }
-
-    router.push(pathName)
-  }
-
   const handleUnauthenticated = () => {
     if (!state.isAuthenticating && !state.isAuthenticated) {
       router.push(readFromEnv(Env.idApp))
@@ -60,13 +32,16 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }
 
   const handleRedirect = () => {
-    if (user?.isTenantAdmin && pathName !== PAGE_ROUTES.APPS) {
-      router.push(PAGE_ROUTES.APPS)
-      return
-    }
-    if (!user?.isTenantAdmin && pathName !== PAGE_ROUTES.MEMBERSHIPS) {
-      router.push(PAGE_ROUTES.MEMBERSHIPS)
-      return
+    if (!user) return
+    if (pathName === '/') {
+      if (user?.isTenantAdmin && pathName !== PAGE_ROUTES.APPS) {
+        router.push(PAGE_ROUTES.APPS)
+        return
+      }
+      if (!user?.isTenantAdmin && pathName !== PAGE_ROUTES.MEMBERSHIPS) {
+        router.push(PAGE_ROUTES.MEMBERSHIPS)
+        return
+      }
     }
   }
 
@@ -81,21 +56,19 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }, [state.isAuthenticated])
 
   useEffect(() => {
-    handleRoutes()
-  }, [pathName, user?.isTenantAdmin])
-
-  useEffect(() => {
     handleUnauthenticated()
   }, [state.isAuthenticating, state.isAuthenticated])
 
-  // useEffect(() => {
-  //   handleRedirect()
-  // }, [user, pathName])
+  useEffect(() => {
+    handleRedirect()
+  }, [user, pathName])
+
+  if (isLoading) return <Loading />
 
   return (
     <>
       <TitleBar signUserOut={signUserOut} isLoading={isLoading} user={user} />
-      {isLoading ? <Loading /> : <Container>{children}</Container>}
+      <Container>{children}</Container>
     </>
   )
 }

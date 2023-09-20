@@ -52,34 +52,17 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     }
   }
 
-  const handleRoutes = () => {
-    const protectedRoutes = ['/admin/home']
-    const pathIsProtected = protectedRoutes.indexOf(pathName) !== -1
-
-    if (!state.isAuthenticated) return
-    if (!user) return
-
-    if (pathName === '/') {
-      handleRedirect()
-      return
-    }
-
-    if (!state.user?.isTenantAdmin && pathIsProtected) {
-      handleRedirect()
-      return
-    }
-
-    router.push(pathName)
-  }
-
   const handleRedirect = () => {
-    if (user?.isTenantAdmin && pathName !== PAGE_ROUTES.ADMIN.HOME) {
-      router.push(PAGE_ROUTES.ADMIN.HOME)
-      return
-    }
-    if (!user?.isTenantAdmin && pathName !== PAGE_ROUTES.MEMBERSHIPS) {
-      router.push(PAGE_ROUTES.MEMBERSHIPS)
-      return
+    if (!user) return
+    if (pathName === '/') {
+      if (user?.isTenantAdmin && pathName !== PAGE_ROUTES.ADMIN.HOME) {
+        router.push(PAGE_ROUTES.ADMIN.HOME)
+        return
+      }
+      if (!user?.isTenantAdmin && pathName !== PAGE_ROUTES.MEMBERSHIPS) {
+        router.push(PAGE_ROUTES.MEMBERSHIPS)
+        return
+      }
     }
   }
 
@@ -98,18 +81,14 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }, [user])
 
   useEffect(() => {
-    handleRoutes()
-  }, [pathName, user])
-
-  useEffect(() => {
     handleUnauthenticated()
   }, [state.isAuthenticating, state.isAuthenticated])
 
-  // useEffect(() => {
-  //   handleRedirect()
-  // }, [pathName, user])
+  useEffect(() => {
+    handleRedirect()
+  }, [pathName, user])
 
-  console.log('GYM NEW 6')
+  console.log('GYM NEW 7')
 
   return (
     <>
