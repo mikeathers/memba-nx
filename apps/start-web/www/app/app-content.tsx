@@ -34,15 +34,23 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
 
     console.log({memberPathIsProtected, adminPathIsProtected, user})
 
+    if (!state.isAuthenticated) return
+    if (!user) return
+
+    if (pathName === '/') {
+      handleRedirect()
+      return
+    }
+
     if (
       (!user?.isTenantAdmin && adminPathIsProtected) ||
       (user?.isTenantAdmin && memberPathIsProtected)
     ) {
-      router.push('/')
+      handleRedirect()
       return
-    } else {
-      router.push(pathName)
     }
+
+    router.push(pathName)
   }
 
   const handleUnauthenticated = () => {
@@ -52,10 +60,13 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   }
 
   const handleRedirect = () => {
-    if (!user) return
-    if (pathName === '/') {
-      if (user?.isTenantAdmin) router.push(PAGE_ROUTES.APPS)
-      else router.push(PAGE_ROUTES.MEMBERSHIPS)
+    if (user?.isTenantAdmin && pathName !== PAGE_ROUTES.APPS) {
+      router.push(PAGE_ROUTES.APPS)
+      return
+    }
+    if (!user?.isTenantAdmin && pathName !== PAGE_ROUTES.MEMBERSHIPS) {
+      router.push(PAGE_ROUTES.MEMBERSHIPS)
+      return
     }
   }
 
@@ -69,17 +80,17 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     }
   }, [state.isAuthenticated])
 
-  // useEffect(() => {
-  //   handleRoutes()
-  // }, [pathName, user?.isTenantAdmin])
+  useEffect(() => {
+    handleRoutes()
+  }, [pathName, user?.isTenantAdmin])
 
   useEffect(() => {
     handleUnauthenticated()
   }, [state.isAuthenticating, state.isAuthenticated])
 
-  useEffect(() => {
-    handleRedirect()
-  }, [user, pathName])
+  // useEffect(() => {
+  //   handleRedirect()
+  // }, [user, pathName])
 
   return (
     <>
