@@ -26,13 +26,13 @@ export const useMembaDetails = create<MembaStore>()(
         set({user: response})
       },
       app: null,
-      getApp: async (url?: string) => {
+      getApp: async (knownAppUrl?: string) => {
         const fullUrl = new URL(window.location.href)
         const hostName = fullUrl.hostname
-
+        const url = (knownAppUrl || hostName).replace('https://', '')
         const urlToRetrieve = hostName.includes('localhost')
           ? 'mikesgym.dev.memba.co.uk'
-          : url || hostName
+          : url
 
         const app = await getBasicApp({url: urlToRetrieve})
         set({app})

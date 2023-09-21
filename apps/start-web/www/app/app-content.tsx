@@ -63,7 +63,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
     handleRedirect()
   }, [user, pathName])
 
-  console.log('NEW START')
+  console.log('NEW START 2')
 
   if (isLoading) return <Loading />
 
