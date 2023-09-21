@@ -25,18 +25,18 @@ const Apps: React.FC<AppsProps> = (props) => {
   const router = useRouter()
 
   const openApp = async (url: string) => {
+    console.log({url})
     await getApp(url)
 
     if (process.env.NEXT_PUBLIC_STAGE_NAME === 'local') {
       router.push(readFromEnv(Env.gymApp))
       return
     }
-
     if (url) {
-      window.location.href = url
+      router.push(url)
       return
     }
-    window.location.href = PAGE_ROUTES.GYM_MANAGEMENT
+    router.push(PAGE_ROUTES.GYM_MANAGEMENT)
   }
 
   const apps = user?.tenant.apps
