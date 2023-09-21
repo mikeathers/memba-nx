@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import {colors, fontSizes, mediaQueries, spacing} from '../../styles'
 
 export const Container = styled.div`
-  padding: ${spacing.spaceHalfx} ${spacing.space3x};
   border-bottom: 1px solid ${colors.blues100};
+  padding: ${spacing.space1x} 0;
   height: 70px;
   display: flex;
   align-items: center;
@@ -23,6 +23,7 @@ export const Container = styled.div`
 export const LeftContent = styled.div`
   display: flex;
   align-items: center;
+  margin-left: ${spacing.space2x};
 `
 export const Circle = styled.div`
   height: 10px;
@@ -36,13 +37,14 @@ export const RightContent = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  margin-right: ${spacing.space2x};
 `
 
 export const AvatarCircle = styled.button`
   border-radius: 100px;
   border: 1px solid ${colors.blues800};
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;

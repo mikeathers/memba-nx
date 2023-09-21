@@ -23,7 +23,6 @@ import {
   ResetPasswordFormDetails,
   readFromEnv,
   Env,
-  useMembaDetails,
 } from '@memba-nx/shared'
 import {ErrorContainer} from './reset-password.styles'
 

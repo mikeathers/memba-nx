@@ -1,8 +1,7 @@
 'use client'
 import {useRouter} from 'next/navigation'
 import {PAGE_ROUTES, useMembaDetails} from '@memba-nx/shared'
-import React, {ComponentPropsWithRef, useEffect, useState} from 'react'
-import {Loading} from '@memba-labs/design-system'
+import React, {ComponentPropsWithRef, useEffect} from 'react'
 import {NextComponentType} from 'next'
 
 export function WithMember<T>(Component: React.FC<T>): {
@@ -12,16 +11,13 @@ export function WithMember<T>(Component: React.FC<T>): {
   const MemberComponent = (props: ComponentPropsWithRef<NextComponentType> & T) => {
     const router = useRouter()
     const {user} = useMembaDetails()
-    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
       if (!user) return
-      if (user) setLoading(false)
 
       if (user.isTenantAdmin) router.push(PAGE_ROUTES.ADMIN.HOME)
     }, [])
 
-    if (loading) return <Loading />
     return <Component {...props} />
   }
 

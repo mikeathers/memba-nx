@@ -36,7 +36,7 @@ interface GymManagementProps {
 export const GymManagement: React.FC<GymManagementProps> = (props) => {
   const {content} = props
   const {user} = useMembaDetails()
-  const {run, error, data, isLoading} = useSafeAsync()
+  const {run, isLoading} = useSafeAsync()
   const [gymName, setGymName] = useState<string>('')
   const [parsedGymName, setParsedGymName] = useState<string>('')
   const [selectedTier, setSelectedTier] = useState<string>(TIERS.FREE)
@@ -46,19 +46,12 @@ export const GymManagement: React.FC<GymManagementProps> = (props) => {
   const router = useRouter()
   const [showAppCreationLoading, setShowAppCreationLoading] = useState<boolean>()
 
-  // useEffect(() => {
-  //   const gymApp = user?.tenant.apps.find((item) => item.type === 'gym-management')
-  //   if (gymApp) {
-  //     router.push(gymApp.url)
-  //   }
-  // }, [user])
-
   const handleSelectClick = (tier: string) => {
     setSelectedTier(tier)
   }
 
   const handleSetGymName = (gymName: string) => {
-    const gymNameWithNoSpecialCharacters = gymName.replace(/[^a-zA-Z ]/g, '')
+    const gymNameWithNoSpecialCharacters = gymName.replace(/[^A-Z0-9]/gi, '')
     const parsedGymNameForUrl = gymNameWithNoSpecialCharacters
       .replace(' ', '')
       .toLowerCase()

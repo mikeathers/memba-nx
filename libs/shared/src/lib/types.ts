@@ -270,6 +270,7 @@ export type AppsContent = {
   gymManagementTitle: string
   noAppsMessage: string
   addAppMessage: string
+  addAnotherAppMessage: string
 }
 
 export type MembershipsContent = {

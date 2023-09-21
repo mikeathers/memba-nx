@@ -15,6 +15,7 @@ export * from './footer'
 export * from './error'
 export * from './menu-bars'
 export * from './data-grid'
+export * from './next-link'
 
 export const Layout = styled.div`
   position: relative;

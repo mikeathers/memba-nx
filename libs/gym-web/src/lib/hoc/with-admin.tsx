@@ -21,7 +21,7 @@ export function WithAdmin<T>(Component: React.FC<T>): {
       if (!user.isTenantAdmin) router.push(PAGE_ROUTES.HOME)
     }, [])
 
-    if (loading) return <Loading />
+    // if (loading) return <Loading />
     return <Component {...props} />
   }
 

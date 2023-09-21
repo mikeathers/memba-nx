@@ -1,10 +1,9 @@
 'use client'
 import React from 'react'
 
-import {HomeContent, PAGE_ROUTES, useMembaDetails} from '@memba-nx/shared'
+import {HomeContent} from '@memba-nx/shared'
 
 import {Container} from './home.styles'
-import {useRouter} from 'next/navigation'
 import {WithMember} from '../hoc'
 
 interface HomeProps {

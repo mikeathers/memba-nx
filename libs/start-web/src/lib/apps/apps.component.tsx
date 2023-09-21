@@ -9,9 +9,9 @@ import {
   readFromEnv,
   Env,
 } from '@memba-nx/shared'
-import {Text} from '@memba-labs/design-system'
+import {NextLink, Text} from '@memba-labs/design-system'
 
-import {Container, AppTile, YourAppsContainer} from './apps.styles'
+import {Container, AppTile, YourAppsContainer, AppTileContainer} from './apps.styles'
 import Link from 'next/link'
 import {WithAdmin} from '../hoc'
 
@@ -21,10 +21,11 @@ interface AppsProps {
 
 const Apps: React.FC<AppsProps> = (props) => {
   const {content} = props
-  const {user} = useMembaDetails()
+  const {user, getApp} = useMembaDetails()
   const router = useRouter()
 
-  const openApp = (url: string) => {
+  const openApp = async (url: string) => {
+    await getApp()
     if (process.env.NEXT_PUBLIC_STAGE_NAME === 'local') {
       router.push(readFromEnv(Env.gymApp))
       return
@@ -38,17 +39,25 @@ const Apps: React.FC<AppsProps> = (props) => {
   }
 
   const apps = user?.tenant.apps
+  const hasApps = user && apps && apps.length > 0
 
   return (
     <Container>
       <Text type={'h3'}>{content.heading}</Text>
       <YourAppsContainer>
-        {apps && apps.length > 0 ? (
-          user?.tenant.apps.map((app) => (
-            <AppTile key={app.name} onClick={() => openApp(app.url)}>
-              <Text type={'body'}>{app.name}</Text>
-            </AppTile>
-          ))
+        {hasApps ? (
+          <>
+            <AppTileContainer>
+              {user?.tenant.apps.map((app) => (
+                <AppTile key={app.name} onClick={() => openApp(app.url)}>
+                  <Text type={'body'}>{app.name}</Text>
+                </AppTile>
+              ))}
+            </AppTileContainer>
+            <NextLink href={PAGE_ROUTES.GYM_MANAGEMENT}>
+              {content.addAnotherAppMessage}
+            </NextLink>
+          </>
         ) : (
           <>
             <Text type={'body'}>{content.noAppsMessage}</Text>

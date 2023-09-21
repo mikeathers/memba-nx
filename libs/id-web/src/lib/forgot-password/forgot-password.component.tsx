@@ -7,8 +7,6 @@ import {toast} from 'react-toastify'
 import {object, string} from 'yup'
 
 import {
-  colorTokens,
-  spacingTokens,
   Button,
   CenterBox,
   ErrorToast,

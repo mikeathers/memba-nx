@@ -8,4 +8,5 @@ export const Layout = styled.div`
 export const Container = styled.div`
   display: flex;
   min-height: 100vh;
+  margin-bottom: 100px;
 `

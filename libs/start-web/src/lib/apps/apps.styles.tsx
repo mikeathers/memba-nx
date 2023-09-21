@@ -4,6 +4,7 @@ import {borderRadius, colors, mediaQueries, spacing} from '@memba-labs/design-sy
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 100vw;
 
   @media (${mediaQueries.s}) {
     padding: 0 ${spacing.space4x};
@@ -23,6 +24,8 @@ export const AppTile = styled.button`
   width: 150px;
   height: 150px;
   border: none;
+  margin-right: ${spacing.space2x};
+  margin-bottom: ${spacing.space2x};
 
   &:hover {
     cursor: pointer;
@@ -33,4 +36,10 @@ export const AppTile = styled.button`
     width: 120px;
     height: 120px;
   }
+`
+
+export const AppTileContainer = styled.div`
+  display: flex;
+  margin-bottom: ${spacing.space2x};
+  flex-wrap: wrap;
 `

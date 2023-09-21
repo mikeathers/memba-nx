@@ -2,14 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {usePathname, useRouter} from 'next/navigation'
 
 import {Loading, TitleBar} from '@memba-labs/design-system'
-import {
-  useAuth,
-  useMembaDetails,
-  readFromEnv,
-  Env,
-  MembaApp,
-  PAGE_ROUTES,
-} from '@memba-nx/shared'
+import {useAuth, useMembaDetails, readFromEnv, Env, PAGE_ROUTES} from '@memba-nx/shared'
 
 import {Container} from './app.styles'
 
@@ -22,7 +15,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const {refreshUserSession, state, signUserOut} = useAuth()
   const router = useRouter()
-  const {getTenantUser, getUser, user} = useMembaDetails()
+  const {getTenantUser, getUser, getApp, user, app} = useMembaDetails()
   const [appName, setAppName] = useState<string>('')
   const pathName = usePathname()
 
@@ -31,19 +24,13 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
       if (state.user.isTenantAdmin) await getTenantUser(state.user?.emailAddress || '')
       else await getUser(state.user?.emailAddress || '')
     }
+
+    await getApp()
   }
 
   const handleGetAppName = () => {
-    if (!user) return
-    if (appName) return
-    const tenant = user?.tenant?.apps.find(
-      (item: MembaApp) => item.type === 'gym-management',
-    )
-    const tenantAppName = tenant?.name
-
-    const gymMembership = user?.memberships?.find((m) => m.type === 'gym-management')
-
-    setAppName(tenantAppName || gymMembership?.name || 'Memba')
+    if (!user || !app) return
+    setAppName(app.name || 'Memba')
   }
 
   const handleUnauthenticated = () => {
@@ -78,7 +65,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
 
   useEffect(() => {
     handleGetAppName()
-  }, [user])
+  }, [app])
 
   useEffect(() => {
     handleUnauthenticated()
@@ -90,6 +77,8 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
 
   console.log('GYM NEW 7')
 
+  if (isLoading) return <Loading />
+
   return (
     <>
       <TitleBar
@@ -98,7 +87,7 @@ export const AppContent: React.FC<AppContentProps> = (props) => {
         user={user}
         appName={appName}
       />
-      {isLoading ? <Loading /> : <Container>{children}</Container>}
+      <Container>{children}</Container>
     </>
   )
 }

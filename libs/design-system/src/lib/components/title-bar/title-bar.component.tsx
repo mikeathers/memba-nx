@@ -35,7 +35,7 @@ export interface TitleBarProps {
   appName?: string
 }
 export const TitleBar = (props: TitleBarProps) => {
-  const {signUserOut, user, isLoading, appName} = props
+  const {signUserOut, user, appName} = props
 
   const [initials, setInitials] = useState<{firstInitial: string; lastInitial: string}>({
     firstInitial: '',

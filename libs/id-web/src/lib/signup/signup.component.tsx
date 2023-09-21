@@ -5,21 +5,13 @@ import {Formik} from 'formik'
 import {object, string} from 'yup'
 import {useRouter} from 'next/navigation'
 
-import {
-  colorTokens,
-  spacingTokens,
-  Button,
-  CenterBox,
-  Text,
-  TextInput,
-} from '@memba-labs/design-system'
+import {Button, CenterBox, Text, TextInput} from '@memba-labs/design-system'
 import {
   useAuth,
   passwordValidation,
   useSafeAsync,
   SignUpContent,
   RegisterTenantProps,
-  useMembaDetails,
   PAGE_ROUTES,
 } from '@memba-nx/shared'
 

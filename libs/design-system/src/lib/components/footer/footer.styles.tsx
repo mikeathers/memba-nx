@@ -6,5 +6,4 @@ export const Container = styled.div`
   margin: ${spacing.space10x} 0 ${spacing.space2x};
   text-align: center;
   position: absolute;
-  bottom: 0;
 `
