@@ -8,7 +8,7 @@ export interface MembaStore {
   user: MembaUser | null
   getUser: (emailAddress: string) => Promise<void>
   app: MembaApp | null
-  getApp: () => Promise<void>
+  getApp: (url?: string) => Promise<void>
 }
 
 export const useMembaDetails = create<MembaStore>()(
@@ -26,11 +26,15 @@ export const useMembaDetails = create<MembaStore>()(
         set({user: response})
       },
       app: null,
-      getApp: async () => {
+      getApp: async (url?: string) => {
         const fullUrl = new URL(window.location.href)
         const hostName = fullUrl.hostname
-        const url = hostName.includes('localhost') ? 'mikesgym.dev.memba.co.uk' : hostName
-        const app = await getBasicApp({url})
+
+        const urlToRetrieve = hostName.includes('localhost')
+          ? 'mikesgym.dev.memba.co.uk'
+          : url || hostName
+
+        const app = await getBasicApp({url: urlToRetrieve})
         set({app})
       },
     }),

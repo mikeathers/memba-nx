@@ -25,7 +25,8 @@ const Apps: React.FC<AppsProps> = (props) => {
   const router = useRouter()
 
   const openApp = async (url: string) => {
-    await getApp()
+    await getApp(url)
+
     if (process.env.NEXT_PUBLIC_STAGE_NAME === 'local') {
       router.push(readFromEnv(Env.gymApp))
       return
