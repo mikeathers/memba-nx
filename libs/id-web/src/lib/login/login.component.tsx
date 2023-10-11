@@ -16,6 +16,8 @@ import {
   LoginFormDetails,
 } from '@memba-nx/shared'
 
+import {WithoutAuth} from '../hoc'
+
 import {ErrorContainer, ActionsContainer} from './login.styles'
 import {toast} from 'react-toastify'
 
@@ -23,7 +25,7 @@ export interface LoginProps {
   content: LoginContent
 }
 
-export const Login: React.FC<LoginProps> = (props) => {
+const Login: React.FC<LoginProps> = (props) => {
   const {content} = props
   const router = useRouter()
   const {signUserIn, resendConfirmationEmail} = useAuth()
@@ -82,7 +84,7 @@ export const Login: React.FC<LoginProps> = (props) => {
 
       if (redirectUrl) {
         router.push(redirectUrl)
-      }
+      } else router.push(readFromEnv(Env.startApp))
     }
   }
 
@@ -178,3 +180,5 @@ export const Login: React.FC<LoginProps> = (props) => {
     </CenterBox>
   )
 }
+
+export default WithoutAuth(Login)

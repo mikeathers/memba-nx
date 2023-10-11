@@ -121,11 +121,13 @@ export const fontWeights: FontWeights = {
 }
 
 export const lineHeightValues = {
+  small: 8,
   medium: 22,
   large: 42,
 }
 
 export const lineHeights: LineHeights = {
+  small: `${lineHeightValues.small}px`,
   medium: `${lineHeightValues.medium}px`,
   large: `${lineHeightValues.large}px`,
 }

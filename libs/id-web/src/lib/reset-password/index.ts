@@ -1,1 +1,1 @@
-export * from './reset-password.component'
+export {default as ResetPassword} from './reset-password.component'

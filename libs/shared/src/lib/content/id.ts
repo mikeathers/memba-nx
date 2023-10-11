@@ -4,6 +4,7 @@ import {
   LoginContent,
   ResetPasswordContent,
   SignUpContent,
+  AccountContent,
 } from '../types'
 
 const appName = 'Memba'
@@ -94,6 +95,26 @@ export const resetPassword: ResetPasswordContent = {
         '*Your password should include lowercase, uppercase, digits and symbols.',
       passwordLengthMessage: '*Your password should be at least 6 characters.',
       password: '*A password is required to set up your account',
+    },
+  },
+}
+
+export const accountContent: AccountContent = {
+  heading: 'Account details',
+  changeAvatar: 'Change avatar',
+  updateAccountCta: 'Update account details',
+  form: {
+    email: 'Email:',
+    emailPlaceholder: 'Enter your email',
+    firstName: 'First name:',
+    firstNamePlaceholder: 'Enter your first name',
+    lastName: 'Last name:',
+    lastNamePlaceholder: 'Enter your last name',
+    validation: {
+      emailAddress: '*Please enter your email address',
+      emailAddressFormat: '*Your email address is not valid',
+      firstName: '*Please enter your first name',
+      lastName: '*Please enter your last name',
     },
   },
 }

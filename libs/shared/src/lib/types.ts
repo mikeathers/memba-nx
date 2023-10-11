@@ -50,6 +50,7 @@ export type MembaUser = {
   appId: string
   signUpRedirectUrl: string
   memberships: UserMembership[]
+  avatar?: string
 }
 
 export type TenantApp = {
@@ -263,6 +264,26 @@ export type ResetPasswordContent = {
   }
 }
 
+export type AccountContent = {
+  heading: string
+  changeAvatar: string
+  updateAccountCta: string
+  form: {
+    email: string
+    emailPlaceholder: string
+    firstName: string
+    firstNamePlaceholder: string
+    lastName: string
+    lastNamePlaceholder: string
+    validation: {
+      emailAddress: string
+      emailAddressFormat: string
+      firstName: string
+      lastName: string
+    }
+  }
+}
+
 /*************** START WEB ****************/
 
 export type AppsContent = {
@@ -274,10 +295,6 @@ export type AppsContent = {
 }
 
 export type MembershipsContent = {
-  heading: string
-}
-
-export type AccountContent = {
   heading: string
 }
 

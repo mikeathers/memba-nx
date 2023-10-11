@@ -16,6 +16,7 @@ export enum FontWeightStyles {
 }
 
 export enum LineHeightStyles {
+  small = 'small',
   medium = 'medium',
   large = 'large',
 }

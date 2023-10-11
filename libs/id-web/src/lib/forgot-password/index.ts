@@ -1,1 +1,1 @@
-export * from './forgot-password.component'
+export {default as ForgotPassword} from './forgot-password.component'

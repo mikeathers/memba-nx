@@ -1,27 +1,25 @@
 'use client'
 import {useRouter} from 'next/navigation'
-import {PAGE_ROUTES, useMembaDetails} from '@memba-nx/shared'
+import {PAGE_ROUTES, useAuth, useMembaDetails} from '@memba-nx/shared'
 import React, {ComponentPropsWithRef, useEffect, useState} from 'react'
 import {Loading} from '@memba-labs/design-system'
 import {NextComponentType} from 'next'
 
-export function WithAdmin<T>(Component: React.FC<T>): {
+export function WithAuth<T>(Component: React.FC<T>): {
   (props: ComponentPropsWithRef<NextComponentType> & T): React.ReactNode | null
   displayName: string | undefined
 } {
-  const AdminComponent = (props: ComponentPropsWithRef<NextComponentType> & T) => {
+  const WithAuthComponent = (props: ComponentPropsWithRef<NextComponentType> & T) => {
     const router = useRouter()
-    const {user} = useMembaDetails()
+    const {state} = useAuth()
 
     useEffect(() => {
-      if (!user) return
-
-      if (!user.isTenantAdmin) router.push(PAGE_ROUTES.HOME)
+      if (!state.isAuthenticated) router.push(PAGE_ROUTES.LOGIN)
     }, [])
 
     return <Component {...props} />
   }
 
-  AdminComponent.displayName = Component.displayName
-  return AdminComponent
+  WithAuthComponent.displayName = Component.displayName
+  return WithAuthComponent
 }

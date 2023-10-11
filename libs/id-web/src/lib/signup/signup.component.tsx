@@ -15,13 +15,15 @@ import {
   PAGE_ROUTES,
 } from '@memba-nx/shared'
 
+import {WithoutAuth} from '../hoc'
+
 import {ErrorContainer, LoginContainer} from './signup.styles'
 
 export interface SignUpProps {
   content: SignUpContent
 }
 
-export const SignUp = (props: SignUpProps) => {
+const SignUp = (props: SignUpProps) => {
   const {content} = props
   const router = useRouter()
   const {registerTenant} = useAuth()
@@ -171,3 +173,5 @@ export const SignUp = (props: SignUpProps) => {
     </CenterBox>
   )
 }
+
+export default WithoutAuth(SignUp)

@@ -11,6 +11,7 @@ interface PAGE_ROUTES {
   LOGIN: string
   FORGOT_PASSWORD: string
   RESET_PASSWORD: string
+  ACCOUNT: string
   ADMIN: {
     HOME: string
     USERS: string
@@ -27,6 +28,7 @@ export const PAGE_ROUTES: PAGE_ROUTES = {
   LOGIN: '/login',
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
+  ACCOUNT: '/account',
   ADMIN: {
     HOME: '/admin/home',
     USERS: '/admin/users',
@@ -36,7 +38,9 @@ export const PAGE_ROUTES: PAGE_ROUTES = {
 interface ENDPOINTS {
   CREATE_TENANT_ACCOUNT: string
   GET_TENANT_ACCOUNT: string
+  UPDATE_TENANT_ACCOUNT: string
   GET_USER_ACCOUNT: string
+  UPDATE_USER_ACCOUNT: string
   GET_TENANT: string
   CREATE_GYM_APP: string
   GET_APP: string
@@ -48,7 +52,9 @@ interface ENDPOINTS {
 
 export const ENDPOINTS: ENDPOINTS = {
   GET_TENANT_ACCOUNT: '/tenants/get-account',
+  UPDATE_TENANT_ACCOUNT: '/tenants/update-account',
   GET_USER_ACCOUNT: '/users/get-account',
+  UPDATE_USER_ACCOUNT: '/users/update-account',
   CREATE_USER_ACCOUNT: 'users/create-account',
   CREATE_TENANT_ACCOUNT: '/tenants/create-account',
   GET_TENANT: 'get-tenant',

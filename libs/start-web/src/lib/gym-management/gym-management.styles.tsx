@@ -10,7 +10,6 @@ export const CenterContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: ${spacing.space4x};
 `
 
 export const Content = styled.div`

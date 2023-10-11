@@ -1,1 +1,1 @@
-export * from './complete-sign-up.component'
+export {default as CompleteSignUp} from './complete-sign-up.component'

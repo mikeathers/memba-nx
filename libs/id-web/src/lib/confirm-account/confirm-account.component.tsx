@@ -11,6 +11,8 @@ import {
   ConfirmAccountContent,
 } from '@memba-nx/shared'
 
+import {WithoutAuth} from '../hoc'
+
 import {
   EmailAddress,
   EnvelopeImage,
@@ -21,7 +23,7 @@ interface ConfirmAccountProps {
   content: ConfirmAccountContent
 }
 
-export const ConfirmAccount: React.FC<ConfirmAccountProps> = (props) => {
+const ConfirmAccount: React.FC<ConfirmAccountProps> = (props) => {
   const {content} = props
   const {resendConfirmationEmail} = useAuth()
   const {run, isSuccess, isError} = useSafeAsync()
@@ -81,3 +83,5 @@ export const ConfirmAccount: React.FC<ConfirmAccountProps> = (props) => {
     </CenterBox>
   )
 }
+
+export default WithoutAuth(ConfirmAccount)

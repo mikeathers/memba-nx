@@ -1,1 +1,1 @@
-export * from './confirm-account.component'
+export {default as ConfirmAccount} from './confirm-account.component'

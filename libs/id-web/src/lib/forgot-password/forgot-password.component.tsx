@@ -20,8 +20,9 @@ import {
   ForgotPasswordContent,
   ForgotPasswordFormDetails,
   PAGE_ROUTES,
-  useMembaDetails,
 } from '@memba-nx/shared'
+
+import {WithoutAuth} from '../hoc'
 
 import {ActionsContainer, ErrorContainer} from './forgot-password.styles'
 
@@ -29,7 +30,7 @@ interface ForgotPasswordProps {
   content: ForgotPasswordContent
 }
 
-export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
+const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
   const {content} = props
   const {isLoading, run, isSuccess} = useSafeAsync()
   const {sendForgotPasswordLink} = useAuth()
@@ -127,3 +128,5 @@ export const ForgotPassword: React.FC<ForgotPasswordProps> = (props) => {
     </CenterBox>
   )
 }
+
+export default WithoutAuth(ForgotPassword)

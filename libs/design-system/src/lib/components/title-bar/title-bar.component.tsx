@@ -15,8 +15,8 @@ import {LoadingSpinner} from '../loading-spinner'
 
 import {
   ActionsContainer,
-  AvatarCircle,
-  AvatarCircleSmall,
+  InitialsCircle,
+  InitialsCircleSmall,
   Circle,
   Container,
   LeftContent,
@@ -25,8 +25,12 @@ import {
   Name,
   NameContainer,
   RightContent,
+  AvatarCircle,
+  AvatarCircleSmall,
 } from './title-bar.styles'
 import {Button} from '../button'
+import {router} from 'next/client'
+import {useRouter} from 'next/navigation'
 
 export interface TitleBarProps {
   signUserOut: () => void
@@ -36,6 +40,7 @@ export interface TitleBarProps {
 }
 export const TitleBar = (props: TitleBarProps) => {
   const {signUserOut, user, appName} = props
+  const router = useRouter()
 
   const [initials, setInitials] = useState<{firstInitial: string; lastInitial: string}>({
     firstInitial: '',
@@ -64,6 +69,37 @@ export const TitleBar = (props: TitleBarProps) => {
 
   const handleLogout = async () => {
     signUserOut()
+    router.replace(`${readFromEnv(Env.idApp)}/login`)
+  }
+
+  const handleAvatar = () => {
+    if (!user) {
+      return <LoadingSpinner />
+    }
+    if (user?.avatar) {
+      return (
+        <AvatarCircle
+          onClick={() => {
+            handleSetIsComponentVisible(!localVisible)
+          }}
+        >
+          <img src={user?.avatar} />
+        </AvatarCircle>
+      )
+    }
+
+    if (!user?.avatar) {
+      return (
+        <InitialsCircle
+          onClick={() => {
+            handleSetIsComponentVisible(!localVisible)
+          }}
+        >
+          <Text type={'h4'}>{initials.firstInitial}</Text>
+          <Text type={'h4'}>{initials.lastInitial}</Text>
+        </InitialsCircle>
+      )
+    }
   }
 
   return (
@@ -73,18 +109,7 @@ export const TitleBar = (props: TitleBarProps) => {
         <Text type={'h3'}>{appName || 'Memba'}</Text>
       </LeftContent>
       <RightContent>
-        {initials.firstInitial && initials.lastInitial ? (
-          <AvatarCircle
-            onClick={() => {
-              handleSetIsComponentVisible(!localVisible)
-            }}
-          >
-            <Text type={'h4'}>{initials.firstInitial}</Text>
-            <Text type={'h4'}>{initials.lastInitial}</Text>
-          </AvatarCircle>
-        ) : (
-          <LoadingSpinner />
-        )}
+        {handleAvatar()}
         {localVisible && (
           <Menu ref={ref}>
             <MenuTitleContainer>
@@ -92,15 +117,15 @@ export const TitleBar = (props: TitleBarProps) => {
                 Account
               </Text>
               <NameContainer>
-                <AvatarCircleSmall>
+                <InitialsCircleSmall>
                   <Text type={'body'}>{initials.firstInitial}</Text>
                   <Text type={'body'}>{initials.lastInitial}</Text>
-                </AvatarCircleSmall>
+                </InitialsCircleSmall>
                 <Name>
-                  <Text type={'body'}>{`${sentenceCase(user?.firstName)} ${sentenceCase(
-                    user?.lastName,
-                  )}`}</Text>
-                  <Text type={'body'} $faded>
+                  <Text type={'body'} $lineHeight={'small'}>{`${sentenceCase(
+                    user?.firstName,
+                  )} ${sentenceCase(user?.lastName)}`}</Text>
+                  <Text type={'body'} $faded $lineHeight={'small'}>
                     {user?.emailAddress}
                   </Text>
                 </Name>
@@ -131,7 +156,7 @@ export const TitleBar = (props: TitleBarProps) => {
                 </Link>
               )}
 
-              <Link href={`${readFromEnv(Env.startApp)}/account`}>
+              <Link href={`${readFromEnv(Env.idApp)}/account`}>
                 <Button
                   $variant={'text'}
                   onClick={() => {

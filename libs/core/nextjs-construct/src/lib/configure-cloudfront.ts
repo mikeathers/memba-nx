@@ -101,7 +101,7 @@ export function createCloudfrontDistributionAndConfiguration(
   }
 }
 
-function createCertificate(scope: Construct, id: string, arn: string) {
+export function createCertificate(scope: Construct, id: string, arn: string) {
   return Certificate.fromCertificateArn(scope, id, arn)
 }
 

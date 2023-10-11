@@ -1,17 +1,15 @@
 import {Construct} from 'constructs'
 import {Stack, StackProps, CfnOutput} from 'aws-cdk-lib'
-import {ManagedPolicy, PermissionsBoundary} from 'aws-cdk-lib/aws-iam'
 import {BehaviorOptions, OriginProtocolPolicy} from 'aws-cdk-lib/aws-cloudfront'
 import {HttpOrigin, S3Origin} from 'aws-cdk-lib/aws-cloudfront-origins'
 
 import {createStaticFileBucketAndConfiguration} from './configure-s3-buckets'
 import {createOpenNextApiGatewaysAndConfiguration} from './configure-api-gateways'
 import {createCloudfrontDistributionAndConfiguration} from './configure-cloudfront'
-// import {createDatadogIntegration} from './configure-datadog'
-
-import {setupISR} from './configure-isr'
+// import {setupISR} from './configure-isr'
 import type {Config} from './read-config'
-import {createWarmerFunction} from './configure-warmer-function'
+import {configureImageUploads} from './configure-image-uploads'
+// import {createWarmerFunction} from './configure-warmer-function'
 
 type NextJsConstructProps = StackProps &
   Config & {
@@ -21,6 +19,7 @@ type NextJsConstructProps = StackProps &
     additionalBehaviours?: Record<string, BehaviorOptions>
     warmerConcurrency?: number
     withWildCardDomain?: boolean
+    withImageUploads?: boolean
   }
 
 export class NextJsConstruct extends Stack {
@@ -38,6 +37,15 @@ export class NextJsConstruct extends Stack {
     //     'infrastructure/CinchRoleBoundary',
     //   ),
     // )
+
+    if (props.withImageUploads) {
+      configureImageUploads({
+        scope: this,
+        domainName: props.domainName,
+        certificateArn: props.certificateArn,
+        userPoolArn: props.userPoolArn,
+      })
+    }
 
     const {
       bucket,
@@ -70,17 +78,17 @@ export class NextJsConstruct extends Stack {
     /**
      * Sets up the ISR Functions
      */
-    const {function: ISRFunction} = setupISR(this, this.id, {
-      buildPath,
-      serverFunction,
-      bucket,
-    })
-
-    const warmerFunction = createWarmerFunction(this, {
-      buildPath,
-      serverFunction,
-      concurrency: warmerConcurrency,
-    })
+    // const {function: ISRFunction} = setupISR(this, this.id, {
+    //   buildPath,
+    //   serverFunction,
+    //   bucket,
+    // })
+    //
+    // const warmerFunction = createWarmerFunction(this, {
+    //   buildPath,
+    //   serverFunction,
+    //   concurrency: warmerConcurrency,
+    // })
 
     const serverFunctionOrigin = new HttpOrigin(serverApiGateway.domain, {
       originPath: serverApiGateway.path,

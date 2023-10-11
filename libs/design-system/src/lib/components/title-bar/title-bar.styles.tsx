@@ -9,15 +9,6 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: ${spacing.space4x};
-
-  @media (${mediaQueries.l}) {
-    margin-bottom: ${spacing.space4x};
-  }
-
-  @media (${mediaQueries.xl}) {
-    margin-bottom: ${spacing.space6x};
-  }
 `
 
 export const LeftContent = styled.div`
@@ -41,6 +32,22 @@ export const RightContent = styled.div`
 `
 
 export const AvatarCircle = styled.button`
+  border-radius: 100px;
+  border: 1px solid ${colors.greys200};
+  height: 60px;
+  width: 60px;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+
+  img {
+    border-radius: 100px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`
+export const InitialsCircle = styled.button`
   border-radius: 100px;
   border: 1px solid ${colors.blues800};
   height: 50px;
@@ -99,7 +106,7 @@ export const NameContainer = styled.div`
   display: flex;
   align-items: center;
 `
-export const AvatarCircleSmall = styled.div`
+export const InitialsCircleSmall = styled.div`
   border-radius: 100px;
   border: 1px solid ${colors.blues800};
   height: 40px;
@@ -109,6 +116,25 @@ export const AvatarCircleSmall = styled.div`
   align-items: center;
   background-color: transparent;
   margin-right: ${spacing.space2x};
+`
+
+export const AvatarCircleSmall = styled.div`
+  border-radius: 100px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  margin-right: ${spacing.space2x};
+  border: 1px solid ${colors.greys200};
+
+  img {
+    border-radius: 100px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `
 
 export const Name = styled.div``

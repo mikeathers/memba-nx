@@ -5,10 +5,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 100vw;
-
-  @media (${mediaQueries.s}) {
-    padding: 0 ${spacing.space4x};
-  }
 `
 
 export const YourAppsContainer = styled.div`

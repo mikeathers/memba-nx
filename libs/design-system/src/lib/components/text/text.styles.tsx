@@ -43,7 +43,6 @@ export const H3 = styled.h3<StyledTextProps>`
   font-weight: ${fontWeights.medium};
   font-size: ${fontSizes.l};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
-  line-height: ${lineHeights.medium};
   ${baseStyles};
 `
 
@@ -51,7 +50,6 @@ export const H4 = styled.h4<StyledTextProps>`
   font-weight: ${fontWeights.medium};
   font-size: ${fontSizes.m};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
-  line-height: ${lineHeights.medium};
   ${baseStyles};
 `
 
@@ -59,7 +57,6 @@ export const Body = styled.p<StyledTextProps>`
   font-weight: ${fontWeights.regular};
   font-size: ${fontSizes.s};
   color: ${({color}) => (color ? colors[color] : colors.greys100)};
-  line-height: ${lineHeights.medium};
   ${baseStyles};
 `
 

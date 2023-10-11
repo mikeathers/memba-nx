@@ -92,6 +92,9 @@ const stageConfigSchema = z.object(
     accountId: z.string({
       required_error: 'The accountId has not been provided for this stage',
     }),
+    userPoolArn: z.string({
+      required_error: 'The userPoolId has not been provided for this stage',
+    }),
   },
   {
     description: 'the configuration of a stage',

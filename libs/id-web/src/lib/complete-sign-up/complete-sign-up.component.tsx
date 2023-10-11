@@ -13,9 +13,11 @@ import {
 } from '@memba-nx/shared'
 import {Loading} from '@memba-labs/design-system'
 
+import {WithoutAuth} from '../hoc'
+
 import {Container} from './complete-sign-up.styles'
 
-export const CompleteSignUp: React.FC = () => {
+const CompleteSignUp: React.FC = () => {
   const {run, isSuccess, error, isLoading} = useSafeAsync()
   const {completeRegistration, signUserIn, state} = useAuth()
   const searchParams = useSearchParams()
@@ -83,3 +85,5 @@ export const CompleteSignUp: React.FC = () => {
 
   return <Container>Complete sign up</Container>
 }
+
+export default WithoutAuth(CompleteSignUp)

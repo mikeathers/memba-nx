@@ -7,6 +7,7 @@ export interface MembaStore {
   getTenantUser: (emailAddress: string) => Promise<void>
   user: MembaUser | null
   getUser: (emailAddress: string) => Promise<void>
+  updateUser: (newUserDetails: MembaUser) => void
   app: MembaApp | null
   getApp: (url?: string) => Promise<void>
 }
@@ -16,14 +17,16 @@ export const useMembaDetails = create<MembaStore>()(
     (set, get) => ({
       getTenantUser: async (emailAddress: string) => {
         const response = await getTenantAccount({emailAddress})
-        console.log('tenant:', response)
         set({user: response})
       },
       user: null,
       getUser: async (emailAddress: string) => {
         const response = await getUserAccount({emailAddress})
-        console.log('user:', response)
         set({user: response})
+      },
+      updateUser: async (newUserDetails: MembaUser) => {
+        console.log('hee')
+        set({user: newUserDetails})
       },
       app: null,
       getApp: async (knownAppUrl?: string) => {
@@ -44,31 +47,3 @@ export const useMembaDetails = create<MembaStore>()(
     },
   ),
 )
-// (optional) by default, 'localStorage' is used}))
-
-//     (set) => ({
-//     getTenantUser: async (emailAddress: string) => {
-//       const response = await getTenantAccount({emailAddress})
-//       console.log('tenant:', response)
-//       set({user: response})
-//     },
-//     user: null,
-//     getUser: async (emailAddress: string) => {
-//       const response = await getUserAccount({emailAddress})
-//       console.log('user:', response)
-//       set({user: response})
-//     },
-//     app: null,
-//     getApp: async () => {
-//       const fullUrl = new URL(window.location.href)
-//       const hostName = fullUrl.hostname
-//       const url = hostName.includes('localhost') ? 'mikesgym.dev.memba.co.uk' : hostName
-//       const app = await getBasicApp({url})
-//       set({app})
-//     },
-//   })),
-//   {
-//     name: 'memba-storage',
-//     s,
-//   },
-// )

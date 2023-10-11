@@ -24,13 +24,16 @@ import {
   readFromEnv,
   Env,
 } from '@memba-nx/shared'
+
+import {WithoutAuth} from '../hoc'
+
 import {ErrorContainer} from './reset-password.styles'
 
 interface ResetPasswordProps {
   content: ResetPasswordContent
 }
 
-export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
+const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
   const {content} = props
   const searchParams = useSearchParams()
   const {completeResetPassword, signUserIn} = useAuth()
@@ -140,3 +143,5 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     </CenterBox>
   )
 }
+
+export default WithoutAuth(ResetPassword)

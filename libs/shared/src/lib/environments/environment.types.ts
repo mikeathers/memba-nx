@@ -12,6 +12,8 @@ export enum EnvironmentFromFile {
   cookieStorageSecure = 'COOKIE_STORAGE_SECURE',
   cookieStoragePath = 'COOKIE_STORAGE_PATH',
   cookieStorageExpires = 'COOKIE_STORAGE_EXPIRES',
+  preSignedUrl = 'PRE_SIGNED_URL',
+  imageUploadBucketName = 'IMAGE_UPLOAD_BUCKET_NAME',
 }
 
 export interface IEnvironment extends Record<EnvironmentFromFile, string> {
@@ -28,6 +30,8 @@ export interface IEnvironment extends Record<EnvironmentFromFile, string> {
   COOKIE_STORAGE_SECURE: string
   COOKIE_STORAGE_PATH: string
   COOKIE_STORAGE_EXPIRES: string
+  PRE_SIGNED_URL: string
+  IMAGE_UPLOAD_BUCKET_NAME: string
 }
 
 export const Env = {

@@ -1,6 +1,6 @@
 'use client'
 import {styled} from 'styled-components'
-import {spacing} from '@memba-labs/design-system'
+import {mediaQueries, spacing} from '@memba-labs/design-system'
 
 export const Layout = styled.div`
   position: relative;
@@ -9,5 +9,14 @@ export const Layout = styled.div`
 export const Container = styled.div`
   display: flex;
   padding: ${spacing.space2x};
-  min-height: 100vh;
+  height: 100vh;
+  padding: ${spacing.space2x} ${spacing.space2x};
+
+  @media (${mediaQueries.s}) {
+    padding: ${spacing.space2x} ${spacing.space4x};
+  }
+
+  @media (${mediaQueries.xl}) {
+    padding: ${spacing.space4x} ${spacing.space6x};
+  }
 `

@@ -81,7 +81,8 @@ export const baseStyles = css<StyledTextProps>`
     return fontSize
   }};
   font-weight: ${({fontWeight}) => fontWeight && fontWeights[fontWeight]};
-  line-height: ${({$lineHeight}) => $lineHeight && lineHeights[$lineHeight]};
+  line-height: ${({$lineHeight}) =>
+    $lineHeight ? lineHeights[$lineHeight] : lineHeights.medium};
   color: ${({$faded, color}) => {
     if ($faded) return colors.greys300
     if (color) return colors[color]

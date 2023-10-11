@@ -18,4 +18,5 @@ new NextJsConstruct(app, stackName, {
     region: 'eu-west-2',
   },
   ...config,
+  withImageUploads: true,
 })

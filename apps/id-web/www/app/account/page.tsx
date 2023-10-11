@@ -1,4 +1,4 @@
-import {Account} from '@memba-nx/start-web'
+import {Account} from '@memba-nx/id-web'
 import {accountContent} from '@memba-nx/shared'
 
 const AccountPage = () => {
